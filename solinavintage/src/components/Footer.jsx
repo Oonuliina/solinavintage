@@ -8,7 +8,7 @@ export default function Footer() {
     return (
         <div className="footer">
             <div className="footerInfo">
-                <div classname="links">
+                <div classname="info">
                     <h2>Linkkejä</h2>
                     <p>Tietoa meistä</p>
                     <p>Toimitusehdot</p>
@@ -26,7 +26,6 @@ export default function Footer() {
                     <p>logoja</p>
                 </div>
             </div>
-                <div className="socialCopyr">
                     <div className="socialLogos">
                         <FacebookLogo size={32} weight="light" />
                         <Envelope size={32} weight="light" />
@@ -35,7 +34,6 @@ export default function Footer() {
                     <div className="copyright">
                         <p>© 2023 Solina Vintage Oy</p>
                     </div>
-                </div>
         </div>
 
     )

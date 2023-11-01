@@ -1,6 +1,8 @@
 .footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
     width: 100%;
-    display: flex;
 }
 h2 {
     font-size: 15px;
@@ -10,15 +12,21 @@ h2 {
 }
 .footerInfo {
     display: flex;
-    justify-content: center;
+    text-align: left; 
+    width: 70%;
+    margin-left: 150px;
 }
-
 .socialLogos {
     display: flex;
+    justify-content: center;
 }
 .copyright {
     font-size: 12px;
 } 
-.socialCopyr {
-    display: flex;
+.info {
+    padding-right: 20px;
+}
+.payment {
+    padding-right: 20px;
+
 }
