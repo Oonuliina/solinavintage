@@ -1,20 +1,24 @@
 .footer {
     width: 100%;
+    display: flex;
 }
 h2 {
     font-size: 15px;
 }
-.footerInfo p, a {
+.footerInfo p {
     font-size: 15px;
 }
 .footerInfo {
+    display: flex;
+    justify-content: center;
 }
-.copyright p {
 
+.socialLogos {
+    display: flex;
 }
-.contact {
-
-}
-.payment {
-
+.copyright {
+    font-size: 12px;
+} 
+.socialCopyr {
+    display: flex;
 }
