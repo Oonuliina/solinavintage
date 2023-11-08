@@ -1,5 +1,5 @@
 import React from "react";
-import { FacebookLogo, Envelope, InstagramLogo } from "@phosphor-icons/react";
+import { FacebookLogo, Envelope, InstagramLogo, MapPin, Phone, EnvelopeSimple } from "@phosphor-icons/react";
 import paytrail from '../assets/paytrailLogo.png'
 import siirto from '../assets/SiirtoLogo.png';
 import mobilepay from '../assets/mobilepayLogo.png'
@@ -28,9 +28,9 @@ export default function Footer() {
                 <div className="footerInfoCenter">
                     <div className="contactBox">
                         <h1 className="contactTitle">Yhteystiedot</h1>
-                        <p>Sähköposti: info@solinavintage.fi</p>
-                        <p>Puhelin: 050 012 3456</p>
-                        <p>Osoite: Vintagekatu 3, 00100 Helsinki</p>
+                        <p><EnvelopeSimple className="icon" size={24} weight="light" /> info@solinavintage.fi</p>
+                        <p><Phone className="icon" size={24} weight="light" /> 050 012 3456</p>
+                        <p><MapPin className="icon" size={24} weight="light" /> Vintagekatu 3, 00100 Helsinki</p>
                     </div>
                 </div>
                 <div className="footerInfoRight">
@@ -51,11 +51,9 @@ export default function Footer() {
             </div>
             <div className="footerBot">  
                 <div className="socialContainer">
-                    <ul className="socialList">
-                        <li className="socialListItem"><FacebookLogo className="socialLogo" size={32} weight="light" /></li>
-                        <li className="socialListItem"><Envelope className="socialLogo" size={32} weight="light" /></li>
-                        <li className="socialListItem"><InstagramLogo className="socialLogo" size={32} weight="light" /></li>
-                    </ul>
+                        <FacebookLogo className="socialLogo" size={32} weight="light" />
+                        <Envelope className="socialLogo" size={32} weight="light" />
+                        <InstagramLogo className="socialLogo" size={32} weight="light" />
                 </div> 
                 <div className="copyright">
                         <p>© 2023 Solina Vintage Oy</p>
