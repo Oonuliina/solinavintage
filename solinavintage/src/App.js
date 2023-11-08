@@ -1,6 +1,9 @@
 import Header from "./components/Header"
 import Footer from "./components/Footer"
 import './App.css';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import Etusivu from "./pages/Etusivu";
+
 // import { useEffect, useState } from "react";
 
 function App() {
@@ -14,9 +17,11 @@ function App() {
 
   return (
     <div className="App">
-      {/* <h1>{testMessage}</h1> */}
-       <Header />
-       <Footer />
+      <Router>
+        <Routes>
+          <Route path="/" element={<Etusivu />} />
+        </Routes>  
+      </Router>
     </div>
   );
 }
