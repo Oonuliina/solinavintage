@@ -1,6 +1,11 @@
-import Header from "./components/Header"
-import Footer from "./components/Footer"
 import './App.css';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import Etusivu from "./pages/Etusivu";
+import Tuotteet from "./pages/Tuotteet"
+import Meista from "./pages/Meista"
+import Ostoskori from "./pages/Ostoskori"
+import Kassa from "./pages/Kassa"
+
 // import { useEffect, useState } from "react";
 
 function App() {
@@ -14,9 +19,15 @@ function App() {
 
   return (
     <div className="App">
-      {/* <h1>{testMessage}</h1> */}
-       <Header />
-       <Footer />
+      <Router>
+        <Routes>
+          <Route path="/" element={<Etusivu />} />
+          <Route path="/tuotteet" element={<Tuotteet />} />
+          <Route path="/meista" element={<Meista />} />
+          <Route path="/ostoskori" element={<Ostoskori />} />
+          <Route path="/kassa" element={<Kassa />} />
+        </Routes>  
+      </Router>
     </div>
   );
 }
