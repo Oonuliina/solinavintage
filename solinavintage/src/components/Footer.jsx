@@ -1,66 +1,197 @@
 import React from "react";
-import { FacebookLogo, Envelope, InstagramLogo, MapPin, Phone, EnvelopeSimple } from "@phosphor-icons/react";
-import paytrail from '../assets/paytrailLogo.png'
-import siirto from '../assets/SiirtoLogo.png';
-import mobilepay from '../assets/mobilepayLogo.png'
-import pivo from '../assets/pivoLogo.png';
-import './footer.css';
+import {
+  FacebookLogo,
+  Envelope,
+  InstagramLogo,
+  MapPin,
+  Phone,
+  EnvelopeSimple,
+} from "@phosphor-icons/react";
+import paytrail from "../assets/paytrailLogo.png";
+import siirto from "../assets/SiirtoLogo.png";
+import mobilepay from "../assets/mobilepayLogo.png";
+import pivo from "../assets/pivoLogo.png";
+import styled from "styled-components";
 
+const Container = styled.div`
+  bottom: 0;
+  left: 0;
+  width: 100%;
+`;
+const FooterSeparator = styled.hr`
+  border: 1;
+  margin-top: 0;
+  margin-bottom: 0;
+  width: 95%;
+`;
+const FooterInfo = styled.div`
+  display: flex;
+`;
+const Left = styled.div`
+  flex: 1;
+  margin-top: 20px;
+`;
 
+const LinksBox = styled.div`
+  padding-left: 50%;
+  width: 50%;
+`;
+const LinksTitle = styled.h1`
+  margin-bottom: 17px;
+  text-align: left;
+  font-size: 16px;
+`;
+const LinksList = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin: 0;
+`;
+const LinkItem = styled.li`
+  font-size: 14px;
+  padding-bottom: 3px;
+  list-style: none;
+  text-align: left;
+  cursor: pointer;
+`;
 
-export default function Footer() {
-    return (
-        <div className="footer">
-            <hr className="footerSeparator" />
-            <div className="footerInfo">
-                <div className="footerInfoLeft">
-                    <div className="linksBox">
-                        <h1 className="linksTitle">Linkkejä</h1>
-                        <ul className="linksList">
-                            <li className="linkItem">Tietoa meistä</li>
-                            <li className="linkItem">Tietoa meistä</li>
-                            <li className="linkItem">Toimitusehdot</li>
-                            <li className="linkItem">Tietosuojakäytännöt</li>
-                            <li className="linkItem">Laita meille viestiä</li>
-                        </ul>
-                    </div>
-                </div>
-                <div className="footerInfoCenter">
-                    <div className="contactBox">
-                        <h1 className="contactTitle">Yhteystiedot</h1>
-                        <p><EnvelopeSimple className="icon" size={24} weight="light" /> info@solinavintage.fi</p>
-                        <p><Phone className="icon" size={24} weight="light" /> 050 012 3456</p>
-                        <p><MapPin className="icon" size={24} weight="light" /> Vintagekatu 3, 00100 Helsinki</p>
-                    </div>
-                </div>
-                <div className="footerInfoRight">
-                    <div className="paymentLogos">
-                    <h1 className="paymentTitle">Maksutavat</h1>
-                        <div className="paymentImages">
-                            <div className="bigLogo">
-                                <img className="bLogo" src={paytrail} alt='Paytrail logo' />
-                            </div>
-                            <div className="smallLogos">
-                                <img className="sLogo" src={mobilepay} alt='Mobilepay logo' />
-                                <img className="sLogo" src={siirto} alt='Siirto logo' />
-                                <img className="sLogo" src={pivo} alt='Pivo logo' />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div className="footerBot">  
-                <div className="socialContainer">
-                        <FacebookLogo className="socialLogo" size={32} weight="light" />
-                        <Envelope className="socialLogo" size={32} weight="light" />
-                        <InstagramLogo className="socialLogo" size={32} weight="light" />
-                </div> 
-                <div className="copyright">
-                        <p>© 2023 Solina Vintage Oy</p>
-                </div>
-            </div>
+const Center = styled.div`
+  flex: 1;
+  margin-top: 20px;
+`;
 
-        </div>
+const ContactBox = styled.div`
+  padding-left: 20%;
+  width: 80%;
+`;
+const ContactTitle = styled.h1`
+  text-align: left;
+  font-size: 16px;
+`;
+const ContactItem = styled.p`
+  text-align: left;
+  font-size: 14px;
+  justify-content: center;
+`;
 
-    )
-}
+const Right = styled.div`
+  flex: 1;
+  margin-top: 20px;
+`;
+
+const PaymentContainer = styled.div``;
+const PaymentTitle = styled.h1`
+  text-align: left;
+  font-size: 16px;
+`;
+const PaymentImageContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  filter: grayscale();
+`;
+
+const BigImageContainer = styled.div`
+  display: flex;
+  margin: 10px 0;
+  justify-content: center;
+`;
+const BigImage = styled.img`
+  height: 100px;
+  width: auto;
+  padding-left: 0;
+`;
+const SmallImageContainer = styled.div`
+  padding-left: 3px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+const SmallImage = styled.img`
+  height: 32px;
+  padding-bottom: 1px;
+`;
+
+const FooterBot = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+const SocialIconContainer = styled.div`
+  display: flex;
+  margin: auto;
+`;
+const SocialIcon = styled.div`
+  display: flex;
+`;
+const CopyrightContainer = styled.div``;
+const Copyright = styled.p`
+  font-size: 20px;
+`;
+
+const Footer = () => {
+  return (
+    <Container>
+      <FooterSeparator />
+      <FooterInfo>
+        <Left>
+          <LinksBox>
+            <LinksTitle>Linkkejä</LinksTitle>
+            <LinksList>
+              <LinkItem>Tietoa meistä</LinkItem>
+              <LinkItem>Toimitusehdot</LinkItem>
+              <LinkItem>Tietosuojakäytännöt</LinkItem>
+              <LinkItem>Laita meille viestiä</LinkItem>
+            </LinksList>
+          </LinksBox>
+        </Left>
+        <Center>
+          <ContactBox>
+            <ContactTitle>Yhteystiedot</ContactTitle>
+            <ContactItem>
+              <EnvelopeSimple size={24} weight="light" />
+              info@solinavintage.fi
+            </ContactItem>
+            <ContactItem>
+              <Phone size={24} weight="light" /> 050 012 3456
+            </ContactItem>
+            <ContactItem>
+              <MapPin size={24} weight="light" /> Vintagekatu 3, 00100 Helsinki
+            </ContactItem>
+          </ContactBox>
+        </Center>
+        <Right>
+          <PaymentContainer>
+            <PaymentTitle>Maksutavat</PaymentTitle>
+            <PaymentImageContainer>
+              <BigImageContainer>
+                <BigImage src={paytrail} />
+              </BigImageContainer>
+              <SmallImageContainer>
+                <SmallImage src={mobilepay} />
+                <SmallImage src={siirto} />
+                <SmallImage src={pivo} />
+              </SmallImageContainer>
+            </PaymentImageContainer>
+          </PaymentContainer>
+        </Right>
+      </FooterInfo>
+      <FooterBot>
+        <SocialIconContainer>
+          <SocialIcon>
+            <FacebookLogo size={32} weight="light" />
+          </SocialIcon>
+          <SocialIcon>
+            <Envelope size={32} weight="light" />
+          </SocialIcon>
+          <SocialIcon>
+            <InstagramLogo size={32} weight="light" />
+          </SocialIcon>
+        </SocialIconContainer>
+        <CopyrightContainer>
+          <Copyright>© 2023 Solina Vintage Oy</Copyright>
+        </CopyrightContainer>
+      </FooterBot>
+    </Container>
+  );
+};
+
+export default Footer;
