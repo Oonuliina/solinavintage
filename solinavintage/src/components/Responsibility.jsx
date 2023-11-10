@@ -19,16 +19,25 @@ const Title = styled.h1`
 `;
 const Wrapper = styled.div`
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justfy-content: center;
+  margin: 0px 60px 0px 60px;
 `;
 const Item = styled.div`
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justfy-content: center;
+  height: 435px;
 `;
 const Circle = styled.div`
   display: flex;
   height: 300px;
   width: 300px;
+  top: 0;
+  left: 0;
   background-color: white;
   border-radius: 50%;
   align-items: center;
