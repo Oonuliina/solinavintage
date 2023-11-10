@@ -1,4 +1,4 @@
-import { newlyAddedProducts } from "../data";
+import { dresses } from "../data";
 import styled from "styled-components";
 import Product from "./Product";
 
@@ -21,7 +21,7 @@ const Products = () => {
     <Container>
       <Title>Mekkoja</Title>
       <Wrapper>
-      {newlyAddedProducts.map((item) => (
+      {dresses.map((item) => (
         <Product item={item} key={item.id} />
       ))}
       </Wrapper>
