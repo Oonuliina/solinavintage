@@ -26,6 +26,7 @@ const FooterSeparator = styled.hr`
 `;
 const FooterInfo = styled.div`
   display: flex;
+  padding-bottom: 30px;
 `;
 const Left = styled.div`
   flex: 1;
@@ -48,10 +49,14 @@ const LinksList = styled.ul`
 `;
 const LinkItem = styled.li`
   font-size: 14px;
-  padding-bottom: 3px;
+  padding-bottom: 6px;
   list-style: none;
   text-align: left;
   cursor: pointer;
+
+  &:hover {
+    font-weight: bold;
+  }
 `;
 
 const Center = styled.div`
@@ -68,11 +73,18 @@ const ContactTitle = styled.h1`
   font-size: 16px;
 `;
 const ContactItem = styled.p`
+  display: flex;
   text-align: left;
   font-size: 14px;
-  justify-content: center;
+  align-items: center;
+  justify-content: left;
 `;
-
+const ContactIcon = styled.span`
+  padding-right: 5px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+`;
 const Right = styled.div`
   flex: 1;
   margin-top: 20px;
@@ -147,14 +159,22 @@ const Footer = () => {
           <ContactBox>
             <ContactTitle>Yhteystiedot</ContactTitle>
             <ContactItem>
-              <EnvelopeSimple size={24} weight="light" />
+              <ContactIcon>
+                <EnvelopeSimple size={24} weight="light" />
+              </ContactIcon>
               info@solinavintage.fi
             </ContactItem>
             <ContactItem>
-              <Phone size={24} weight="light" /> 050 012 3456
+              <ContactIcon>
+                <Phone size={24} weight="light" />
+              </ContactIcon>{" "}
+              050 012 3456
             </ContactItem>
             <ContactItem>
-              <MapPin size={24} weight="light" /> Vintagekatu 3, 00100 Helsinki
+              <ContactIcon>
+                <MapPin size={24} weight="light" />
+              </ContactIcon>{" "}
+              Vintagekatu 3, 00100 Helsinki
             </ContactItem>
           </ContactBox>
         </Center>

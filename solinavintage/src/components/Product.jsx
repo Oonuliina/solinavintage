@@ -3,30 +3,44 @@ import styled from "styled-components";
 
 const Container = styled.div`
   display: flex;
-  flex: 1;
   margin: 5px;
   min-width: 280px;
   height: 700pxpx;
-  align-items: center;
-  justify-content: center;
+  align-items: left;
+  justify-content: left;
+  flex-direction: column;
 `;
 const Image = styled.img`
-  height: 75%;
+  display: flex;
+  height: 400px;
+  width: 350px;
+  cursor: pointer;
 `;
 
 const InfoContainer = styled.div`
   display: flex;
   flex-direction: column;
+  height: 80px;
+`;
+const Title = styled.span`
+  padding: 5px;
+  font-size: 15px;
   text-align: left;
+
+  &:hover {
+    font-weight: bold;
+  }
 `;
-const Title = styled.p`
-  font-size: 20px;
+const Size = styled.span`
+  padding: 5px;
+  font-size: 15px;
+  text-align: left;
+  font-weight: 600;
 `;
-const Size = styled.p`
-  font-size: 20px;
-`;
-const Prize = styled.p`
-  font-size: 20px;
+const Price = styled.span`
+  padding: 5px;
+  font-size: 15px;
+  text-align: left;
 `;
 const Product = ({ item }) => {
   return (
@@ -35,7 +49,7 @@ const Product = ({ item }) => {
       <InfoContainer>
         <Title>{item.title}</Title>
         <Size>{item.size}</Size>
-        <Prize>{item.prize}</Prize>
+        <Price>{item.price}</Price>
       </InfoContainer>
     </Container>
   );
