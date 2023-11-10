@@ -3,6 +3,7 @@ import logo from "../assets/SolinaLogo.png";
 import { ShoppingBag, MagnifyingGlass } from "@phosphor-icons/react";
 import styled from "styled-components";
 import { Badge } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   width: 100%;
@@ -76,6 +77,10 @@ const LogoContainer = styled.div`
 const LogoImage = styled.img`
   width: 350px;
   margin-left: 13px;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 const NavBar = styled.div`
   width: 100%;
@@ -104,6 +109,8 @@ const Separator = styled.hr`
 const Header = () => {
   const [isActive, setIsActive] = useState(false);
 
+  const navigate = useNavigate()
+
   const _toggleSearch = () => {
     setIsActive(!isActive);
   };
@@ -125,23 +132,23 @@ const Header = () => {
         </UpperLeft>
         <UpperCenter>
           <LogoContainer>
-            <LogoImage src={logo} />
+            <LogoImage onClick={() => navigate("/")} src={logo} />
           </LogoContainer>
         </UpperCenter>
         <UpperRight>
           <ShoppingContainer>
             <ShoppingButton>
               <Badge badgeContent={4} color="secondary">
-                <ShoppingBag size={35} weight="light" />
+                <ShoppingBag onClick={() => navigate("/ostoskori")} size={35} weight="light" />
               </Badge>
             </ShoppingButton>
           </ShoppingContainer>
         </UpperRight>
       </UpperNavigation>
       <NavBar>
-        <NavItem>ETUSIVU</NavItem>
-        <NavItem>TUOTTEET</NavItem>
-        <NavItem>MEISTÄ</NavItem>
+        <NavItem onClick={() => navigate("/")}>ETUSIVU</NavItem>
+        <NavItem onClick={() => navigate("/tuotteet")}>TUOTTEET</NavItem>
+        <NavItem onClick={() => navigate("/meista")}>MEISTÄ</NavItem>
       </NavBar>
       <Separator />
     </Container>

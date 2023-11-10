@@ -8,6 +8,7 @@ import pearlEarrings from "../assets/accessories/earring_pearls.jpg";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div``;
 const Wrapper = styled.div`
@@ -163,7 +164,10 @@ const BottomButton = styled.button`
 const Separator = styled.hr`
   margin: 0px 20px 0px 20px;
 `;
+
 const Ostoskori = () => {
+  const navigate = useNavigate()
+
   return (
     <Container>
       <Header />
@@ -171,7 +175,7 @@ const Ostoskori = () => {
         <Top>
           <TopHeader>
             <Title>Ostoskorisi</Title>
-            <TopButton>Jatka Ostoksia</TopButton>
+            <TopButton onClick={() => navigate("/tuotteet")}>Jatka Ostoksia</TopButton>
           </TopHeader>
           <TopTexts>
             <TopTextTuote>Tuote</TopTextTuote>
@@ -262,7 +266,7 @@ const Ostoskori = () => {
             <SummaryDesc>
               Sisältää veron. Toimituskulut ja alennukset lasketaan kassalla.
             </SummaryDesc>
-            <BottomButton>Siirry kassalle</BottomButton>
+            <BottomButton onClick={() => navigate("/kassa")}>Siirry kassalle</BottomButton>
           </Summary>
         </Bottom>
       </Wrapper>
