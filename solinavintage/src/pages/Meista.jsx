@@ -40,7 +40,6 @@ const Meista = () => {
 const ImgContainer = styled.div`
   position: relative;
   overflow: hidden;
-  margin-bottom: 50px;
 `;
 
 const Image = styled.img`
@@ -53,15 +52,24 @@ const TextContainer = styled.div`
   max-width: 1005px;
   margin: auto;
   text-align: center;
-  margin-bottom: 120px;
+  padding: 30px;
 `;
 
 const HeaderAboutUs = styled.h1`
   font-size: 48px;
+
+  @media(max-width: 700px) {
+    font-size: 35px;
+  }
 `;
 
 const TextAboutUs = styled.p`
   font-size: 24px;
+
+  @media(max-width: 700px) {
+    font-size: 20px;
+  }
 `;
+
 
 export default Meista

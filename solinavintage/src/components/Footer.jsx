@@ -17,6 +17,7 @@ const Container = styled.div`
   bottom: 0;
   left: 0;
   width: 100%;
+  margin-top: 40px;
 `;
 const FooterSeparator = styled.hr`
   border: 1;
