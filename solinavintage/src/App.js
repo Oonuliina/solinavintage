@@ -2,6 +2,7 @@ import './App.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Etusivu from "./pages/Etusivu";
 import Tuotteet from "./pages/Tuotteet"
+import Tuote from "./pages/Tuote"
 import Meista from "./pages/Meista"
 import Ostoskori from "./pages/Ostoskori"
 import Kassa from "./pages/Kassa"
@@ -23,6 +24,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Etusivu />} />
           <Route path="/tuotteet" element={<Tuotteet />} />
+          <Route path="/tuote" element={<Tuote />} />
           <Route path="/meista" element={<Meista />} />
           <Route path="/ostoskori" element={<Ostoskori />} />
           <Route path="/kassa" element={<Kassa />} />
