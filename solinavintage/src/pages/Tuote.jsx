@@ -7,10 +7,10 @@ import AddIcon from "@mui/icons-material/Add";
 
 const Container = styled.div``;
 const Wrapper = styled.div`
-    margin-top: 50px;
-    padding 50px;
-    display: flex;
-    margin-bottom: 50px;
+  margin-top: 50px;
+  padding 50px;
+  display: flex;
+  margin-bottom: 50px;
 `;
 const ImgContainer = styled.div`
   flex: 1;

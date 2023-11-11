@@ -5,6 +5,7 @@ import Footer from '../components/Footer'
 import Products from '../components/Products'
 import Responsibility from '../components/Responsibility'
 import styled from 'styled-components'
+import Announcement from '../components/Announcement';
 
 
 const Container = styled.div`
@@ -16,6 +17,7 @@ const Container = styled.div`
 function Etusivu() {
   return (
     <Container>
+        <Announcement />
         <Header />
         <Slider />
         <Products />
