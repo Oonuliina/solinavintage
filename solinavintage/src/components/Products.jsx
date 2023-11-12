@@ -1,4 +1,4 @@
-import { dresses } from "../data";
+import { korut } from "../data";
 import styled from "styled-components";
 import Product from "./Product";
 
@@ -14,9 +14,9 @@ const Container = styled.div`
 const Products = () => {
   return (
     <Container>
-        {dresses.map((item) => (
-          <Product item={item} key={item.id} />
-        ))}
+      {korut.map((item) => (
+        <Product item={item} key={item.id} />
+      ))}
     </Container>
   );
 };

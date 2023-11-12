@@ -3,7 +3,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import styled from "styled-components";
 import orangeDress from "../assets/dresses/orange_dress.JPG";
-import whiteHeels from "../assets/shoes/white_heels.jpg";
+import whiteHeels from "../assets/shoes/white_lace_pumps.JPG";
 import pearlEarrings from "../assets/accessories/earring_pearls.jpg";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";

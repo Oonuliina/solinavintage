@@ -18,6 +18,7 @@ const InfoContainer = styled.div`
   display: flex;
   flex-direction: column;
   height: 80px;
+  width: 350px;
 `;
 const Title = styled.span`
   padding: 5px;
