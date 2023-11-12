@@ -46,7 +46,7 @@ const SearchContainer = styled.div`
   padding: 5px;
   height: 35px;
   width: ${(props) => (props.$searching ? 360 : 40)}px;
-  transition: all 0.3 ease;
+  transition: all 0.5s ease;
 `;
 const Input = styled.input`
   position: alsolute;

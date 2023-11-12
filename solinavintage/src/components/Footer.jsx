@@ -1,7 +1,7 @@
 import React from "react";
 import {
   FacebookLogo,
-  Envelope,
+  PinterestLogo,
   InstagramLogo,
   MapPin,
   Phone,
@@ -12,6 +12,7 @@ import siirto from "../assets/SiirtoLogo.png";
 import mobilepay from "../assets/mobilepayLogo.png";
 import pivo from "../assets/pivoLogo.png";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   bottom: 0;
@@ -28,6 +29,7 @@ const FooterSeparator = styled.hr`
 const FooterInfo = styled.div`
   display: flex;
   padding-bottom: 30px;
+  margin: 0px 300px 0px 300px;
 `;
 const Left = styled.div`
   flex: 1;
@@ -134,13 +136,24 @@ const SocialIconContainer = styled.div`
 `;
 const SocialIcon = styled.div`
   display: flex;
+  transition: all 0.5s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 `;
-const CopyrightContainer = styled.div``;
+const CopyrightContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 const Copyright = styled.p`
-  font-size: 20px;
+  font-size: 10px;
 `;
 
 const Footer = () => {
+  const navigate = useNavigate();
+
   return (
     <Container>
       <FooterSeparator />
@@ -149,7 +162,9 @@ const Footer = () => {
           <LinksBox>
             <LinksTitle>Linkkejä</LinksTitle>
             <LinksList>
-              <LinkItem>Tietoa meistä</LinkItem>
+              <LinkItem onClick={() => navigate("/meista")}>
+                Tietoa meistä
+              </LinkItem>
               <LinkItem>Toimitusehdot</LinkItem>
               <LinkItem>Tietosuojakäytännöt</LinkItem>
               <LinkItem>Laita meille viestiä</LinkItem>
@@ -201,7 +216,7 @@ const Footer = () => {
             <FacebookLogo size={32} weight="light" />
           </SocialIcon>
           <SocialIcon>
-            <Envelope size={32} weight="light" />
+            <PinterestLogo size={32} weight="light" />
           </SocialIcon>
           <SocialIcon>
             <InstagramLogo size={32} weight="light" />

@@ -16,7 +16,7 @@ font-size: 40px;
 const FilterContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  margin: 0px 165px;
+  margin: 20px 250px 20px 250px;
   height: 200px;
 `;
 const Left = styled.div``;

@@ -22,7 +22,7 @@ const Wrapper = styled.div`
   flex-wrap: wrap;
   align-items: center;
   justfy-content: center;
-  margin: 0px 60px 0px 60px;
+  margin: 0px 300px 0px 300px;
 `;
 const Item = styled.div`
   flex: 1;
@@ -34,8 +34,8 @@ const Item = styled.div`
 `;
 const Circle = styled.div`
   display: flex;
-  height: 300px;
-  width: 300px;
+  min-height: 300px;
+  min-width: 300px;
   top: 0;
   left: 0;
   background-color: white;
@@ -47,7 +47,8 @@ const Image = styled.img`
   height: 200px;
 `;
 const Desc = styled.p`
-  font-size: 24px;
+  font-size: 20px;
+  text-align: center;
 `;
 
 const Responsibility = () => {

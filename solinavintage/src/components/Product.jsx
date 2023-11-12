@@ -5,9 +5,6 @@ const Container = styled.div`
   display: flex;
   margin: 5px;
   min-width: 280px;
-  height: 700pxpx;
-  align-items: left;
-  justify-content: left;
   flex-direction: column;
 `;
 const Image = styled.img`
