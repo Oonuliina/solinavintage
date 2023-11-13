@@ -17,7 +17,7 @@ import { useNavigate } from "react-router-dom";
 const Container = styled.div`
   bottom: 0;
   left: 0;
-  width: 100%;
+  width: 100vw;
   margin-top: 40px;
 `;
 const FooterSeparator = styled.hr`
@@ -30,6 +30,12 @@ const FooterInfo = styled.div`
   display: flex;
   padding-bottom: 30px;
   margin: 0px 300px 0px 300px;
+
+  @media only screen and (max-width: 380px) {
+    display: flex;
+    flex-direction: column;
+    margin: 0px;
+  }
 `;
 const Left = styled.div`
   flex: 1;
@@ -39,10 +45,18 @@ const Left = styled.div`
 const LinksBox = styled.div`
   padding-left: 50%;
   width: 50%;
+
+  @media only screen and (max-width: 380px) {
+    padding: 0% 5% 0% 5%;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    aligt-text: left;
+  }
 `;
 const LinksTitle = styled.h1`
   margin-bottom: 17px;
-  text-align: left;
+  align-text: left;
   font-size: 16px;
 `;
 const LinksList = styled.ul`
@@ -65,11 +79,22 @@ const LinkItem = styled.li`
 const Center = styled.div`
   flex: 1;
   margin-top: 20px;
+
+  @media only screen and (max-width: 380px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
 const ContactBox = styled.div`
   padding-left: 20%;
   width: 80%;
+
+  @media only screen and (max-width: 380px) {
+    padding: 0% 5% 0% 5%;
+    width: 90%;
+  }
 `;
 const ContactTitle = styled.h1`
   text-align: left;
@@ -91,6 +116,12 @@ const ContactIcon = styled.span`
 const Right = styled.div`
   flex: 1;
   margin-top: 20px;
+
+  @media only screen and (max-width: 380px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
 const PaymentContainer = styled.div``;

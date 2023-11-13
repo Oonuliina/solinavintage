@@ -8,6 +8,11 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   font-size: 15px;
+
+  @media (max-width: 768px) {
+    font-size: 10px;
+    height: 35px;
+  }
 `;
 
 const Announcement = () => {

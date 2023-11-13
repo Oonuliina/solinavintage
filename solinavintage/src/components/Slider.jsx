@@ -5,8 +5,6 @@ import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRound
 import { sliderItems } from "../sliderData";
 import { Link } from "react-router-dom";
 
-// <a href="https://www.freepik.com/free-photo/jewelry-box_1130101.htm#page=3&query=jewelry%20white%20background&position=11&from_view=search&track=ais">Image by topntp26</a> on Freepik
-// <a href="https://www.freepik.com/free-photo/full-portrait-happy-woman-beige-autumn-coat-leather-boot-with-green-scarf-standing-isolated-white_10730556.htm?query=happy%20woman%20beige%20autumn%20coat%20standing%20white#from_view=detail_alsolike">Image by valuavitaly</a> on Freepik
 const Container = styled.div`
   width: 100%;
   height: 600px;

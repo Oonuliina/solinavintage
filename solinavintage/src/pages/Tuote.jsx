@@ -14,15 +14,19 @@ const Wrapper = styled.div`
 `;
 const ImgContainer = styled.div`
   flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  padding: 0px 0px 0px 350px;
 `;
 const Image = styled.img`
-  width: 70%;
-  height: 80vh;
+  width: 600px;
+  height: 70vh;
   object-fit: cover;
 `;
 const InfoContainer = styled.div`
   flex: 1;
-  padding: 0px 25px;
+  padding: 0px 350px 0px 50px;
   text-align: left;
 `;
 const Title = styled.h1`
@@ -31,12 +35,11 @@ const Title = styled.h1`
   font-weight: 400;
 `;
 const Desc = styled.p`
-  font-size: 20px;
+  font-size: 17px;
 `;
 const Price = styled.p`
   font-size: 20px;
   font-weight: 200;
-  margin: 0px auto;
 `;
 const AddContainer = styled.div`
   width: 50%;
@@ -66,13 +69,14 @@ const Amount = styled.span`
   margin: 0px 5px;
 `;
 const Button = styled.button`
-  font-wight: 200px;
+  font-size: 20px;
+  font-weight: 100;
   padding: 10px;
   width: 100%;
-  background-color: white;
+  background-color: black;
   border: 1px solid gray;
-  color: gray;
-  border-radius: 5px;
+  color: white;
+  border-radius: 30px;
   cursor: pointer;
 `;
 
@@ -86,7 +90,7 @@ const Tuote = () => {
         </ImgContainer>
         <InfoContainer>
           <Title>Pitkä lila iltapuku</Title>
-          <Price>89 €</Price>
+          <Price>€89,00</Price>
           <Desc>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim

@@ -1,8 +1,8 @@
-import mekotKuva from "./assets/slider/vintage_woman_dress_cropped.png";
-import takitKuva from "./assets/slider/woman_with_jacket_cropped.png";
-import laukutKuva from "./assets/slider/vintage_purse.png";
-import kengätKuva from "./assets/slider/heels.png";
-import korutKuva from "./assets/slider/jewelry-box_cropped.png";
+import mekotKuva from "./assets/slider/dress_category_image.png";
+import takitKuva from "./assets/slider/coat_category_image.png";
+import laukutKuva from "./assets/slider/bag_category_image.png";
+import kengätKuva from "./assets/slider/shoes_category_image.png";
+import korutKuva from "./assets/slider/jewelry_category_image.png";
 
 export const sliderItems = [
   {
