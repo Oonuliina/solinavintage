@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import logo from "../assets/SolinaLogo.png";
+import logoMobile from "../assets/SolinaLogoMobile.png"
 import { ShoppingBag, MagnifyingGlass } from "@phosphor-icons/react";
 import styled from "styled-components";
 import { Badge } from "@mui/material";
@@ -133,6 +134,13 @@ const LogoContainer = styled.div`
   justify-content: center;
   margin-bottom: 15px;
 `;
+
+const Picture = styled.picture`
+`;
+
+const Source = styled.source`
+`;
+
 const LogoImage = styled.img`
   width: 350px;
   margin-left: 13px;
@@ -204,7 +212,10 @@ const Header = () => {
         <UpperCenter>
           <TitleLogo onClick={() => navigate("/")}>Solina Vintage</TitleLogo>
           <LogoContainer>
-            <LogoImage onClick={() => navigate("/")} src={logo} />
+            <Picture>
+              <Source media="(max-width: 768px)" srcSet={logoMobile} sizes="768px" />
+              <LogoImage onClick={() => navigate("/")} src={logo} />  
+            </Picture>
           </LogoContainer>
         </UpperCenter>
         <UpperRight>

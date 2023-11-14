@@ -6,7 +6,7 @@ import meista from "../assets/meista_page_img.jpg"
 
 const Meista = () => {
   return (
-    <div>
+    <Container>
       <Header />
         <ImgContainer>
             <Image src={meista} />
@@ -33,9 +33,12 @@ const Meista = () => {
           </TextAboutUs>
         </TextContainer>
       <Footer />
-    </div>
+    </Container>
   )
 }
+
+const Container = styled.div`
+`;
 
 const ImgContainer = styled.div`
   position: relative;
