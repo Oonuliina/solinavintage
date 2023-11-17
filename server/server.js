@@ -44,6 +44,7 @@ app.get('/rekisteröityminen', (req, res) => {
     const Käyttäjä = req.body.Käyttäjä;
     const Sähköposti = req.body.Sähköposti
     const Salasana = req.body.Salasana;
+    
     res.send('Nimesi on: '+Käyttäjä)
     res.send('Sähköpostisi on: ' + Sähköposti)
     res.send('Salasanasi on '+Salasana)
