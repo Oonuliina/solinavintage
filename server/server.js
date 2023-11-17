@@ -55,7 +55,7 @@ app.post('/rekisteröityminen', async (req, res) => {
 
   const newKäyttäjä = new Käyttäjäskeema({
 
-    Käyttäjä: req.body.Nimi,
+    Käyttäjä: req.body.Käyttäjä,
     Sähköposti: req.body.Sähköposti,
     Salasana: req.body.Salasana,
 
@@ -76,7 +76,30 @@ catch(err){
 });
 
 
-module.exports = router;
+//Login
+
+app.post("/login"), async (req,res) => {
+
+try{
+
+const Käyttäjä = await Käyttäjäskeema.findOne({Käyttäjä: req.body.Käyttäjä});
+const Salasana = Käyttäjäskeema.Salasana
+
+Salasana !== req.body.Salasana &&
+  res.status(401).json('Väärä salasana');
+  res.status(200).json(Käyttäjäskeema)
+}
+
+catch(err){
+
+  res.status(500).json(err)
+}
+
+
+};
+
+
+
 
 
 
