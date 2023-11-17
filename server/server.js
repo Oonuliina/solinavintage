@@ -11,6 +11,7 @@ const schema = require("./models/Tuote.js")
 
 app.use(cors());
 app.use(express.json());
+app.use(cookies());
 
 mongoose
   .connect(process.env.URIKEY)
@@ -31,7 +32,7 @@ var session;
 
 mongoose.connect(process.env.URIKEY).then(() => console.log('Connected to database'));
 
-schema
+schema.find({cartId: })
 
 app.get('/getcart', (req, res) => {
     session = req.session;
