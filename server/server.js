@@ -7,6 +7,7 @@ const app = express();
 const sessions = require("express-session");
 const cookies = require("cookie-parser");
 const {v4: uuidv4} = require("uuid");
+const schema = require("./models/Tuote.js")
 
 app.use(cors());
 app.use(express.json());
@@ -25,6 +26,8 @@ app.use(sessions({
 var session;
 
 mongoose.connect(process.env.URIKEY).then(() => console.log('Connected to database'));
+
+schema
 
 app.get('/getcart', (req, res) => {
     session = req.session;
