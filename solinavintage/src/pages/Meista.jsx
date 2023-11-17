@@ -3,10 +3,12 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 import styled from "styled-components";
 import meista from "../assets/meista_page_img.jpg"
+import Announcement from '../components/Announcement';
 
 const Meista = () => {
   return (
     <Container>
+      <Announcement />
       <Header />
         <ImgContainer>
             <Image src={meista} />

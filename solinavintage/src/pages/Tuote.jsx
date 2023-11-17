@@ -2,8 +2,7 @@ import styled from "styled-components";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import longPurpleDress from "../assets/dresses/long_purple_dress.JPG";
-import RemoveIcon from "@mui/icons-material/Remove";
-import AddIcon from "@mui/icons-material/Add";
+import Announcement from "../components/Announcement";
 
 const Container = styled.div``;
 const Wrapper = styled.div`
@@ -47,27 +46,6 @@ const AddContainer = styled.div`
   align-items: left;
   flex-direction: column;
 `;
-const AmountContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 90px;
-  height: 30px;
-  border: 1px solid gray;
-  border-radius: 5px;
-  background-color: white;
-  margin-bottom: 30px;
-  padding: 3px;
-`;
-const Amount = styled.span`
-  font-size: 20px;
-  width: 30px;
-  height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0px 5px;
-`;
 const Button = styled.button`
   font-size: 20px;
   font-weight: 100;
@@ -83,6 +61,7 @@ const Button = styled.button`
 const Tuote = () => {
   return (
     <Container>
+      <Announcement />
       <Header />
       <Wrapper>
         <ImgContainer>
@@ -101,11 +80,6 @@ const Tuote = () => {
             culpa qui officia deserunt mollit anim id est laborum.
           </Desc>
           <AddContainer>
-            <AmountContainer>
-              <RemoveIcon />
-              <Amount>1</Amount>
-              <AddIcon />
-            </AmountContainer>
             <Button>Lisää ostoskoriin</Button>
           </AddContainer>
         </InfoContainer>

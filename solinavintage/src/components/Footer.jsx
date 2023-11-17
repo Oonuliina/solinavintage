@@ -19,6 +19,10 @@ const Container = styled.div`
   left: 0;
   width: 100vw;
   margin-top: 40px;
+
+  @media only screen and (max-width: 380px) {
+    margin-top: 20px;
+  }
 `;
 const FooterSeparator = styled.hr`
   border: 1;
@@ -34,7 +38,8 @@ const FooterInfo = styled.div`
   @media only screen and (max-width: 380px) {
     display: flex;
     flex-direction: column;
-    margin: 0px;
+    margin-left: 43px;
+    margin-right: 0px;
   }
 `;
 const Left = styled.div`
@@ -48,7 +53,7 @@ const LinksBox = styled.div`
 
   @media only screen and (max-width: 380px) {
     padding: 0% 5% 0% 5%;
-    width: 90%;
+    width: 70%;
     display: flex;
     flex-direction: column;
     aligt-text: left;
@@ -81,9 +86,7 @@ const Center = styled.div`
   margin-top: 20px;
 
   @media only screen and (max-width: 380px) {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    margin-top: 10px;
   }
 `;
 
@@ -92,8 +95,11 @@ const ContactBox = styled.div`
   width: 80%;
 
   @media only screen and (max-width: 380px) {
-    padding: 0% 5% 0% 5%;
-    width: 90%;
+    padding: 0% 5px 0% 5%;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    aligt-text: left;
   }
 `;
 const ContactTitle = styled.h1`
@@ -106,6 +112,10 @@ const ContactItem = styled.p`
   font-size: 14px;
   align-items: center;
   justify-content: left;
+
+  @media only screen and (max-width: 380px) {
+    margin: 2px;
+  
 `;
 const ContactIcon = styled.span`
   padding-right: 5px;
@@ -118,13 +128,19 @@ const Right = styled.div`
   margin-top: 20px;
 
   @media only screen and (max-width: 380px) {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    margin-top: 10px;
   }
 `;
 
-const PaymentContainer = styled.div``;
+const PaymentContainer = styled.div`
+@media only screen and (max-width: 380px) {
+  padding: 0% 5% 0% 5%;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  aligt-text: left;
+}
+`;
 const PaymentTitle = styled.h1`
   text-align: left;
   font-size: 16px;

@@ -5,14 +5,15 @@ import styled from "styled-components";
 import orangeDress from "../assets/dresses/orange_dress.JPG";
 import whiteHeels from "../assets/shoes/white_lace_pumps.JPG";
 import pearlEarrings from "../assets/accessories/earring_pearls.jpg";
-import RemoveIcon from "@mui/icons-material/Remove";
-import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useNavigate } from "react-router-dom";
 
 const Container = styled.div``;
 const Wrapper = styled.div`
   padding: 20px;
+
+  @media only screen and (max-width: 380px) {
+    padding: 5px;
 `;
 
 const Top = styled.div`
@@ -23,6 +24,10 @@ const Title = styled.h1`
   text-align: left;
   font-wight: 300;
   margin: 0px 0px;
+
+  @media only screen and (max-width: 380px) {
+    font-size: 20px;
+  }
 `;
 const TopHeader = styled.div`
   display: flex;
@@ -35,6 +40,11 @@ const TopButton = styled.button`
   border: 1px solid gray;
   width: 200px;
   cursor: pointer;
+
+  @media only screen and (max-width: 380px) {
+    width: 100px;
+    font-size: 11px;
+  }
 `;
 const TopTexts = styled.div`
   display: flex;
@@ -45,15 +55,11 @@ const TopTextTuote = styled.p`
   text-align: left;
   font-size: 10px;
 `;
-const TopTextMäärä = styled.p`
-  flex: 1;
-  text-align: left;
-  font-size: 10px;
-`;
 const TopTextYhteensä = styled.p`
   flex: 1;
-  text-align: center;
+  align-text: right;
   font-size: 10px;
+
 `;
 const Center = styled.div`
   display: flex;
@@ -72,6 +78,11 @@ const ProductDetails = styled.div`
 const Image = styled.img`
   width: 200px;
   padding-top: 20px;
+
+  @media only screen and (max-width: 380px) {
+    width: 100px;
+    padding-top: 5px;
+  }
 `;
 const Details = styled.div`
   padding: 20px;
@@ -92,29 +103,9 @@ const ProductAmountContainer = styled.div`
   flex: 1;
   display: flex;
   align-items: center;
-  justify-content: left;
-`;
-const AmountContainer = styled.div`
-  display: flex;
-  align-items: center;
   justify-content: center;
-  width: 90px;
-  height: 30px;
-  border: 1px solid gray;
-  border-radius: 5px;
-  background-color: white;
-  padding: 3px;
-  margin-right: 40px;
 `;
-const Amount = styled.p`
-  font-size: 20px;
-  width: 30px;
-  height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0px 5px;
-`;
+
 const ProductPriceTotal = styled.p`
   flex: 1;
   display: flex;
@@ -135,6 +126,10 @@ const Summary = styled.div`
   padding: 30px 0px 30px 0px;
   display: flex;
   flex-direction: column;
+
+  @media only screen and (max-width: 380px) {
+    margin-left: 10%;
+  }
 `;
 const SummaryContainer = styled.div`
   display: flex;
@@ -147,6 +142,8 @@ const SummaryTitle = styled.h2`
 const SummaryPrice = styled.p`
   font-size: 15px;
   margin-left: 100px;
+
+
 `;
 const SummaryDesc = styled.p`
   font-size: 10px;
@@ -162,11 +159,11 @@ const BottomButton = styled.button`
   cursor: pointer;
 `;
 const Separator = styled.hr`
-  margin: 0px 20px 0px 20px;
+  margin: 0px;
 `;
 
 const Ostoskori = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
     <Container>
@@ -175,11 +172,12 @@ const Ostoskori = () => {
         <Top>
           <TopHeader>
             <Title>Ostoskorisi</Title>
-            <TopButton onClick={() => navigate("/tuotteet")}>Jatka Ostoksia</TopButton>
+            <TopButton onClick={() => navigate("/tuotteet")}>
+              Jatka Ostoksia
+            </TopButton>
           </TopHeader>
           <TopTexts>
             <TopTextTuote>Tuote</TopTextTuote>
-            <TopTextMäärä>Määrä</TopTextMäärä>
             <TopTextYhteensä>Yhteensä</TopTextYhteensä>
           </TopTexts>
           <Separator />
@@ -198,11 +196,6 @@ const Ostoskori = () => {
               </Details>
             </ProductDetails>
             <ProductAmountContainer>
-              <AmountContainer>
-                <RemoveIcon />
-                <Amount>1</Amount>
-                <AddIcon />
-              </AmountContainer>
               <DeleteIcon />
             </ProductAmountContainer>
             <ProductPriceTotal>€39,00</ProductPriceTotal>
@@ -221,11 +214,6 @@ const Ostoskori = () => {
               </Details>
             </ProductDetails>
             <ProductAmountContainer>
-              <AmountContainer>
-                <RemoveIcon />
-                <Amount>1</Amount>
-                <AddIcon />
-              </AmountContainer>
               <DeleteIcon />
             </ProductAmountContainer>
             <ProductPriceTotal>€29,00</ProductPriceTotal>
@@ -244,11 +232,6 @@ const Ostoskori = () => {
               </Details>
             </ProductDetails>
             <ProductAmountContainer>
-              <AmountContainer>
-                <RemoveIcon />
-                <Amount>1</Amount>
-                <AddIcon />
-              </AmountContainer>
               <DeleteIcon />
             </ProductAmountContainer>
             <ProductPriceTotal>€9,00</ProductPriceTotal>
@@ -266,7 +249,9 @@ const Ostoskori = () => {
             <SummaryDesc>
               Sisältää veron. Toimituskulut ja alennukset lasketaan kassalla.
             </SummaryDesc>
-            <BottomButton onClick={() => navigate("/kassa")}>Siirry kassalle</BottomButton>
+            <BottomButton onClick={() => navigate("/kassa")}>
+              Siirry kassalle
+            </BottomButton>
           </Summary>
         </Bottom>
       </Wrapper>
