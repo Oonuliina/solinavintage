@@ -1,38 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import ArrowBackIosRoundedIcon from "@mui/icons-material/ArrowBackIosRounded";
 import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded";
-import clothesOnRack from "../assets/clother_on_rack.jpg";
-
-const Slider = () => {
-  return (
-    <Container>
-      <Arrow direction="left">
-        <ArrowBackIosRoundedIcon />
-      </Arrow>
-      <Wrapper>
-        <Slide>
-          <ImgContainer>
-            <Image src={clothesOnRack} />
-            <InfoContainer>
-              <Title>Tietoa Meistä</Title>
-            </InfoContainer>
-          </ImgContainer>
-        </Slide>
-      </Wrapper>
-      <Arrow direction="right">
-        <ArrowForwardIosRoundedIcon />
-      </Arrow>
-    </Container>
-  );
-};
+import { sliderItems } from "../sliderData";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 600px;
   display: flex;
   position: relative;
-  margin-top: 30px;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+
+  @media only screen and (max-width: 380px) {
+    height: 200px;
+  }
 `;
 const Arrow = styled.div`
   width: 50px;
@@ -45,49 +29,142 @@ const Arrow = styled.div`
   position: absolute;
   top: 0;
   bottom: 0;
-  left: ${(props) => props.direction === "left" && "10px"};
-  right: ${(props) => props.direction === "right" && "10px"};
+  left: ${(props) => props.$direction === "left" && "10px"};
+  right: ${(props) => props.$direction === "right" && "10px"};
   margin: auto;
   cursor: pointer;
   opacity: 0.5;
+  z-index: 2;
+
+  @media only screen and (max-width: 380px) {
+    width: 35px;
+    height: 35px;
+    left: ${(props) => props.$direction === "left" && "5px"};
+    right: ${(props) => props.$direction === "right" && "5px"};
+  }
 `;
 const Wrapper = styled.div`
   height: 100%;
+  display: flex;
+  transition: all 1s ease;
+  transform: translateX(${(props) => props.$slideindex * -100}vw);
 `;
 const Slide = styled.div`
-  width: 100vm;
-  height: 100vh;
+  width: 100vw;
+  height: 600px;
   display: flex;
   align-items: center;
+  background-color: #${(props) => props.$bg};
+
+  @media only screen and (max-width: 380px) {
+    height: 200px;
+  }
 `;
 const ImgContainer = styled.div`
-  position: relative;
-  width: 100vm;
-  height: 100vh;
-  overflow: hidden;
-`;
-const Image = styled.img`
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-`;
-const InfoContainer = styled.div`
+  flex: 1;
+  padding: 50px 0px 50px 10px;
   display: flex;
-  background-color: whitesmoke;
-  width: 450px;
-  height: 55px;
-  opacity: 0.5;
-  border-radius: 5px;
-  position: absolute;
-  bottom: 0;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   align-items: center;
   justify-content: center;
+  height: 100%;
+`;
+const Image = styled.img`
+  height: 80%;
+  margin-left: 30px;
+
+  @media only screen and (max-width: 380px) {
+    height: 70%;
+  }
+`;
+const InfoContainer = styled.div`
+  flex: 1;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+
+  @media only screen and (max-width: 380px) {
+    padding: 10px;
+    margin-right: 30px;
+  }
 `;
 const Title = styled.h1`
-  font-size: 30px;
-  position: absolute;
+  margin: 10x 0px 0px 0px;
+  font-size: 50px;
+  text-align: left;
+
+  @media only screen and (max-width: 380px) {
+    font-size: 15px;
+  }
 `;
+const Desc = styled.p`
+  margin: 10px 0px 10px 0px;
+  font-size: 20px;
+  font-weight: 500;
+  text-align: left;
+  letter-spacing: 3px;
+
+  @media only screen and (max-width: 380px) {
+    font-size: 10px;
+    margin: 5px 0px 5px 0px;
+    letter-spacing: 1px;
+  }
+`;
+const Button = styled.button`
+  margin: 30px 0px;
+  padding: 15px;
+  border: none;
+  border-radius: 30px;
+  width: 200px;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 400;
+  color: gray;
+  letter-spacing: 2px;
+  background-color: whitesmoke;
+
+  @media only screen and (max-width: 380px) {
+    font-size: 10px;
+    margin: 10px 0px;
+    width: 100px;
+  }
+`;
+
+const Slider = () => {
+  const [slideIndex, setSlideIndex] = useState(-2);
+  const handleClick = (direction) => {
+    if (direction === "left") {
+      setSlideIndex(slideIndex > -2 ? slideIndex - 1 : 2);
+    } else {
+      setSlideIndex(slideIndex < 2 ? slideIndex + 1 : -2);
+    }
+  };
+  return (
+    <Container>
+      <Arrow $direction="left" onClick={() => handleClick("left")}>
+        <ArrowBackIosRoundedIcon />
+      </Arrow>
+      <Wrapper $slideindex={slideIndex}>
+        {sliderItems.map((item) => (
+          <Slide $bg={item.bg} key={item.id}>
+            <ImgContainer>
+              <Image src={item.img} />
+            </ImgContainer>
+            <InfoContainer>
+              <Title>{item.title}</Title>
+              <Desc>{item.desc}</Desc>
+              <Link to={`/tuotteet/${item.category}`}>
+                <Button>OSTA NYT</Button>
+              </Link>
+            </InfoContainer>
+          </Slide>
+        ))}
+      </Wrapper>
+      <Arrow $direction="right" onClick={() => handleClick("right")}>
+        <ArrowForwardIosRoundedIcon />
+      </Arrow>
+    </Container>
+  );
+};
+
 export default Slider;

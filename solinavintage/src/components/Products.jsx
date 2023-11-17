@@ -1,30 +1,31 @@
-import { newlyAddedProducts } from "../data";
+import { mekot } from "../data";
 import styled from "styled-components";
 import Product from "./Product";
 
 const Container = styled.div`
   padding: 20px;
-`;
-const Wrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  margin-left: 135px;
+
+  @media only screen and (max-width: 380px) {
+    padding: 11px;
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    margin-left: 0px;
+  }
 `;
-const Title = styled.h1`
-  font-size: 40px;
-  display: flex;
-  flex-direction: column;
-`;
+
 const Products = () => {
+
   return (
     <Container>
-      <Title>Mekkoja</Title>
-      <Wrapper>
-      {newlyAddedProducts.map((item) => (
+      {mekot.map((item) => (
         <Product item={item} key={item.id} />
       ))}
-      </Wrapper>
     </Container>
   );
 };
