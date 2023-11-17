@@ -1,23 +1,35 @@
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import Etusivu from "./pages/Etusivu";
+import Tuotteet from "./pages/Tuotteet"
+import Tuote from "./pages/Tuote"
+import Meista from "./pages/Meista"
+import Ostoskori from "./pages/Ostoskori"
+import Kassa from "./pages/Kassa"
+
+import { useEffect, useState } from "react";
 
 function App() {
+
+const [testMessage, setTestMessage] = useState("");
+  useEffect(() => {
+    fetch("http://localhost:5000/testi")
+    .then((res) => res.json())
+    .then((data) => setTestMessage(data.test));
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Etusivu />} />
+          <Route path="/tuotteet/:category" element={<Tuotteet />} />
+          <Route path="/tuote/:id" element={<Tuote />} />
+          <Route path="/meista" element={<Meista />} />
+          <Route path="/ostoskori" element={<Ostoskori />} />
+          <Route path="/kassa" element={<Kassa />} />
+        </Routes>  
+      </Router>
     </div>
   );
 }
