@@ -42,13 +42,6 @@ app.get('/getcart', (req, res) => {
 const Käyttäjäskeema = require("./models/Käyttäjäskeema.js");
 
 
-
-res.send('Nimesi on: ' + Käyttäjä)
-res.send('Sähköpostisi on: ' + Sähköposti)
-res.send('Salasanasi on ' + Salasana)
-
-
-
 app.post('/rekisteröityminen', async (req, res) => {
 
 
@@ -63,6 +56,9 @@ app.post('/rekisteröityminen', async (req, res) => {
 
 
 try{
+  res.send('Nimesi on: ' + Käyttäjä)
+  res.send('Sähköpostisi on: ' + Sähköposti)  
+  res.send('Salasanasi on ' + Salasana)
   const saved = await newKäyttäjä.save();
   res.status(200).json(saved)
   console.log(saved);

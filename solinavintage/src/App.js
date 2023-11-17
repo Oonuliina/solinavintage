@@ -31,6 +31,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Etusivu />} />
+          <Route path="/tuotteet" element={<Tuotteet />} />
           <Route path="/tuotteet/:category" element={<Tuotteet />} />
           <Route path="/tuote/:id" element={<Tuote />} />
           <Route path="/meista" element={<Meista />} />
