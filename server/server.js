@@ -51,7 +51,7 @@ res.send('Salasanasi on ' + Salasana)
 
 app.post('/rekisteröityminen', async (req, res) => {
 
-  
+
 
   const newKäyttäjä = new Käyttäjäskeema({
 
@@ -69,7 +69,7 @@ try{
 }
 
 catch(err){
-  res.status(400).json(err);
+  res.status(500).json(err);
   console.log(err);
 }
 
