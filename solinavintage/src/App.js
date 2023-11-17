@@ -11,15 +11,22 @@ import { useEffect, useState } from "react";
 
 function App() {
 
-const [testMessage, setTestMessage] = useState("");
+  const [cart, setCart] = useState();
+
   useEffect(() => {
-    fetch("http://localhost:5000/testi")
+    fetch("http://localhost:5000/getcart")
     .then((res) => res.json())
-    .then((data) => setTestMessage(data.test));
+    .then((data) => setCart(data))
   }, []);
+
+  const toCart = (productId) => {
+    cart.add(productId)
+    .then
+  }
 
   return (
     <div className="App">
+      <p>{cart}</p>
       <Router>
         <Routes>
           <Route path="/" element={<Etusivu />} />
