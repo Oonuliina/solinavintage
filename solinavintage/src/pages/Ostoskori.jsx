@@ -201,41 +201,6 @@ const Ostoskori = () => {
             <ProductPriceTotal>€39,00</ProductPriceTotal>
           </Product>
           <Separator />
-          <Product>
-            <ProductDetails>
-              <Image src={whiteHeels} />
-              <Details>
-                <ProductName>
-                  <b>Nimi:</b> Valkoiset korkokengät
-                </ProductName>
-                <ProductPrice>
-                  <b>Hinta:</b> €29,00
-                </ProductPrice>
-              </Details>
-            </ProductDetails>
-            <ProductAmountContainer>
-              <DeleteIcon />
-            </ProductAmountContainer>
-            <ProductPriceTotal>€29,00</ProductPriceTotal>
-          </Product>
-          <Separator />
-          <Product>
-            <ProductDetails>
-              <Image src={pearlEarrings} />
-              <Details>
-                <ProductName>
-                  <b>Nimi:</b> Helmikorvakorut
-                </ProductName>
-                <ProductPrice>
-                  <b>Hinta:</b> €9,00
-                </ProductPrice>
-              </Details>
-            </ProductDetails>
-            <ProductAmountContainer>
-              <DeleteIcon />
-            </ProductAmountContainer>
-            <ProductPriceTotal>€9,00</ProductPriceTotal>
-          </Product>
         </Center>
         <Bottom>
           <Separator />
