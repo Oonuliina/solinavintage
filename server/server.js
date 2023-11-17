@@ -20,6 +20,8 @@ mongoose
     console.log(err);
   });
 
+const aWeek = 1000 * 60 * 60 * 24 * 7;
+
 app.use(sessions({
     name: "SolinaCookie",
     secret: process.env.SESSIONSECRET,
@@ -32,12 +34,24 @@ var session;
 
 mongoose.connect(process.env.URIKEY).then(() => console.log('Connected to database'));
 
-schema.find({cartId: })
-
 app.get('/getcart', (req, res) => {
     session = req.session;
     console.log(session)
-    res.json({product: "tuote1"});
+    try {
+      schema.findOne({cartId: session.id}).then(function(found){
+        if (!found){
+          console.log("cart was not there")
+        } else {
+          var foundcart = JSON.stringify(data);
+          fs.writeFileSync("currentcart.json", foundcart, (err) =>{
+            if (err) console.log(err);
+          })
+        }
+      })
+    }
+    catch (error){
+      console.log("error", error);
+    }
 });
 
 app.listen(PORT, () => {
