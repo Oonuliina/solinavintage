@@ -4,11 +4,13 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 import { CreditCard } from '@phosphor-icons/react';
 import paytrailMini from "../assets/paytrailMini.png"
+import Announcement from '../components/Announcement';
 
 
 const Kassa = () => {
   return (
     <Container>
+      <Announcement />
       <Header />
       <FormContainer>
         <PaymentForm>

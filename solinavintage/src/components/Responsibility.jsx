@@ -5,6 +5,10 @@ import qualityCheck from "../assets/Responsibility/quality-check.png";
 
 const Container = styled.div`
   width: 100%;
+
+  @media only screen and (max-width: 380px) {
+    display: none;
+  }
 `;
 const Separator = styled.hr`
   border: 1;
@@ -16,6 +20,10 @@ const Title = styled.h1`
   font-size: 40px;
   text-align: center;
   margin-bottom: 30px;
+  
+  @media only screen and (max-width: 380px) {
+    font-size: 20px;
+  }
 `;
 const Wrapper = styled.div`
   display: flex;
@@ -23,6 +31,11 @@ const Wrapper = styled.div`
   align-items: center;
   justfy-content: center;
   margin: 0px 300px 0px 300px;
+
+  @media only screen and (max-width: 380px) {
+    margin: 0px 5px 0px 5px;
+    flex-direction: column;
+  }
 `;
 const Item = styled.div`
   flex: 1;
@@ -31,24 +44,42 @@ const Item = styled.div`
   align-items: center;
   justfy-content: center;
   height: 435px;
+
+  @media only screen and (max-width: 380px) {
+    height: 217px;
+  }
 `;
 const Circle = styled.div`
   display: flex;
-  min-height: 300px;
-  min-width: 300px;
+  height: 300px;
+  width: 300px;
   top: 0;
   left: 0;
   background-color: white;
   border-radius: 50%;
   align-items: center;
   justify-content: center;
+
+  @media only screen and (max-width: 380px) {
+    max-height: 150px;
+    max-width: 150px;
+  }
 `;
 const Image = styled.img`
   height: 200px;
+
+  @media only screen and (max-width: 380px) {
+    height: 100px;
+    
+  }
 `;
 const Desc = styled.p`
   font-size: 20px;
   text-align: center;
+
+  @media only screen and (max-width: 380px) {
+    font-size: 10px;
+  }
 `;
 
 const Responsibility = () => {

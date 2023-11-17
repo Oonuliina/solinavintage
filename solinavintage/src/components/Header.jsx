@@ -104,7 +104,7 @@ const SearchContainer = styled.div`
 
   @media only screen and (max-width: 380px) {
     height: 20px;
-    width: 80%;
+    width: 70%;
     margin-left: 0px;
   }
 `;
@@ -175,6 +175,10 @@ const Separator = styled.hr`
   border: none;
   background-color: lightgray;
   height: 1px;
+
+  @media only screen and (max-width: 380px) {
+    margin: 5px 5px 0px 5px;
+  }
 `;
 const Header = () => {
   const [showModal, setShowModal] = useState(0);

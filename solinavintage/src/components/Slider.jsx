@@ -14,8 +14,8 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
 
-  @media (max-width: 900px) {
-    height: 400px;
+  @media only screen and (max-width: 380px) {
+    height: 200px;
   }
 `;
 const Arrow = styled.div`
@@ -35,6 +35,13 @@ const Arrow = styled.div`
   cursor: pointer;
   opacity: 0.5;
   z-index: 2;
+
+  @media only screen and (max-width: 380px) {
+    width: 35px;
+    height: 35px;
+    left: ${(props) => props.$direction === "left" && "5px"};
+    right: ${(props) => props.$direction === "right" && "5px"};
+  }
 `;
 const Wrapper = styled.div`
   height: 100%;
@@ -49,8 +56,8 @@ const Slide = styled.div`
   align-items: center;
   background-color: #${(props) => props.$bg};
 
-  @media (max-width: 900px) {
-    height: 400px;
+  @media only screen and (max-width: 380px) {
+    height: 200px;
   }
 `;
 const ImgContainer = styled.div`
@@ -65,7 +72,7 @@ const Image = styled.img`
   height: 80%;
   margin-left: 30px;
 
-  @media (max-width: 900px) {
+  @media only screen and (max-width: 380px) {
     height: 70%;
   }
 `;
@@ -76,8 +83,9 @@ const InfoContainer = styled.div`
   flex-direction: column;
   align-items: left;
 
-  @media (max-width: 900px) {
-    padding: 20px;
+  @media only screen and (max-width: 380px) {
+    padding: 10px;
+    margin-right: 30px;
   }
 `;
 const Title = styled.h1`
@@ -85,8 +93,8 @@ const Title = styled.h1`
   font-size: 50px;
   text-align: left;
 
-  @media (max-width: 900px) {
-    font-size: 30px;
+  @media only screen and (max-width: 380px) {
+    font-size: 15px;
   }
 `;
 const Desc = styled.p`
@@ -96,9 +104,10 @@ const Desc = styled.p`
   text-align: left;
   letter-spacing: 3px;
 
-  @media (max-width: 900px) {
-    font-size: 15px;
-    margin-right: 30px;
+  @media only screen and (max-width: 380px) {
+    font-size: 10px;
+    margin: 5px 0px 5px 0px;
+    letter-spacing: 1px;
   }
 `;
 const Button = styled.button`
@@ -114,9 +123,9 @@ const Button = styled.button`
   letter-spacing: 2px;
   background-color: whitesmoke;
 
-  @media (max-width: 900px) {
+  @media only screen and (max-width: 380px) {
     font-size: 10px;
-    padding: 11px;
+    margin: 10px 0px;
     width: 100px;
   }
 `;

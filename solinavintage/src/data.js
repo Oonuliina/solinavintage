@@ -53,6 +53,7 @@ import pearlNecklace from "./assets/accessories/pearl_necklace.JPG";
 import silverBrooch from "./assets/accessories/silver_brooch.JPG";
 import smallPearlEarrings from "./assets/accessories/small_pearl_earrings.JPG";
 
+
 export const mekot = [
   {
     id: 1,
