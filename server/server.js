@@ -41,13 +41,6 @@ app.get('/getcart', (req, res) => {
 
 const Käyttäjäskeema = require("./models/Käyttäjäskeema.js");
 
-const newKäyttäjä = new Käyttäjäskeema ({
-
-Käyttäjä: req.body.Nimi,
-Sähköposti: req.body.Sähköposti,
-Salasana: req.body.Salasana,
-
-});
 
 
 res.send('Nimesi on: ' + Käyttäjä)
@@ -56,19 +49,34 @@ res.send('Salasanasi on ' + Salasana)
 
 
 
-app.post('/rekisteröityminen', (req, res) => {
+app.post('/rekisteröityminen', async (req, res) => {
+
+  
+
+  const newKäyttäjä = new Käyttäjäskeema({
+
+    Käyttäjä: req.body.Nimi,
+    Sähköposti: req.body.Sähköposti,
+    Salasana: req.body.Salasana,
+
+  });
 
 
+try{
+  const saved = await newKäyttäjä.save();
+  res.status(200).json(saved)
+  console.log(saved);
+}
+
+catch(err){
+  res.status(400).json(err);
+  console.log(err);
+}
+
+});
 
 
-    
-    
-
-
-
-})
-
-
+module.exports = router;
 
 
 
