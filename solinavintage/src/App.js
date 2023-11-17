@@ -8,6 +8,8 @@ import Ostoskori from "./pages/Ostoskori"
 import Kassa from "./pages/Kassa"
 
 import { useEffect, useState } from "react";
+import Kirjautuminen from './pages/Kirjautuminen';
+import Rekisteröityminen from './pages/Rekisteröityminen';
 
 function App() {
 
@@ -34,6 +36,8 @@ function App() {
           <Route path="/meista" element={<Meista />} />
           <Route path="/ostoskori" element={<Ostoskori />} />
           <Route path="/kassa" element={<Kassa />} />
+          <Route path="/kirjautuminen" element={<Kirjautuminen />} />
+          <Route path="/rekisteröityminen" element={<Rekisteröityminen />} />
         </Routes>  
       </Router>
     </div>

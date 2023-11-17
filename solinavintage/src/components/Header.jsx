@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import logo from "../assets/SolinaLogo.png";
 import logoMobile from "../assets/SolinaLogoMobile.png"
-import { ShoppingBag, MagnifyingGlass } from "@phosphor-icons/react";
+import { ShoppingBag, MagnifyingGlass, User } from "@phosphor-icons/react";
 import styled from "styled-components";
 import { Badge } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   width: 100%;
@@ -48,11 +48,14 @@ const TitleLogo = styled.h1`
 `;
 const UpperRight = styled.div`
   flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: end;
 `;
 const ShoppingContainer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: right;
+  padding-left: 20px;
 `;
 const ShoppingButton = styled.button`
   padding: 0;
@@ -215,14 +218,11 @@ const Header = () => {
         </UpperLeft>
         <UpperCenter>
           <TitleLogo onClick={() => navigate("/")}>Solina Vintage</TitleLogo>
-          <LogoContainer>
-            <Picture>
-              <Source media="(max-width: 768px)" srcSet={logoMobile} sizes="768px" />
-              <LogoImage onClick={() => navigate("/")} src={logo} />  
-            </Picture>
-          </LogoContainer>
         </UpperCenter>
         <UpperRight>
+          <Link to={"/kirjautuminen"}>
+        <User size={32} weight="light" />
+        </Link>
           <ShoppingContainer>
             <ShoppingButton>
               <Badge badgeContent={4} color="secondary">
@@ -236,6 +236,12 @@ const Header = () => {
           </ShoppingContainer>
         </UpperRight>
       </UpperNavigation>
+      <LogoContainer>
+            <Picture>
+              <Source media="(max-width: 768px)" srcSet={logoMobile} sizes="768px" />
+              <LogoImage onClick={() => navigate("/")} src={logo} />  
+            </Picture>
+          </LogoContainer>
       <NavBar>
         <NavItem onClick={() => navigate("/")}>ETUSIVU</NavItem>
         <NavItem onClick={() => navigate("/tuotteet")}>TUOTTEET</NavItem>
