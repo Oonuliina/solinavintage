@@ -1,4 +1,4 @@
-import { products } from "../data";
+import { coats } from "../data";
 import styled from "styled-components";
 import Product from "./Product";
 
@@ -19,15 +19,15 @@ const Container = styled.div`
   }
 `;
 
-const Products = () => {
+const Coats = () => {
 
   return (
     <Container>
-      {products.map((item) => (
+      {coats.map((item) => (
         <Product item={item} key={item.id} />
       ))}
     </Container>
   );
 };
 
-export default Products;
+export default Coats;

@@ -272,8 +272,16 @@ const Tuotteet = () => {
                 </FilterIcon>
                 Suodatus:
               </FilterTextLeft>
-              <Select name="color" onChange={handleFilters}>
-                <Option disabled>Väri</Option>
+              <Select defaultValue="Kategoria" name="category" onChange={handleFilters}>
+                <Option>Kategoria</Option>
+                <Option>Mekot</Option>
+                <Option>Takit</Option>
+                <Option>Kengät</Option>
+                <Option>Korut</Option>
+                <Option>Laukut</Option>
+              </Select>
+              <Select defaultValue="Väri" name="color" onChange={handleFilters}>
+                <Option>Väri</Option>
                 <Option>valkoinen</Option>
                 <Option>musta</Option>
                 <Option>punainen</Option>
@@ -290,8 +298,8 @@ const Tuotteet = () => {
                 <Option>kultainen</Option>
                 <Option>hopea</Option>
               </Select>
-              <Select name="size" onChange={handleFilters}>
-                <Option disabled>Koko</Option>
+              <Select defaultValue="Koko" name="size" onChange={handleFilters}>
+                <Option>Koko</Option>
                 <Option>XS</Option>
                 <Option>S</Option>
                 <Option>M</Option>

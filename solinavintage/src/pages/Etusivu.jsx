@@ -2,7 +2,7 @@ import React from 'react'
 import Header from '../components/Header'
 import Slider from "../components/Slider";
 import Footer from '../components/Footer'
-import Products from '../components/Products'
+import RandomProducts from '../components/RandomProducts'
 import Responsibility from '../components/Responsibility'
 import styled from 'styled-components'
 import Announcement from '../components/Announcement';
@@ -20,7 +20,7 @@ function Etusivu() {
         <Announcement />
         <Header />
         <Slider />
-        <Products />
+        <RandomProducts />
         <Responsibility />
         <Footer />
     </Container>
