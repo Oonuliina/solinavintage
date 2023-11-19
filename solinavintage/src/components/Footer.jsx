@@ -18,17 +18,16 @@ const Container = styled.div`
   bottom: 0;
   left: 0;
   width: 100vw;
-  margin-top: 40px;
 
   @media only screen and (max-width: 380px) {
     margin-top: 20px;
   }
 `;
 const FooterSeparator = styled.hr`
-  border: 1;
-  margin-top: 0;
-  margin-bottom: 0;
-  width: 95%;
+  height: 1px;
+  background-color: lightgray;
+  border: none;
+  margin: 0px 20px 0px 20px;
 `;
 const FooterInfo = styled.div`
   display: flex;

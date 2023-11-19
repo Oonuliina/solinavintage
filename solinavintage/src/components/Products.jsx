@@ -7,8 +7,7 @@ const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: flex-start;
-  margin-left: 135px;
+  justify-content: center;
 
   @media only screen and (max-width: 380px) {
     padding: 11px;

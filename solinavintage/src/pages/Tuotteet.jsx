@@ -9,11 +9,9 @@ import { Funnel, X } from "@phosphor-icons/react";
 
 const Container = styled.div``;
 
-const TitleAndFiltersContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-left: 160px;
-  margin-right: 155px;
+const FiltersContainer = styled.div`
+  padding-left: 3%;
+  padding-right: 3%;
 
   @media only screen and (max-width: 380px) {
     display: flex;
@@ -24,6 +22,8 @@ const TitleAndFiltersContainer = styled.div`
 const Title = styled.h1`
   font-size: 40px;
   align-text: left;
+  padding-left: 3%;
+  padding-right: 3%;
 
   @media only screen and (max-width: 380px) {
     font-size: 20px;
@@ -243,6 +243,11 @@ const Tuotteet = () => {
               <Option>L</Option>
               <Option>XL</Option>
               <Option>XXL</Option>
+              <Option>36</Option>
+              <Option>37</Option>
+              <Option>38</Option>
+              <Option>39</Option>
+              <Option>40</Option>
             </ModalSelect>
           </ModalFilter>
           <ModalFilter>
@@ -261,8 +266,8 @@ const Tuotteet = () => {
       ) : null}
       <Announcement />
       <Header />
-      <TitleAndFiltersContainer>
-        <Title>Kaikki tuotteet</Title>
+      <Title>Kaikki tuotteet</Title>
+      <FiltersContainer>
         <FilterContainer>
           <Left>
             <Filter>
@@ -272,7 +277,11 @@ const Tuotteet = () => {
                 </FilterIcon>
                 Suodatus:
               </FilterTextLeft>
-              <Select defaultValue="Kategoria" name="category" onChange={handleFilters}>
+              <Select
+                defaultValue="Kategoria"
+                name="category"
+                onChange={handleFilters}
+              >
                 <Option>Kategoria</Option>
                 <Option>Mekot</Option>
                 <Option>Takit</Option>
@@ -323,7 +332,7 @@ const Tuotteet = () => {
             </AmountOfProducts>
           </Right>
         </FilterContainer>
-      </TitleAndFiltersContainer>
+      </FiltersContainer>
       <Products category={category} filters={filters} sort={sort} />
 
       <Footer />

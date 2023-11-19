@@ -12,7 +12,9 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
 `;
-
+const Title = styled.h1`
+  text-align: center;
+`;
 
 function Etusivu() {
   return (
@@ -20,6 +22,7 @@ function Etusivu() {
         <Announcement />
         <Header />
         <Slider />
+        <Title>Uutuuksia</Title>
         <RandomProducts />
         <Responsibility />
         <Footer />
