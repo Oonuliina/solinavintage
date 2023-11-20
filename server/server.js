@@ -41,16 +41,14 @@ app.get('/getcart', (req, res) => {
 
 const Käyttäjäskeema = require("./models/Käyttäjäskeema.js");
 
+//const userRoute = require("./rekisteröityminen");
+// userRoute,
+
+app.post('./rekisteröityminen',  async (req, res) => {
 
 
 
-
-
-app.post('/rekisteröityminen', async (req, res) => {
-
-
-
-  const newKäyttäjä = new Käyttäjäskeema({
+const newKäyttäjä = new Käyttäjäskeema({
 
     Sähköposti: req.body.Sähköposti,
     Salasana: req.body.Salasana,
@@ -58,10 +56,11 @@ app.post('/rekisteröityminen', async (req, res) => {
   });
 
 
-try{
+try {
 
   res.send('Sähköpostisi on: ' + Sähköposti)  
   res.send('Salasanasi on ' + Salasana)
+
   const saved = await newKäyttäjä.save();
   res.status(200).json(saved)
   console.log(saved);
