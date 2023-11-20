@@ -43,7 +43,6 @@ const Käyttäjäskeema = require("./models/Käyttäjäskeema.js");
 
 
 
-res.send('Nimesi on: ' + Käyttäjä)
 res.send('Sähköpostisi on: ' + Sähköposti)
 res.send('Salasanasi on ' + Salasana)
 
@@ -55,7 +54,6 @@ app.post('/rekisteröityminen', async (req, res) => {
 
   const newKäyttäjä = new Käyttäjäskeema({
 
-    Käyttäjä: req.body.Käyttäjä,
     Sähköposti: req.body.Sähköposti,
     Salasana: req.body.Salasana,
 
@@ -82,7 +80,7 @@ app.post("/login"), async (req,res) => {
 
 try{
 
-const Käyttäjä = await Käyttäjäskeema.findOne({Käyttäjä: req.body.Käyttäjä});
+const Käyttäjä = await Käyttäjäskeema.findOne({Sähköposti: req.body.Sähköposti});
 const Salasana = Käyttäjäskeema.Salasana
 
 Salasana !== req.body.Salasana &&

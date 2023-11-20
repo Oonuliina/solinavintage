@@ -72,7 +72,6 @@ const Kirjautuminen = () => {
         <Wrapper>
             <Form>
             <Title>Kirjautuminen</Title>
-            <Input placeholder="Käyttäjä" />
             <Input placeholder="Sähköposti"/>
             <Input placeholder="Salasana" />
             <LoginButton>Kirjaudu sisään</LoginButton>
