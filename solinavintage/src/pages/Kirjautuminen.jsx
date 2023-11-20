@@ -73,7 +73,7 @@ const Kirjautuminen = () => {
             <Form>
             <Title>Kirjautuminen</Title>
             <Input placeholder="Sähköposti"/>
-            <Input placeholder="Salasana" />
+            <Input type="password" placeholder="Salasana" />
             <LoginButton>Kirjaudu sisään</LoginButton>
             <Link to={"/rekisteröityminen"}>
             <CreateAccountButton>Luo tili</CreateAccountButton>
