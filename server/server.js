@@ -8,6 +8,10 @@ const sessions = require("express-session");
 const cookies = require("cookie-parser");
 const schema = require("./models/Tuote.js")
 
+
+
+
+
 app.use(cors());
 app.use(express.json());
 app.use(cookies());
@@ -37,6 +41,9 @@ app.get('/getcart', (req, res) => {
 
 
 
+const CryptoJS = require("crypto-js")
+
+
 //Rekisteröityminen
 
 const Käyttäjäskeema = require("./models/Käyttäjäskeema.js");
@@ -51,9 +58,8 @@ app.post('./rekisteröityminen',  async (req, res) => {
 const newKäyttäjä = new Käyttäjäskeema({
 
     Sähköposti: req.body.Sähköposti,
-    Salasana: req.body.Salasana,
-
-  });
+  Salasana: CryptoJS.AES.encrypt(req.body.Salasana, process.env.Password_Secret.toString)
+});
 
 
 try {
