@@ -1,4 +1,4 @@
-import { products } from "../data";
+import { coats } from "../data";
 import styled from "styled-components";
 import Product from "./Product";
 
@@ -7,7 +7,8 @@ const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  margin-left: 135px;
 
   @media only screen and (max-width: 380px) {
     padding: 11px;
@@ -18,15 +19,15 @@ const Container = styled.div`
   }
 `;
 
-const Products = () => {
+const Coats = () => {
 
   return (
     <Container>
-      {products.map((item) => (
+      {coats.map((item) => (
         <Product item={item} key={item.id} />
       ))}
     </Container>
   );
 };
 
-export default Products;
+export default Coats;

@@ -66,7 +66,7 @@ const Icon = styled.div`
 const InfoContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 80px;
+  height: 100px;
   width: 350px;
 
   @media only screen and (max-width: 380px) {

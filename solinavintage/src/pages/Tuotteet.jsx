@@ -9,11 +9,9 @@ import { Funnel, X } from "@phosphor-icons/react";
 
 const Container = styled.div``;
 
-const TitleAndFiltersContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-left: 160px;
-  margin-right: 155px;
+const FiltersContainer = styled.div`
+  padding-left: 3%;
+  padding-right: 3%;
 
   @media only screen and (max-width: 380px) {
     display: flex;
@@ -24,6 +22,8 @@ const TitleAndFiltersContainer = styled.div`
 const Title = styled.h1`
   font-size: 40px;
   align-text: left;
+  padding-left: 3%;
+  padding-right: 3%;
 
   @media only screen and (max-width: 380px) {
     font-size: 20px;
@@ -243,6 +243,11 @@ const Tuotteet = () => {
               <Option>L</Option>
               <Option>XL</Option>
               <Option>XXL</Option>
+              <Option>36</Option>
+              <Option>37</Option>
+              <Option>38</Option>
+              <Option>39</Option>
+              <Option>40</Option>
             </ModalSelect>
           </ModalFilter>
           <ModalFilter>
@@ -261,8 +266,8 @@ const Tuotteet = () => {
       ) : null}
       <Announcement />
       <Header />
-      <TitleAndFiltersContainer>
-        <Title>Kaikki tuotteet</Title>
+      <Title>Kaikki tuotteet</Title>
+      <FiltersContainer>
         <FilterContainer>
           <Left>
             <Filter>
@@ -272,8 +277,20 @@ const Tuotteet = () => {
                 </FilterIcon>
                 Suodatus:
               </FilterTextLeft>
-              <Select name="color" onChange={handleFilters}>
-                <Option disabled>Väri</Option>
+              <Select
+                defaultValue="Kategoria"
+                name="category"
+                onChange={handleFilters}
+              >
+                <Option>Kategoria</Option>
+                <Option>Mekot</Option>
+                <Option>Takit</Option>
+                <Option>Kengät</Option>
+                <Option>Korut</Option>
+                <Option>Laukut</Option>
+              </Select>
+              <Select defaultValue="Väri" name="color" onChange={handleFilters}>
+                <Option>Väri</Option>
                 <Option>valkoinen</Option>
                 <Option>musta</Option>
                 <Option>punainen</Option>
@@ -290,8 +307,8 @@ const Tuotteet = () => {
                 <Option>kultainen</Option>
                 <Option>hopea</Option>
               </Select>
-              <Select name="size" onChange={handleFilters}>
-                <Option disabled>Koko</Option>
+              <Select defaultValue="Koko" name="size" onChange={handleFilters}>
+                <Option>Koko</Option>
                 <Option>XS</Option>
                 <Option>S</Option>
                 <Option>M</Option>
@@ -315,7 +332,7 @@ const Tuotteet = () => {
             </AmountOfProducts>
           </Right>
         </FilterContainer>
-      </TitleAndFiltersContainer>
+      </FiltersContainer>
       <Products category={category} filters={filters} sort={sort} />
 
       <Footer />

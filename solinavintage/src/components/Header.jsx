@@ -1,10 +1,16 @@
 import React, { useState } from "react";
 import logo from "../assets/SolinaLogo.png";
-import logoMobile from "../assets/SolinaLogoMobile.png"
-import { ShoppingBag, MagnifyingGlass, User } from "@phosphor-icons/react";
+import logoMobile from "../assets/SolinaLogoMobile.png";
+import {
+  ShoppingBag,
+  MagnifyingGlass,
+  User,
+} from "@phosphor-icons/react";
 import styled from "styled-components";
 import { Badge } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
+import { mobile } from "../responsive";
+import Burger from "./Burger";
 
 const Container = styled.div`
   width: 100%;
@@ -16,14 +22,14 @@ const UpperNavigation = styled.div`
   padding: 0px 30px 0px 30px;
   margin-top: 30px;
 
-  @media only screen and (max-width: 380px) {
-    padding: 0px 5px 0px 5px;
-    margin-top: 10px;
-  }
+  ${mobile({ padding: "0px 5px 0px 5px", marginTop: "10px" })}
 `;
 const UpperLeft = styled.div`
   flex: 1;
+  display: flex;
+  position: relative;
 `;
+
 const UpperCenter = styled.div`
   flex: 1;
   align-items: center;
@@ -138,11 +144,9 @@ const LogoContainer = styled.div`
   margin-bottom: 15px;
 `;
 
-const Picture = styled.picture`
-`;
+const Picture = styled.picture``;
 
-const Source = styled.source`
-`;
+const Source = styled.source``;
 
 const LogoImage = styled.img`
   width: 350px;
@@ -171,6 +175,46 @@ const NavItem = styled.a`
 
   &:hover {
     font-weight: bold;
+  }
+`;
+const NavDropContent = styled.div`
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+`;
+
+const NavDrop = styled.div`
+  position: relative;
+  display: inline-block;
+
+  &:hover ${NavDropContent} {
+    display: block;
+  }
+`;
+const NavButton = styled.a`
+  margin-left: 15px;
+  margin-right: 15px;
+  font-size: 16px;
+  color: #222222;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    font-weight: bold;
+  }
+`;
+
+const NavLink = styled.a`
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+
+  &:hover {
+    background-color: #f1f1f1;
   }
 `;
 const Separator = styled.hr`
@@ -212,6 +256,7 @@ const Header = () => {
       ) : null}
       <UpperNavigation>
         <UpperLeft>
+            <Burger />
           <SearchIconButton onClick={openModal}>
             <MagnifyingGlass size={35} weight="light" />
           </SearchIconButton>
@@ -221,8 +266,8 @@ const Header = () => {
         </UpperCenter>
         <UpperRight>
           <Link to={"/kirjautuminen"}>
-        <User size={32} weight="light" />
-        </Link>
+            <User size={32} weight="light" />
+          </Link>
           <ShoppingContainer>
             <ShoppingButton>
               <Badge badgeContent={4} color="secondary">
@@ -237,14 +282,27 @@ const Header = () => {
         </UpperRight>
       </UpperNavigation>
       <LogoContainer>
-            <Picture>
-              <Source media="(max-width: 768px)" srcSet={logoMobile} sizes="768px" />
-              <LogoImage onClick={() => navigate("/")} src={logo} />  
-            </Picture>
-          </LogoContainer>
+        <Picture>
+          <Source
+            media="(max-width: 768px)"
+            srcSet={logoMobile}
+            sizes="768px"
+          />
+          <LogoImage onClick={() => navigate("/")} src={logo} />
+        </Picture>
+      </LogoContainer>
       <NavBar>
         <NavItem onClick={() => navigate("/")}>ETUSIVU</NavItem>
-        <NavItem onClick={() => navigate("/tuotteet")}>TUOTTEET</NavItem>
+        <NavDrop>
+          <NavButton onClick={() => navigate("/tuotteet")}>TUOTTEET</NavButton>
+          <NavDropContent>
+            <NavLink onClick={() => navigate("/tuotteet/mekot")}>Mekot</NavLink>
+            <NavLink onClick={() => navigate("/tuotteet/kengät")}>Kengät</NavLink>
+            <NavLink onClick={() => navigate("/tuotteet/laukut")}>Laukut</NavLink>
+            <NavLink onClick={() => navigate("/tuotteet/takit")}>Takit</NavLink>
+            <NavLink onClick={() => navigate("/tuotteet/korut")}>Korut</NavLink>
+          </NavDropContent>
+        </NavDrop>
         <NavItem onClick={() => navigate("/meista")}>MEISTÄ</NavItem>
       </NavBar>
       <Separator />

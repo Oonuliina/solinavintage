@@ -2,7 +2,7 @@ import React from 'react'
 import Header from '../components/Header'
 import Slider from "../components/Slider";
 import Footer from '../components/Footer'
-import Products from '../components/Products'
+import RandomProducts from '../components/RandomProducts'
 import Responsibility from '../components/Responsibility'
 import styled from 'styled-components'
 import Announcement from '../components/Announcement';
@@ -12,7 +12,9 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
 `;
-
+const Title = styled.h1`
+  text-align: center;
+`;
 
 function Etusivu() {
   return (
@@ -20,7 +22,8 @@ function Etusivu() {
         <Announcement />
         <Header />
         <Slider />
-        <Products />
+        <Title>Uutuuksia</Title>
+        <RandomProducts />
         <Responsibility />
         <Footer />
     </Container>

@@ -8,6 +8,7 @@ const Container = styled.div`
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+ 
 
   @media only screen and (max-width: 380px) {
     padding: 11px;
@@ -18,15 +19,17 @@ const Container = styled.div`
   }
 `;
 
-const Products = () => {
+const RandomProducts = () => {
 
-  return (
+    const randomProduct = products.sort(() => Math.random() - Math.random());
+
+    return (
     <Container>
-      {products.map((item) => (
-        <Product item={item} key={item.id} />
+      {randomProduct.slice(0, 4).map((randomProduct) => (
+        <Product item={randomProduct} key={randomProduct.id} />
       ))}
     </Container>
   );
 };
 
-export default Products;
+export default RandomProducts;
