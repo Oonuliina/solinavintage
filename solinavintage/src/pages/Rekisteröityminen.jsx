@@ -64,7 +64,7 @@ const Rekisteröityminen = () => {
         <Title>Luo tili</Title>
         <Form>
           <Input placeholder="Sähköposti" />
-          <Input placeholder="Salasana" />
+          <Input type="password" placeholder="Salasana" />
           <CreateAccountButton>Luo</CreateAccountButton>
           <Link to={"/"}>
           <BackToHomeButtom>Palaa etusivulle</BackToHomeButtom>
