@@ -86,7 +86,7 @@ const Salasana = Käyttäjäskeema.Salasana
 
 Salasana !== req.body.Salasana &&
   res.status(401).json('Väärä salasana');
-  res.status(200).json(Käyttäjäskeema)
+  res.status(200).json(Käyttäjä)
 }
 
 catch(err){
