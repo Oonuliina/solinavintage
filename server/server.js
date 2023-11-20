@@ -58,7 +58,8 @@ app.post('./rekisteröityminen',  async (req, res) => {
 const newKäyttäjä = new Käyttäjäskeema({
 
     Sähköposti: req.body.Sähköposti,
-  Salasana: CryptoJS.AES.encrypt(req.body.Salasana, process.env.Password_Secret.toString)
+    Salasana: CryptoJS.AES.encrypt(req.body.Salasana, process.env.Password_Secret.toString)
+
 });
 
 
