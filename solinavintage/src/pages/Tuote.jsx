@@ -4,6 +4,7 @@ import Footer from "../components/Footer";
 import longPurpleDress from "../assets/dresses/long_purple_dress.JPG";
 import Announcement from "../components/Announcement";
 
+
 const Container = styled.div``;
 const Wrapper = styled.div`
   margin-top: 50px;
@@ -59,6 +60,7 @@ const Button = styled.button`
 `;
 
 const Tuote = () => {
+
   return (
     <Container>
       <Announcement />

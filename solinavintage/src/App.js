@@ -12,19 +12,12 @@ import Kirjautuminen from './pages/Kirjautuminen';
 import Rekisteröityminen from './pages/Rekisteröityminen';
 
 function App() {
+  
+/* const [cart, setCart] = useLocalStorage([])
 
-  /* const [cart, setCart] = useState();
-
-  useEffect(() => {
-    fetch("http://localhost:5000/getcart")
-    .then((res) => res.json())
-    .then((data) => setCart(data))
-  }, []);
-
-  const toCart = (productId) => {
-    cart.add(productId)
-    .then
-  } */
+function toCart(product) {
+  setCart([...cart, {...product}])
+} */
 
   return (
     <div className="App">

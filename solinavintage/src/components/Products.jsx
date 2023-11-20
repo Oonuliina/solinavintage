@@ -2,7 +2,7 @@ import { products } from "../data";
 import { takit } from "../data";
 import { mekot } from "../data";
 import { korut } from "../data";
-import { kengät } from "../data";
+import { kengat } from "../data";
 import { laukut } from "../data";
 import styled from "styled-components";
 import Product from "./Product";
@@ -33,8 +33,8 @@ const Products = () => {
     category = mekot
   } else if (fullpath.includes("korut")) {
     category = korut
-  } else if (fullpath.includes("kengät")) {
-    category = kengät
+  } else if (fullpath.includes("kengat")) {
+    category = kengat
   } else if (fullpath.includes("laukut")) {
     category = laukut
   } else {
