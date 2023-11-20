@@ -1,6 +1,13 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
+import React, {useState} from 'react';
+import axios from 'axios';
+import { response } from "express";
+
+
+
+
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
@@ -58,17 +65,29 @@ const BackToHomeButtom = styled.button`
 `;
 
 const Rekisteröityminen = () => {
+
+  const [Sähköposti, setSähköposti] = useState('');
+  const [Salasana, setSalasana] = useState('');
+
+  const Rekisteröi = async () => {
+    try { const vastaus = await axios.post('http//localhost:3000/rekisteröinti', {Sähköposti, Salasana});
+    console.log(response)
+
+  } catch (error) {
+
+    console.error(error.response.data.error);
+
+  }}
+  
   return (
+  
     <Container>
       <Wrapper>
         <Title>Luo tili</Title>
         <Form>
-          <Input placeholder="Sähköposti" />
-          <Input type="password" placeholder="Salasana" />
-
-          
-
-          <CreateAccountButton>Luo</CreateAccountButton>
+          <Input type="text" placeholder="Sähköposti" value={Sähköposti} onChange={e => setSähköposti(e.target.value)} />
+          <Input type="password" placeholder="Salasana" value={Salasana} onChange={e => setSalasana(e.target.value)} />
+          <CreateAccountButton onClick={Rekisteröi}>Luo</CreateAccountButton>
           <Link to={"/"}>
           <BackToHomeButtom>Palaa etusivulle</BackToHomeButtom>
           </Link>

@@ -1,3 +1,6 @@
+
+
+
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
@@ -83,7 +86,7 @@ catch(err){
 
 //Login
 
-app.post("/login"), async (req,res) => {
+app.post("./Kirjautuminen"), async (req,res) => {
 
 try{
 
