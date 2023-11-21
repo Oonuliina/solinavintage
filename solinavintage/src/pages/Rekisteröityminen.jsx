@@ -95,8 +95,10 @@ const Rekisteröityminen = () => {
         };
 
         postUser("http://localhost:5000/rekisteroityminen", {Sahkoposti: Sahkoposti, Salasana: Password})
-        .then(res => {
-          alert(res)
+        .then((res) => {
+          if (res === "Sähkoposti on jo käytössä!"){
+            alert(res)
+          }
         });
       } else {
         alert("Kaikki kentät ovat pakollisia!")
