@@ -98,6 +98,9 @@ const Rekisteröityminen = () => {
         .then((res) => {
           if (res === "Sähkoposti on jo käytössä!"){
             alert(res)
+          } else {
+            alert("Käyttäjätili on luotu!")
+            document.location.replace("/kirjautuminen");
           }
         });
       } else {
