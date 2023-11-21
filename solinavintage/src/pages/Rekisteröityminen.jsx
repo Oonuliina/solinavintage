@@ -1,5 +1,9 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import React, {useState} from 'react';
+
+/* import axios from 'axios';
+import { response } from "express"; */
 
 const Container = styled.div`
   width: 100vw;
@@ -30,7 +34,7 @@ const Title = styled.h1`
   font-weight: 200;
   text-align: center;
 `;
-const Form = styled.form`
+const Form = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -58,15 +62,64 @@ const BackToHomeButtom = styled.button`
 `;
 
 const Rekisteröityminen = () => {
+
+  /* const [Sähköposti, setSähköposti] = useState('');
+  const [Salasana, setSalasana] = useState('');
+
+  const Rekisteröi = async () => {
+    try { const vastaus = await axios.post('http//localhost:3000/rekisteröinti', {Sähköposti, Salasana});
+    console.log(response)
+
+    } catch(error) {
+    console.error(error.response.data.error);
+    }
+  } */
+
+  const Rekisteröi = async () => {
+    const Sahkoposti = document.getElementById("email").value;
+    const Password = document.getElementById("passw").value;
+    
+    if (Sahkoposti){
+      if (Password){
+        async function postUser(url="", data={}){
+          const resp = await fetch(url, {
+            method: "POST",
+            mode: "cors",
+            cache: "no-cache",
+            credentials: "same-origin",
+            headers: {"Content-Type": "application/json",},
+            body: JSON.stringify(data),
+            referrerPolicy: "no-referrer",
+          });
+          return resp.json();
+        };
+
+        postUser("http://localhost:5000/rekisteroityminen", {Sahkoposti: Sahkoposti, Salasana: Password})
+        .then((res) => {
+          if (res === "Sähkoposti on jo käytössä!"){
+            alert(res)
+          } else {
+            alert("Käyttäjätili on luotu!")
+            document.location.replace("/kirjautuminen");
+          }
+        });
+      } else {
+        alert("Kaikki kentät ovat pakollisia!")
+      }
+    } else {
+      alert("Kaikki kentät ovat pakollisia!")
+    }
+
+  }
+
   return (
     <Container>
       <Wrapper>
         <Title>Luo tili</Title>
         <Form>
-          <Input placeholder="Käyttäjä" />
-          <Input placeholder="Sähköposti" />
-          <Input placeholder="Salasana" />
-          <CreateAccountButton>Luo</CreateAccountButton>
+          <Input type="text" placeholder="Sähköposti" id="email"/>
+          <Input type="password" placeholder="Salasana" id="passw"/>
+          <CreateAccountButton onClick={Rekisteröi}>Luo</CreateAccountButton>
           <Link to={"/"}>
           <BackToHomeButtom>Palaa etusivulle</BackToHomeButtom>
           </Link>

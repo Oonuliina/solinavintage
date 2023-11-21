@@ -33,7 +33,7 @@ export const sliderItems = [
     id: 4,
     img: kengätKuva,
     title: "VINTAGE KENGÄT",
-    category: "kengät",
+    category: "kengat",
     desc: "TUTUSTU UPEAAN VINTAGE KENKÄVALIKOIMAAMME!",
     bg: "FDE5EC",
   },

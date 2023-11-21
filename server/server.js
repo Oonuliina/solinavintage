@@ -15,92 +15,70 @@ app.use(cookies());
 const aWeek = 1000 * 60 * 60 * 24 * 7;
 
 app.use(sessions({
-    name: "SolinaCookie",
-    secret: process.env.SESSIONSECRET,
-    saveUninitialized: true,
-    cookie: {secure: false, maxAge: aWeek},
-    resave: false,
+  name: "SolinaCookie",
+  secret: process.env.SESSIONSECRET,
+  saveUninitialized: true,
+  cookie: { secure: false, maxAge: aWeek },
+  resave: false,
 }));
 
 var session;
 
 mongoose.connect(process.env.URIKEY)
-.then(() => console.log('Connected to database'))
-.catch((err) => {
-  console.log(err)
-});
-
-app.get('/getcart', (req, res) => {
-    session = req.session;
-    console.log(session)
-});
-
-
-
-//Rekisteröityminen
-
-const Käyttäjäskeema = require("./models/Käyttäjäskeema.js");
-
-
-app.post('/rekisteröityminen', async (req, res) => {
-
-
-
-  const newKäyttäjä = new Käyttäjäskeema({
-
-    Käyttäjä: req.body.Käyttäjä,
-    Sähköposti: req.body.Sähköposti,
-    Salasana: req.body.Salasana,
-
+  .then(() => console.log('Connected to database'))
+  .catch((err) => {
+    console.log(err)
   });
 
-
-try{
-  res.send('Nimesi on: ' + Käyttäjä)
-  res.send('Sähköpostisi on: ' + Sähköposti)  
-  res.send('Salasanasi on ' + Salasana)
-  const saved = await newKäyttäjä.save();
-  res.status(200).json(saved)
-  console.log(saved);
-}
-
-catch(err){
-  res.status(500).json(err);
-  console.log(err);
-}
-
+app.get('/getcart', (req, res) => {
+  session = req.session;
+  console.log(session)
 });
 
+const CryptoJS = require("crypto-js")
+
+//Rekisteröityminen
+const Käyttäjäskeema = require("./models/Käyttäjäskeema.js");
+
+//const userRoute = require("./rekisteröityminen");
+// userRoute,
+
+app.post('/rekisteroityminen', async (req, res) => {
+  console.log(req.body)
+  const newKäyttäjä = Käyttäjäskeema({
+    Sahkoposti: req.body.Sahkoposti,
+    Salasana: CryptoJS.AES.encrypt(req.body.Salasana, process.env.PASSWORD_SECRET)
+  });
+
+  try {
+    const checkEmail = await Käyttäjäskeema.findOne({Sahkoposti: req.body.Sahkoposti})
+    if (!checkEmail){
+    const saved = await newKäyttäjä.save();
+    res.status(200).json(saved)
+    console.log(saved);
+    } else {
+      res.status(401).json("Sähkoposti on jo käytössä!")
+    }
+  } catch (err) {
+    res.status(500).json(err);
+    console.log(err);
+  }
+});
 
 //Login
+app.post("./kirjautuminen"), async (req, res) => {
+  try {
+    const Käyttäjä = await Käyttäjäskeema.findOne({ Sahkoposti: req.body.Sahkoposti });
+    const Salasana = Käyttäjäskeema.Salasana
 
-app.post("/login"), async (req,res) => {
-
-try{
-
-const Käyttäjä = await Käyttäjäskeema.findOne({Käyttäjä: req.body.Käyttäjä});
-const Salasana = Käyttäjäskeema.Salasana
-
-Salasana !== req.body.Salasana &&
-  res.status(401).json('Väärä salasana');
-  res.status(200).json(Käyttäjäskeema)
-}
-
-catch(err){
-
-  res.status(500).json(err)
-}
-
+    Salasana !== req.body.Salasana &&
+      res.status(401).json('Väärä salasana');
+    res.status(200).json(Käyttäjä)
+  } catch (err) {
+    res.status(500).json(err)
+  }
 
 };
-
-
-
-
-
-
-
-
 
 app.listen(PORT, () => {
   console.log("Server is up and running at port " + PORT);

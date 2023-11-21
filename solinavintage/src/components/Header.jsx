@@ -297,7 +297,7 @@ const Header = () => {
           <NavButton onClick={() => navigate("/tuotteet")}>TUOTTEET</NavButton>
           <NavDropContent>
             <NavLink onClick={() => navigate("/tuotteet/mekot")}>Mekot</NavLink>
-            <NavLink onClick={() => navigate("/tuotteet/kengät")}>Kengät</NavLink>
+            <NavLink onClick={() => navigate("/tuotteet/kengat")}>Kengät</NavLink>
             <NavLink onClick={() => navigate("/tuotteet/laukut")}>Laukut</NavLink>
             <NavLink onClick={() => navigate("/tuotteet/takit")}>Takit</NavLink>
             <NavLink onClick={() => navigate("/tuotteet/korut")}>Korut</NavLink>

@@ -30,7 +30,7 @@ const Title = styled.h1`
   font-weight: 200;
   text-align: center;
 `;
-const Form = styled.form`
+const Form = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -72,9 +72,8 @@ const Kirjautuminen = () => {
         <Wrapper>
             <Form>
             <Title>Kirjautuminen</Title>
-            <Input placeholder="Käyttäjä" />
             <Input placeholder="Sähköposti"/>
-            <Input placeholder="Salasana" />
+            <Input type="password" placeholder="Salasana" />
             <LoginButton>Kirjaudu sisään</LoginButton>
             <Link to={"/rekisteröityminen"}>
             <CreateAccountButton>Luo tili</CreateAccountButton>

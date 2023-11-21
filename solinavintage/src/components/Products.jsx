@@ -1,4 +1,9 @@
 import { products } from "../data";
+import { takit } from "../data";
+import { mekot } from "../data";
+import { korut } from "../data";
+import { kengat } from "../data";
+import { laukut } from "../data";
 import styled from "styled-components";
 import Product from "./Product";
 
@@ -19,10 +24,26 @@ const Container = styled.div`
 `;
 
 const Products = () => {
+  
+  var category = "";
+  const fullpath = window.location.href;
+  if (fullpath.includes("takit")){
+    category = takit
+  } else if (fullpath.includes("mekot")) {
+    category = mekot
+  } else if (fullpath.includes("korut")) {
+    category = korut
+  } else if (fullpath.includes("kengat")) {
+    category = kengat
+  } else if (fullpath.includes("laukut")) {
+    category = laukut
+  } else {
+    category = products
+  }
 
   return (
     <Container>
-      {products.map((item) => (
+      {category.map((item) => (
         <Product item={item} key={item.id} />
       ))}
     </Container>

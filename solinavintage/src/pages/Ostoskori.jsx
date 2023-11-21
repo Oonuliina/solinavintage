@@ -2,9 +2,8 @@ import React from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import styled from "styled-components";
-import orangeDress from "../assets/dresses/orange_dress.JPG";
-import DeleteIcon from "@mui/icons-material/Delete";
 import { useNavigate } from "react-router-dom";
+import CartItem from "../components/CartItem";
 
 const Container = styled.div``;
 const Wrapper = styled.div`
@@ -59,56 +58,7 @@ const Bottom = styled.div`
 const Info = styled.div`
   flex: 3;
 `;
-const Product = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-`;
-const ProductDetail = styled.div`
-  flex: 2;
-  display: flex;
-`;
-const Image = styled.img`
-  width: 200px;
-`;
-const Details = styled.div`
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-`;
 
-const ProductName = styled.span`
-  padding-bottom: 10px;
-`;
-
-const ProductSize = styled.span`
-padding-bottom: 10px;
-`;
-const ProductColor = styled.span``;
-
-const PriceDetail = styled.div`
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-const ProductPrice = styled.span`
-font-size: 30px;
-font-weight: 200;
-`;
-
-const Removebutton = styled.button`
-  border: none;
-  background: none;
-  cursor: pointer;
-  margin: 30px;
-`;
-const Hr = styled.hr`
-background-color: lightgray;
-border: none;
-height: 1px;
-  margin-bottom: 20px;
-`;
 const Summary = styled.div`
 flex: 1;
 border: 0.5px solid lightgray;
@@ -151,7 +101,6 @@ const Button = styled.button`
 
 const Ostoskori = () => {
   const navigate = useNavigate();
-
   return (
     <Container>
       <Header />
@@ -165,51 +114,7 @@ const Ostoskori = () => {
         </Top>
         <Bottom>
           <Info>
-            <Product>
-              <ProductDetail>
-                <Image src={orangeDress} />
-                <Details>
-                  <ProductName><b>Tuote: </b>Oranssi mekko</ProductName>
-                  <ProductSize><b>Koko: </b>S</ProductSize>
-                  <ProductColor><b>Väri: </b>oranssi</ProductColor>
-                </Details>
-              </ProductDetail>
-              <PriceDetail>
-                <ProductPrice>€39,00</ProductPrice>
-                <Removebutton><DeleteIcon /></Removebutton>
-              </PriceDetail>
-            </Product>
-            <Hr/>
-            <Product>
-              <ProductDetail>
-                <Image src={orangeDress} />
-                <Details>
-                  <ProductName><b>Tuote: </b>Oranssi mekko</ProductName>
-                  <ProductSize><b>Koko: </b>S</ProductSize>
-                  <ProductColor><b>Väri: </b>oranssi</ProductColor>
-                </Details>
-              </ProductDetail>
-              <PriceDetail>
-                <ProductPrice>€39,00</ProductPrice>
-                <Removebutton><DeleteIcon /></Removebutton>
-              </PriceDetail>
-            </Product>
-            <Hr/>
-            <Product>
-              <ProductDetail>
-                <Image src={orangeDress} />
-                <Details>
-                  <ProductName><b>Tuote: </b>Oranssi mekko</ProductName>
-                  <ProductSize><b>Koko: </b>S</ProductSize>
-                  <ProductColor><b>Väri: </b>oranssi</ProductColor>
-                </Details>
-              </ProductDetail>
-              <PriceDetail>
-                <ProductPrice>€39,00</ProductPrice>
-                <Removebutton><DeleteIcon /></Removebutton>
-              </PriceDetail>
-            </Product>
-            
+            {CartItem}
           </Info>
           <Summary>
             <SummaryTitle>Yhteenveto</SummaryTitle>

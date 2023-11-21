@@ -333,7 +333,7 @@ const Tuotteet = () => {
           </Right>
         </FilterContainer>
       </FiltersContainer>
-      <Products category={category} filters={filters} sort={sort} />
+      <Products />
 
       <Footer />
     </Container>
