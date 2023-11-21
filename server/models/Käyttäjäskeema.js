@@ -1,18 +1,11 @@
-
-
-const mongoose = require ('mongoose')
-
+const mongoose = require('mongoose')
 
 const UserSchema = new mongoose.Schema(
-    
         {
-        Sähköposti: {type: String, required: true, unique: true },
-        Salasana:    {type: String, required:true}
+                Sahkoposti: { type: String, required: true, unique: true },
+                Salasana: { type: String, required: true }
         },
-
-{timestamps: true}
-
+        { timestamps: true }
 );
-
 
 module.exports = mongoose.model('Käyttäjä', UserSchema)

@@ -30,7 +30,7 @@ const Title = styled.h1`
   font-weight: 200;
   text-align: center;
 `;
-const Form = styled.form`
+const Form = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
