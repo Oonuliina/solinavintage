@@ -13,7 +13,7 @@ import { mobile } from "../responsive";
 import Burger from "./Burger";
 
 const Container = styled.div`
-  width: 100%;
+  width: 100vw;
 `;
 const UpperNavigation = styled.div`
   position: relative;

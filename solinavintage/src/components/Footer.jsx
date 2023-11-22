@@ -32,7 +32,6 @@ const FooterSeparator = styled.hr`
 const FooterInfo = styled.div`
   display: flex;
   padding-bottom: 30px;
-  margin: 0px 300px 0px 300px;
 
   @media only screen and (max-width: 380px) {
     display: flex;
@@ -132,13 +131,13 @@ const Right = styled.div`
 `;
 
 const PaymentContainer = styled.div`
-@media only screen and (max-width: 380px) {
-  padding: 0% 5% 0% 5%;
-  width: 70%;
-  display: flex;
-  flex-direction: column;
-  aligt-text: left;
-}
+  @media only screen and (max-width: 380px) {
+    padding: 0% 5% 0% 5%;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    aligt-text: left;
+  }
 `;
 const PaymentTitle = styled.h1`
   text-align: left;
