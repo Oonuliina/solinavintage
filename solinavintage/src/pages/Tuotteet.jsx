@@ -177,13 +177,23 @@ const Separator = styled.hr`
   height: 0.5px;
 `;
 const Tuotteet = () => {
+  const location = useLocation();
+  const category = location.pathname.split("/")[2];
+  const [filters, setFilters] = useState({});
+  const [sort, setSort] = useState("asc");
   const [showModal, setShowModal] = useState(0);
 
   const openModal = () => {
     setShowModal((prev) => !prev);
   };
 
-
+  const handleFilters = (e) => {
+    const value = e.target.value;
+    setFilters({
+      ...filters,
+      [e.target.name]: value,
+    });
+  };
 
   return (
     <Container>
@@ -207,7 +217,7 @@ const Tuotteet = () => {
           <Separator />
           <ModalFilter>
             <ModalFilterTextLeft>Suodatus:</ModalFilterTextLeft>
-            <ModalSelect name="color">
+            <ModalSelect name="color" onChange={handleFilters}>
               <Option disabled>Väri</Option>
               <Option>valkoinen</Option>
               <Option>musta</Option>
@@ -225,7 +235,7 @@ const Tuotteet = () => {
               <Option>kultainen</Option>
               <Option>hopea</Option>
             </ModalSelect>
-            <ModalSelect name="size">
+            <ModalSelect name="size" onChange={handleFilters}>
               <Option disabled>Koko</Option>
               <Option>XS</Option>
               <Option>S</Option>
@@ -242,7 +252,7 @@ const Tuotteet = () => {
           </ModalFilter>
           <ModalFilter>
             <ModalFilterTextRight>Lajittelu:</ModalFilterTextRight>
-            <ModalSelect>
+            <ModalSelect onChange={(e) => setSort(e.target.value)}>
               <Option value="asc">Hinta pienimmästä suurimpaan</Option>
               <Option value="desc">Hinta suurimmasta pienimpään</Option>
             </ModalSelect>
@@ -270,6 +280,7 @@ const Tuotteet = () => {
               <Select
                 defaultValue="Kategoria"
                 name="category"
+                onChange={handleFilters}
               >
                 <Option>Kategoria</Option>
                 <Option>Mekot</Option>
@@ -278,7 +289,7 @@ const Tuotteet = () => {
                 <Option>Korut</Option>
                 <Option>Laukut</Option>
               </Select>
-              <Select defaultValue="Väri" name="color">
+              <Select defaultValue="Väri" name="color" onChange={handleFilters}>
                 <Option>Väri</Option>
                 <Option>valkoinen</Option>
                 <Option>musta</Option>
@@ -296,7 +307,7 @@ const Tuotteet = () => {
                 <Option>kultainen</Option>
                 <Option>hopea</Option>
               </Select>
-              <Select defaultValue="Koko" name="size">
+              <Select defaultValue="Koko" name="size" onChange={handleFilters}>
                 <Option>Koko</Option>
                 <Option>XS</Option>
                 <Option>S</Option>
@@ -310,7 +321,7 @@ const Tuotteet = () => {
           <Right>
             <Filter>
               <FilterTextRight>Lajittelu:</FilterTextRight>
-              <Select>
+              <Select onChange={(e) => setSort(e.target.value)}>
                 <Option value="asc">Hinta pienimmästä suurimpaan</Option>
                 <Option value="desc">Hinta suurimmasta pienimpään</Option>
               </Select>

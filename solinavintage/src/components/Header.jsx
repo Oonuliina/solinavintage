@@ -9,7 +9,7 @@ import { mobile } from "../responsive";
 import Burger from "./Burger";
 
 const Container = styled.div`
-  width: 100vw;
+  width: 100%;
 `;
 const UpperNavigation = styled.div`
   position: relative;
