@@ -1,11 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../assets/SolinaLogo.png";
 import logoMobile from "../assets/SolinaLogoMobile.png";
-import {
-  ShoppingBag,
-  MagnifyingGlass,
-  User,
-} from "@phosphor-icons/react";
+import { ShoppingBag, MagnifyingGlass, User } from "@phosphor-icons/react";
 import styled from "styled-components";
 import { Badge } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
@@ -138,6 +134,19 @@ const SearchIconButton = styled.button`
   z-index: 1;
   background: none;
 `;
+
+const BurgerButton = styled.button`
+  position: relative;
+  display: none;
+  cursor: pointer;
+  border: none;
+  z-index: 1;
+  background: none;
+  @media (max-width: 767px){
+    display: flex;
+  }
+`;
+
 const LogoContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -164,7 +173,31 @@ const NavBar = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 767px){
+    display: none;
+  }
 `;
+
+const NavBarSide = styled.div`
+  position: fixed;
+  width: 50%;
+  height: 100%;
+  z-index: 2;
+  height: 200px;
+  background: white;
+  left: 0;
+  top: 30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0.5px solid;
+  padding: 10px;
+  box-shadow: 5px 2px #888888;
+  overflow: none;
+  flex-direction: column;
+`;
+
 const NavItem = styled.a`
   margin-left: 15px;
   margin-right: 15px;
@@ -186,6 +219,16 @@ const NavDropContent = styled.div`
   z-index: 1;
 `;
 
+const NavDropContentSide = styled.div`
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  flex-direction: column;
+`;
+
 const NavDrop = styled.div`
   position: relative;
   display: inline-block;
@@ -194,6 +237,7 @@ const NavDrop = styled.div`
     display: block;
   }
 `;
+
 const NavButton = styled.a`
   margin-left: 15px;
   margin-right: 15px;
@@ -227,6 +271,9 @@ const Separator = styled.hr`
     margin: 5px 5px 0px 5px;
   }
 `;
+
+
+
 const Header = () => {
   const [showModal, setShowModal] = useState(0);
 
@@ -236,13 +283,50 @@ const Header = () => {
     setShowModal((prev) => !prev);
   };
 
+  const [burgerOpen, setBurgerOpen] = useState(0);
+  
+  const openBurger = () => {
+    setBurgerOpen((curr) => !curr);
+  };
+
+  const [navSideOpen, setNavSideOpen] = useState(0);
+  
+  const openNavSide = () => {
+    setNavSideOpen((curr) => !curr);
+  };
+
+  let showHideBurger = {
+    display: 'none'
+  }
+
+  if (burgerOpen) {
+    showHideBurger = {
+      display: 'flex'
+    }
+  } else {
+    showHideBurger = {
+      display: 'none'
+    }
+  }
+
+  let showHideTuotteet = {
+    display: 'none'
+  }
+
+  if (navSideOpen) {
+    showHideTuotteet = {
+      display: 'flex'
+    }
+  } else {
+    showHideTuotteet = {
+      display: 'none'
+    }
+  }
+
   return (
     <Container>
       {showModal ? (
-        <SearchModal
-          $showmodal={showModal ? 1 : 0}
-          $setshowmodal={setShowModal}
-        >
+        <SearchModal>
           <SearchContainer>
             <Input />
             <SearchIconButton>
@@ -254,14 +338,35 @@ const Header = () => {
           </CloseModalButton>
         </SearchModal>
       ) : null}
+      <NavBarSide style={showHideBurger}> 
+          <CloseModalButton onClick={() => setBurgerOpen((curr) => !curr)}>
+            X
+          </CloseModalButton>
+        <NavItem onClick={() => navigate("/")}>ETUSIVU</NavItem>
+          <NavButton onClick={openNavSide}>TUOTTEET</NavButton>
+          <NavDropContentSide style={showHideTuotteet}>
+            <NavLink onClick={() => navigate("/tuotteet")}>Tuotteet</NavLink>
+            <NavLink onClick={() => navigate("/tuotteet/mekot")}>Mekot</NavLink>
+            <NavLink onClick={() => navigate("/tuotteet/kengat")}>Kengät</NavLink>
+            <NavLink onClick={() => navigate("/tuotteet/laukut")}>Laukut</NavLink>
+            <NavLink onClick={() => navigate("/tuotteet/takit")}>Takit</NavLink>
+            <NavLink onClick={() => navigate("/tuotteet/korut")}>Korut</NavLink>
+            <CloseModalButton onClick={() => setNavSideOpen((curr) => !curr)}>
+            X
+            </CloseModalButton>
+          </NavDropContentSide>
+        <NavItem onClick={() => navigate("/meista")}>MEISTÄ</NavItem>
+      </NavBarSide> 
       <UpperNavigation>
         <UpperLeft>
+          <BurgerButton onClick={openBurger}>
             <Burger />
+          </BurgerButton>
           <SearchIconButton onClick={openModal}>
             <MagnifyingGlass size={35} weight="light" />
           </SearchIconButton>
         </UpperLeft>
-        <UpperCenter>
+        <UpperCenter >
           <TitleLogo onClick={() => navigate("/")}>Solina Vintage</TitleLogo>
         </UpperCenter>
         <UpperRight>

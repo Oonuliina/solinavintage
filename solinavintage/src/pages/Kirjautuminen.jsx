@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+/* import PropTypes from 'prop-types'; */
+import React, { useState, useEffect } from 'react';
 
 const Container = styled.div`
   width: 100vw;
@@ -66,21 +68,60 @@ const BackToHomeButtom = styled.button`
     padding: 10px;
 `;
 
-const Kirjautuminen = () => {
-  return (
+async function loginUser(credentials){
+  return fetch('http://localhost:5000/kirjautuminen', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(credentials)
+  }) .then(data => data.json())
+}
+
+const Kirjautuminen = ({ setLoginToken, setCartItems }) => {
+
+  const loggedIn = sessionStorage.getItem("loginToken");
+
+  useEffect(() => {
+    if(loggedIn){
+      document.location.replace("/");
+    }
+  },[]);
+
+  const [email, setEmail] = useState();
+  const [passwo, setPasswo] = useState();
+
+  const handleLogin = async e => {
+    e.preventDefault();
+    await loginUser({
+      email,
+      passwo
+    }).then((res) => {
+      if (res === "Sähköpostia ei ole rekisteröity!"){
+        alert(res)
+      } else {
+        if (res === "Salasana on väärin!") {
+          alert(res)
+        } else {
+          setLoginToken(res.token)
+          document.location.replace("/");
+        }
+      }
+    });
+  }
+
+  return (    
     <Container>
         <Wrapper>
             <Form>
-            <Title>Kirjautuminen</Title>
-            <Input placeholder="Sähköposti"/>
-            <Input type="password" placeholder="Salasana" />
-            <LoginButton>Kirjaudu sisään</LoginButton>
-            <Link to={"/rekisteröityminen"}>
-            <CreateAccountButton>Luo tili</CreateAccountButton>
-            </Link>
-            <Link to={"/"}>
-            <BackToHomeButtom>Palaa etusivulle</BackToHomeButtom>
-            </Link>
+              <Title>Kirjautuminen</Title>
+              <Input type="text" placeholder="Sähköposti" onChange={e => setEmail(e.target.value)}/>
+              <Input type="password" placeholder="Salasana" onChange={e => setPasswo(e.target.value)}/>
+              <LoginButton onClick={handleLogin}>Kirjaudu sisään</LoginButton>
+              <Link to={"/rekisteröityminen"}>
+                <CreateAccountButton>Luo tili</CreateAccountButton>
+              </Link>
+              <Link to={"/"}>
+                <BackToHomeButtom>Palaa etusivulle</BackToHomeButtom>
+              </Link>
             </Form>
         </Wrapper>
     </Container>
