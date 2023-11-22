@@ -6,7 +6,6 @@ const PORT = process.env.PORT || 5000;
 const app = express();
 const sessions = require("express-session");
 const cookies = require("cookie-parser");
-const schema = require("./models/Tuote.js")
 
 app.use(cors());
 app.use(express.json());
@@ -39,7 +38,7 @@ const CryptoJS = require("crypto-js")
 
 //Rekisteröityminen
 const Käyttäjäskeema = require("./models/Käyttäjäskeema.js");
-
+const ProductSchema = require("./models/Tuote.js")
 //const userRoute = require("./rekisteröityminen");
 // userRoute,
 
@@ -49,13 +48,18 @@ app.post('/rekisteroityminen', async (req, res) => {
     Sahkoposti: req.body.Sahkoposti,
     Salasana: CryptoJS.AES.encrypt(req.body.Salasana, process.env.PASSWORD_SECRET)
   });
+  const newCart = ProductSchema({
+    cartId: req.body.Sahkoposti,
+    cartItems: []
+  });
 
   try {
     const checkEmail = await Käyttäjäskeema.findOne({Sahkoposti: req.body.Sahkoposti})
     if (!checkEmail){
-    const saved = await newKäyttäjä.save();
-    res.status(200).json(saved)
-    console.log(saved);
+      const saved = await newKäyttäjä.save();
+      newCart.save();
+      res.status(200).json(saved)
+      console.log(saved);
     } else {
       res.status(401).json("Sähkoposti on jo käytössä!")
     }
@@ -82,6 +86,15 @@ app.post('/kirjautuminen', async (req, res) => {
     }
   }
 });
+
+app.post('/haekori', async (req, res) => {
+  const getCart = await ProductSchema.findOne({cartId: req.body.user})
+  if(getCart){
+    res.send(getCart)
+  } else {
+    res.status(401)
+  }
+})
 
 app.listen(PORT, () => {
   console.log("Server is up and running at port " + PORT);

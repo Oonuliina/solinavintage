@@ -76,7 +76,7 @@ async function loginUser(credentials){
   }) .then(data => data.json())
 }
 
-const Kirjautuminen = ({ setLoginToken }) => {
+const Kirjautuminen = ({ setLoginToken, setCartItems }) => {
 
   const loggedIn = sessionStorage.getItem("loginToken");
 
@@ -129,8 +129,3 @@ const Kirjautuminen = ({ setLoginToken }) => {
 }
 
 export default Kirjautuminen
-
-
-/* Kirjautuminen.propTypes = {
-  setLoginToken: PropTypes.func.isRequired
-} */

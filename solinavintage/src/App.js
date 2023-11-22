@@ -7,6 +7,7 @@ import Meista from "./pages/Meista"
 import Ostoskori from "./pages/Ostoskori"
 import Kassa from "./pages/Kassa"
 import useLoginToken from './components/useLoginToken';
+import useShoppingCart from './components/useShoppingCart';
 import { useEffect, useState } from "react";
 import Kirjautuminen from './pages/Kirjautuminen';
 import Rekisteröityminen from './pages/Rekisteröityminen';
@@ -14,6 +15,8 @@ import Rekisteröityminen from './pages/Rekisteröityminen';
 function App() {
   
   const {loginToken, setLoginToken} = useLoginToken();
+
+  useShoppingCart();
 
   return (
     <div className="App">
@@ -26,7 +29,7 @@ function App() {
           <Route path="/meista" element={<Meista />} />
           <Route path="/ostoskori" element={<Ostoskori />} />
           <Route path="/kassa" element={<Kassa />} />
-          <Route path="/kirjautuminen" element={<Kirjautuminen setLoginToken={setLoginToken} />} />
+          <Route path="/kirjautuminen" element={<Kirjautuminen setLoginToken={setLoginToken}/>} />
           <Route path="/rekisteröityminen" element={<Rekisteröityminen />} />
         </Routes>  
       </Router>
