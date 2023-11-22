@@ -74,9 +74,7 @@ app.post('/kirjautuminen', async (req, res) => {
   if(!checkKäyttäjä){
     res.status(401).json("Sähköpostia ei ole rekisteröity!");
   } else {
-    console.log(checkKäyttäjä.Sahkoposti)
     const decryptSalasana = CryptoJS.AES.decrypt(checkKäyttäjä.Salasana, process.env.PASSWORD_SECRET).toString(CryptoJS.enc.Utf8);
-    console.log(decryptSalasana)
     if (req.body.passwo === decryptSalasana){
       res.send({token: checkKäyttäjä.Sahkoposti});
     } else {
