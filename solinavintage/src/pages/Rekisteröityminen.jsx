@@ -1,9 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import React, {useState} from 'react';
-
-/* import axios from 'axios';
-import { response } from "express"; */
+import React, {useState, useEffect} from 'react';
 
 const Container = styled.div`
   width: 100vw;
@@ -63,17 +60,13 @@ const BackToHomeButtom = styled.button`
 
 const Rekisteröityminen = () => {
 
-  /* const [Sähköposti, setSähköposti] = useState('');
-  const [Salasana, setSalasana] = useState('');
+  const loggedIn = sessionStorage.getItem("loginToken");
 
-  const Rekisteröi = async () => {
-    try { const vastaus = await axios.post('http//localhost:3000/rekisteröinti', {Sähköposti, Salasana});
-    console.log(response)
-
-    } catch(error) {
-    console.error(error.response.data.error);
+  useEffect(() => {
+    if(loggedIn){
+      document.location.replace("/");
     }
-  } */
+  },[]);
 
   const Rekisteröi = async () => {
     const Sahkoposti = document.getElementById("email").value;

@@ -66,19 +66,24 @@ app.post('/rekisteroityminen', async (req, res) => {
 });
 
 //Login
-app.post("./kirjautuminen"), async (req, res) => {
-  try {
-    const Käyttäjä = await Käyttäjäskeema.findOne({ Sahkoposti: req.body.Sahkoposti });
-    const Salasana = Käyttäjäskeema.Salasana
+app.post('/kirjautuminen', async (req, res) => {
+  console.log(req.body)
 
-    Salasana !== req.body.Salasana &&
-      res.status(401).json('Väärä salasana');
-    res.status(200).json(Käyttäjä)
-  } catch (err) {
-    res.status(500).json(err)
+  const checkKäyttäjä = await Käyttäjäskeema.findOne({Sahkoposti: req.body.email})
+
+  if(!checkKäyttäjä){
+    res.status(401).json("Sähköpostia ei ole rekisteröity!");
+  } else {
+    console.log(checkKäyttäjä.Sahkoposti)
+    const decryptSalasana = CryptoJS.AES.decrypt(checkKäyttäjä.Salasana, process.env.PASSWORD_SECRET).toString(CryptoJS.enc.Utf8);
+    console.log(decryptSalasana)
+    if (req.body.passwo === decryptSalasana){
+      res.send({token: checkKäyttäjä.Sahkoposti});
+    } else {
+      res.status(401).json("Salasana on väärin!");
+    }
   }
-
-};
+});
 
 app.listen(PORT, () => {
   console.log("Server is up and running at port " + PORT);
