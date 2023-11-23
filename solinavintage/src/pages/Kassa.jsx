@@ -267,7 +267,7 @@ const Input = styled.input`
   @media (max-width: 1100px) {
     width: 400px;
   }
-  ${large({ width: "85%"})}
+  ${large({ width: "80%"})}
 `;
 
 const Select = styled.select`
@@ -279,9 +279,9 @@ const Select = styled.select`
   font-size: 16px;
 
   @media (max-width: 1100px) {
-    width: 441px;
+    width: 442px;
   }
-  ${large({ width: "95vw"})}
+  ${large({ width: "79vw"})}
 `;
 
 const LongInput = styled.input`
@@ -296,7 +296,7 @@ const LongInput = styled.input`
   @media (max-width: 1100px) {
     width: 400px;
   }
-  ${large({ width: "95vw"})}
+  ${large({ width: "74vw"})}
 `;
 
 const Option = styled.option``;
@@ -321,7 +321,7 @@ const RadioInputContainer = styled.div`
   @media (max-width: 1100px) {
     width: 400px;
   }
-  ${large({ width: "90vw"})}
+  ${large({ width: "74vw"})}
 `;
 
 const RadioInput = styled.input`
@@ -372,7 +372,7 @@ const Submit = styled.input`
   @media (max-width: 1100px) {
     width: 440px;
   }
-  ${large({ width: "90vw"})}
+  ${large({ width: "80vw"})}
 `;
 
 const SummaryContainer = styled.div`

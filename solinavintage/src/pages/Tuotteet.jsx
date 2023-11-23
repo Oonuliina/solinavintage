@@ -176,7 +176,7 @@ const Separator = styled.hr`
   background-color: lightgray;
   height: 0.5px;
 `;
-const Tuotteet = () => {
+const Tuotteet = ({addToCart}) => {
   const [showModal, setShowModal] = useState(0);
 
   const openModal = () => {
@@ -322,7 +322,7 @@ const Tuotteet = () => {
           </Right>
         </FilterContainer>
       </FiltersContainer>
-      <Products />
+      <Products addToCart={addToCart}/>
 
       <Footer />
     </Container>

@@ -1,9 +1,10 @@
-import React from "react";
+import React, {useState} from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import CartItem from "../components/CartItem";
+import { products } from "../data";
 
 const Container = styled.div``;
 const Wrapper = styled.div`
@@ -97,10 +98,14 @@ const Button = styled.button`
   font-weight: 600;
 `;
 
+const Ostoskori = ({cart}) => {
 
-
-const Ostoskori = () => {
   const navigate = useNavigate();
+
+  var runId = 0;
+
+  var totalPrice = [0];
+
   return (
     <Container>
       <Header />
@@ -114,13 +119,15 @@ const Ostoskori = () => {
         </Top>
         <Bottom>
           <Info>
-            {CartItem}
+            {cart.map((item) => (
+              <CartItem totalPrice={totalPrice} itemId={item.id} key={item.id}/>
+            ))}
           </Info>
           <Summary>
             <SummaryTitle>Yhteenveto</SummaryTitle>
             <SummaryItem type="total">
               <SummaryItemText>Yhteensä</SummaryItemText>
-              <SummaryItemPrice>€ 78,00</SummaryItemPrice>
+              <SummaryItemPrice>€ {totalPrice.reduce((accumulator, currentValue) => {return accumulator + currentValue},0)}</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem>
               <SummaryItemText>Lahjoitus Hesylle 10%</SummaryItemText>

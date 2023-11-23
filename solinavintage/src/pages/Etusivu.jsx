@@ -11,19 +11,20 @@ import Announcement from '../components/Announcement';
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  
 `;
 const Title = styled.h1`
   text-align: center;
 `;
 
-function Etusivu() {
+function Etusivu({addToCart}) {
   return (
     <Container>
         <Announcement />
         <Header />
         <Slider />
         <Title>Uutuuksia</Title>
-        <RandomProducts />
+        <RandomProducts addToCart={addToCart}/>
         <Responsibility />
         <Footer />
     </Container>

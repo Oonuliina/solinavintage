@@ -83,7 +83,7 @@ const Button = styled.button`
   ${large({ fontSize: "15px" })}
 `;
 
-const Tuote = () => {
+const Tuote = ({addToCart}) => {
 
   const fullpath = window.location.href;
   const itemId = fullpath.split(/[/]+/).pop();
@@ -103,7 +103,7 @@ const Tuote = () => {
             {item.desc}
           </Desc>
           <Price>{item.price}</Price>
-          <Button>Lisää ostoskoriin</Button>
+          <Button onClick={() => addToCart(item)}>Lisää ostoskoriin</Button>
         </InfoContainer>
       </Wrapper>
       <Footer />
