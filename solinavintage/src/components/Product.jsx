@@ -131,7 +131,7 @@ const Product = ({ item }) => {
             <Eye size={24} weight="light" onClick={routeChange}/>
           </Icon>
           <Icon>
-            <ShoppingBag size={24} weight="light" />
+            <ShoppingBag size={24} weight="light"/>
           </Icon>
         </IconContainer>
       </ImageContainer>
