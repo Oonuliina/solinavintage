@@ -264,7 +264,7 @@ const Tuotteet = ({ addToCart, cart }) => {
         </FilterModalContainer>
       ) : null}
       <Announcement />
-      <Header />
+      <Header cart={cart} />
       <Title>Kaikki tuotteet</Title>
       <FiltersContainer>
         <FilterContainer>
@@ -320,7 +320,7 @@ const Tuotteet = ({ addToCart, cart }) => {
           </Right>
         </FilterContainer>
       </FiltersContainer>
-      <Products addToCart={addToCart} filters={filters} sort={sort}/>
+      <Products addToCart={addToCart} filters={filters} sort={sort} />
 
       <Footer />
     </Container>
