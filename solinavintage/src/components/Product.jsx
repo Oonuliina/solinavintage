@@ -2,6 +2,7 @@ import { Eye, ShoppingBag } from "@phosphor-icons/react";
 import React from "react";
 import styled from "styled-components";
 import {tablet} from "../responsive";
+import { useNavigate } from "react-router-dom";
 
 const IconContainer = styled.div`
   opacity: 0;
@@ -57,6 +58,7 @@ const Icon = styled.div`
   justify-content: center;
   margin: 10px;
   transition: all 0.5s ease;
+  cursor: pointer;
 
   &:hover {
     transform: scale(1.1);
@@ -113,13 +115,20 @@ const Price = styled.span`
   }
 `;
 const Product = ({ item }) => {
+
+  let navigate = useNavigate();
+  const routeChange = () => {
+    let path = "/tuote/" + item.id;
+    navigate(path);
+  }
+
   return (
     <Container>
       <ImageContainer>
         <Image src={item.img} />
         <IconContainer>
           <Icon>
-            <Eye size={24} weight="light" />
+            <Eye size={24} weight="light" onClick={routeChange}/>
           </Icon>
           <Icon>
             <ShoppingBag size={24} weight="light" />
