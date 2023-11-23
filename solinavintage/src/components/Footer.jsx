@@ -13,41 +13,33 @@ import mobilepay from "../assets/mobilepayLogo.png";
 import pivo from "../assets/pivoLogo.png";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { tablet } from "../responsive";
 
 const Container = styled.div`
   bottom: 0;
   left: 0;
   width: 100vw;
-
-  @media only screen and (max-width: 380px) {
-    margin-top: 20px;
-  }
-`;
-const FooterSeparator = styled.hr`
-  height: 1px;
-  background-color: lightgray;
-  border: none;
-  margin: 0px 20px 0px 20px;
+  border-top: 0.5px solid lightgray;
 `;
 const FooterInfo = styled.div`
   display: flex;
   padding-bottom: 30px;
 
-  @media only screen and (max-width: 380px) {
-    display: flex;
-    flex-direction: column;
-    margin-left: 43px;
-    margin-right: 0px;
-  }
+  ${tablet({ flexDirection: "column", marginLeft: "30px"})}
 `;
 const Left = styled.div`
   flex: 1;
   margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  ${tablet({ alignItems: "left", justifyContent: "left"})}
+
 `;
 
 const LinksBox = styled.div`
-  padding-left: 50%;
-  width: 50%;
+  
 
   @media only screen and (max-width: 380px) {
     padding: 0% 5% 0% 5%;
@@ -82,15 +74,19 @@ const LinkItem = styled.li`
 const Center = styled.div`
   flex: 1;
   margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
+  ${tablet({ alignItems: "left", justifyContent: "left"})}
   @media only screen and (max-width: 380px) {
     margin-top: 10px;
   }
 `;
 
 const ContactBox = styled.div`
-  padding-left: 20%;
-  width: 80%;
+
+
 
   @media only screen and (max-width: 380px) {
     padding: 0% 5px 0% 5%;
@@ -103,6 +99,7 @@ const ContactBox = styled.div`
 const ContactTitle = styled.h1`
   text-align: left;
   font-size: 16px;
+  margin-bottom: 17px;
 `;
 const ContactItem = styled.p`
   display: flex;
@@ -110,6 +107,8 @@ const ContactItem = styled.p`
   font-size: 14px;
   align-items: center;
   justify-content: left;
+  margin: 0;
+  padding-bottom: 6px;
 
   @media only screen and (max-width: 380px) {
     margin: 2px;
@@ -124,7 +123,11 @@ const ContactIcon = styled.span`
 const Right = styled.div`
   flex: 1;
   margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
+  ${tablet({ alignItems: "left", justifyContent: "left"})}
   @media only screen and (max-width: 380px) {
     margin-top: 10px;
   }
@@ -201,7 +204,6 @@ const Footer = () => {
 
   return (
     <Container>
-      <FooterSeparator />
       <FooterInfo>
         <Left>
           <LinksBox>

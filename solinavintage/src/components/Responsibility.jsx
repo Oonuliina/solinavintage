@@ -2,36 +2,33 @@ import styled from "styled-components";
 import recycled from "../assets/Responsibility/Recycling_symbol.svg.png";
 import hesy from "../assets/Responsibility/hesy_logo.webp";
 import qualityCheck from "../assets/Responsibility/quality-check.png";
+import { large, tablet } from "../responsive";
+
 
 const Container = styled.div`
-  width: 100%;
+  width: 100vw;
+  padding-bottom: 20px;
+  border-top: 0.5px solid lightgray;
 
-  @media only screen and (max-width: 380px) {
-    display: none;
-  }
-`;
-const Separator = styled.hr`
-  border: 1;
-  margin-top: 0;
-  margin-bottom: 0;
-  width: 95%;
 `;
 const Title = styled.h1`
   font-size: 40px;
   text-align: center;
   margin-bottom: 30px;
   
+
+  ${large({ fontSize: "30px"})}
   @media only screen and (max-width: 380px) {
     font-size: 20px;
   }
 `;
 const Wrapper = styled.div`
+  width: 100vw;
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   justfy-content: center;
-  margin: 0px 300px 0px 300px;
 
+  ${tablet({ flexDirection: "column"})}
   @media only screen and (max-width: 380px) {
     margin: 0px 5px 0px 5px;
     flex-direction: column;
@@ -44,7 +41,9 @@ const Item = styled.div`
   align-items: center;
   justfy-content: center;
   height: 435px;
+  width: 276px;
 
+  ${large({ height: "300px"})}
   @media only screen and (max-width: 380px) {
     height: 217px;
   }
@@ -60,6 +59,7 @@ const Circle = styled.div`
   align-items: center;
   justify-content: center;
 
+  ${large({ height: "200px", width: "200px" })}
   @media only screen and (max-width: 380px) {
     max-height: 150px;
     max-width: 150px;
@@ -68,6 +68,8 @@ const Circle = styled.div`
 const Image = styled.img`
   height: 200px;
 
+
+  ${large({ height: "125px"})}
   @media only screen and (max-width: 380px) {
     height: 100px;
     
@@ -77,6 +79,8 @@ const Desc = styled.p`
   font-size: 20px;
   text-align: center;
 
+
+  ${large({ fontSize: "1rem", paddingLeft: "10px", paddingRight: "10px"})}
   @media only screen and (max-width: 380px) {
     font-size: 10px;
   }
@@ -85,7 +89,6 @@ const Desc = styled.p`
 const Responsibility = () => {
   return (
     <Container>
-      <Separator />
       <Title>Vastuullisuus</Title>
       <Wrapper>
         <Item>

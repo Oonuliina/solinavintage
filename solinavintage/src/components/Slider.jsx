@@ -4,9 +4,10 @@ import ArrowBackIosRoundedIcon from "@mui/icons-material/ArrowBackIosRounded";
 import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded";
 import { sliderItems } from "../sliderData";
 import { Link } from "react-router-dom";
+import { tablet, large, mobile } from "../responsive";
 
 const Container = styled.div`
-  width: 100%;
+  width: 100vw;
   height: 600px;
   display: flex;
   position: relative;
@@ -14,9 +15,9 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
 
-  @media only screen and (max-width: 380px) {
-    height: 200px;
-  }
+  ${large({ height: "400px"})}
+  ${tablet({ height: "300px"})}
+  ${mobile({ height: "200px"})}
 `;
 const Arrow = styled.div`
   width: 50px;
@@ -36,6 +37,7 @@ const Arrow = styled.div`
   opacity: 0.5;
   z-index: 2;
 
+  
   @media only screen and (max-width: 380px) {
     width: 35px;
     height: 35px;
@@ -53,12 +55,13 @@ const Slide = styled.div`
   width: 100vw;
   height: 600px;
   display: flex;
+  margin: 0;
   align-items: center;
   background-color: #${(props) => props.$bg};
 
-  @media only screen and (max-width: 380px) {
-    height: 200px;
-  }
+  ${large({ height: "400px"})}
+  ${tablet({ height: "300px"})}
+  ${mobile({ height: "200px"})}
 `;
 const ImgContainer = styled.div`
   flex: 1;
@@ -67,14 +70,13 @@ const ImgContainer = styled.div`
   align-items: center;
   justify-content: center;
   height: 100%;
+
+  ${large({ justifyContent: "right", padding: "0px"})}
 `;
 const Image = styled.img`
   height: 80%;
-  margin-left: 30px;
 
-  @media only screen and (max-width: 380px) {
-    height: 70%;
-  }
+  ${mobile({ height: "70%"})}
 `;
 const InfoContainer = styled.div`
   flex: 1;
@@ -83,19 +85,16 @@ const InfoContainer = styled.div`
   flex-direction: column;
   align-items: left;
 
-  @media only screen and (max-width: 380px) {
-    padding: 10px;
-    margin-right: 30px;
-  }
+  ${mobile({ padding: "10px", marginRight: "30px"})}
 `;
 const Title = styled.h1`
   margin: 10x 0px 0px 0px;
   font-size: 50px;
   text-align: left;
 
-  @media only screen and (max-width: 380px) {
-    font-size: 15px;
-  }
+  ${large({ fontSize: "30px"})}
+  ${tablet({ fontSize: "25px"})}
+  ${mobile({ fontSize: "15px"})}
 `;
 const Desc = styled.p`
   margin: 10px 0px 10px 0px;
@@ -104,11 +103,9 @@ const Desc = styled.p`
   text-align: left;
   letter-spacing: 3px;
 
-  @media only screen and (max-width: 380px) {
-    font-size: 10px;
-    margin: 5px 0px 5px 0px;
-    letter-spacing: 1px;
-  }
+  ${large({ fontSize: "18px"})}
+  ${tablet({ fontSize: "15px"})}
+  ${mobile({ fontSize: "10px", margin: "5px 0px 5px 0px", letterSpacing: "1px"})}
 `;
 const Button = styled.button`
   margin: 30px 0px;
@@ -123,11 +120,8 @@ const Button = styled.button`
   letter-spacing: 2px;
   background-color: whitesmoke;
 
-  @media only screen and (max-width: 380px) {
-    font-size: 10px;
-    margin: 10px 0px;
-    width: 100px;
-  }
+  ${tablet({width: "150px", fontSize: "15px"})}
+  ${mobile({ fontSize: "10px", margin: "10px 0px", width: "100px"})}
 `;
 
 const Slider = () => {

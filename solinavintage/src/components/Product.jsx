@@ -1,6 +1,7 @@
 import { Eye, ShoppingBag } from "@phosphor-icons/react";
 import React from "react";
 import styled from "styled-components";
+import {tablet} from "../responsive";
 
 const IconContainer = styled.div`
   opacity: 0;
