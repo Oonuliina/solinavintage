@@ -181,21 +181,22 @@ const NavBar = styled.div`
 
 const NavBarSide = styled.div`
   position: fixed;
-  width: 50%;
+  width: 100%;
   height: 100%;
   z-index: 2;
-  height: 200px;
+  height: 275px;
   background: white;
   left: 0;
   top: 30;
   display: flex;
-  align-items: center;
+  align-items: left;
   justify-content: center;
   border: 0.5px solid;
   padding: 10px;
   box-shadow: 5px 2px #888888;
   overflow: none;
   flex-direction: column;
+  
 `;
 
 const NavItem = styled.a`
