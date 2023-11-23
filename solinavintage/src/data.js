@@ -63,7 +63,7 @@ export const products = [
     category: "takit",
     size: "M",
     color: "musta",
-    price: "79,00",
+    price: "79",
     inStock: true,
   },
   {
@@ -74,7 +74,7 @@ export const products = [
     category: "takit",
     size: "S",
     color: "ruskea",
-    price: "89,00",
+    price: "89",
     inStock: true,
   },
   {
@@ -85,7 +85,7 @@ export const products = [
     category: "takit",
     size: "XXL",
     color: "beige",
-    price: "129,00",
+    price: "129",
     inStock: true,
   },
   {
@@ -96,7 +96,7 @@ export const products = [
     category: "takit",
     size: "XS",
     color: "beige",
-    price: "79,00",
+    price: "79",
     inStock: true,
   },
   {
@@ -107,7 +107,7 @@ export const products = [
     category: "takit",
     size: "S",
     color: "musta",
-    price: "99,00",
+    price: "99",
     inStock: true,
   },
   {
@@ -118,7 +118,7 @@ export const products = [
     category: "takit",
     size: "XS",
     color: "ruskea",
-    price: "99,00",
+    price: "99",
     inStock: true,
   },
   {
@@ -129,7 +129,7 @@ export const products = [
     category: "takit",
     size: "M",
     color: "vihreä",
-    price: "109,00",
+    price: "109",
     inStock: true,
   },
   {
@@ -140,7 +140,7 @@ export const products = [
     category: "takit",
     size: "L",
     color: "roosa",
-    price: "89,00",
+    price: "89",
     inStock: true,
   },
   {
@@ -151,7 +151,7 @@ export const products = [
     category: "takit",
     size: "L",
     color: "vihreä",
-    price: "75,00",
+    price: "75",
     inStock: true,
   },
   {
@@ -162,7 +162,7 @@ export const products = [
     category: "takit",
     size: "S",
     color: "ruskea",
-    price: "49,00",
+    price: "49",
     inStock: true,
   },
   {
@@ -173,7 +173,7 @@ export const products = [
     category: "takit",
     size: "XS",
     color: "beige",
-    price: "69,00",
+    price: "69",
     inStock: true,
   },
   {
@@ -183,7 +183,7 @@ export const products = [
     img: whiteBag,
     category: "laukut",
     color: "valkoinen",
-    price: "29,00",
+    price: "29",
     inStock: true,
   },
   {
@@ -193,7 +193,7 @@ export const products = [
     img: fakeLeatherBag,
     category: "laukut",
     color: "ruskea",
-    price: "39,00",
+    price: "39",
     inStock: true,
   },
   {
@@ -203,7 +203,7 @@ export const products = [
     img: grayBag,
     category: "laukut",
     color: "harmaa",
-    price: "49,00",
+    price: "49",
     inStock: true,
   },
   {
@@ -213,7 +213,7 @@ export const products = [
     img: brownLeatherBag,
     category: "laukut",
     color: "ruskea",
-    price: "45,00",
+    price: "45",
     inStock: true,
   },
   {
@@ -223,7 +223,7 @@ export const products = [
     img: blackSmallBag,
     category: "laukut",
     color: "musta",
-    price: "29,00",
+    price: "29",
     inStock: true,
   },
   {
@@ -234,7 +234,7 @@ export const products = [
     category: "kengat",
     size: "39",
     color: "valkoinen",
-    price: "29,00",
+    price: "29",
     inStock: true,
   },
   {
@@ -245,7 +245,7 @@ export const products = [
     category: "kengat",
     size: "38",
     color: "monivärinen",
-    price: "39,00",
+    price: "39",
     inStock: true,
   },
   {
@@ -256,7 +256,7 @@ export const products = [
     category: "kengat",
     size: "37",
     color: "musta",
-    price: "35,00",
+    price: "35",
     inStock: true,
   },
   {
@@ -267,7 +267,7 @@ export const products = [
     category: "kengat",
     size: "39",
     color: "sininen",
-    price: "29,00",
+    price: "29",
     inStock: true,
   },
   {
@@ -278,7 +278,7 @@ export const products = [
     category: "kengat",
     size: "40",
     color: "punainen",
-    price: "35,00",
+    price: "35",
     inStock: true,
   },
   {
@@ -289,7 +289,7 @@ export const products = [
     category: "kengat",
     size: "39",
     color: "musta",
-    price: "39,00",
+    price: "39",
     inStock: true,
   },
   {
@@ -300,7 +300,7 @@ export const products = [
     category: "kengat",
     size: "36",
     color: "punainen",
-    price: "45,00",
+    price: "45",
     inStock: true,
   },
   {
@@ -311,7 +311,7 @@ export const products = [
     category: "kengat",
     size: "38",
     color: "musta",
-    price: "49,00",
+    price: "49",
     inStock: true,
   },
   {
@@ -321,7 +321,7 @@ export const products = [
     img: zirkoniaEarring,
     category: "korut",
     color: "kultainen",
-    price: "13,00",
+    price: "13",
     inStock: true,
   },
   {
@@ -331,7 +331,7 @@ export const products = [
     img: pearlEarrings,
     category: "korut",
     color: "kultainen",
-    price: "10,00",
+    price: "10",
     inStock: true,
   },
   {
@@ -342,7 +342,7 @@ export const products = [
     img: goldGrayBracelet,
     category: "korut",
     color: "kultainen",
-    price: "125,00",
+    price: "125",
     inStock: true,
   },
   {
@@ -353,7 +353,7 @@ export const products = [
     img: goldBraceletGrayStones,
     category: "korut",
     color: "kultainen",
-    price: "79,00",
+    price: "79",
     inStock: true,
   },
   {
@@ -363,7 +363,7 @@ export const products = [
     img: goldBraceletThreeStones,
     category: "korut",
     color: "kultainen",
-    price: "119,00",
+    price: "119",
     inStock: true,
   },
   {
@@ -373,7 +373,7 @@ export const products = [
     img: goldHoopEarrings,
     category: "korut",
     color: "kultainen",
-    price: "69,00",
+    price: "69",
     inStock: true,
   },
   {
@@ -383,7 +383,7 @@ export const products = [
     img: pearlNecklace,
     category: "korut",
     color: "hopea",
-    price: "39,00",
+    price: "39",
     inStock: true,
   },
   {
@@ -393,7 +393,7 @@ export const products = [
     img: silverBrooch,
     category: "korut",
     color: "hopea",
-    price: "19,00",
+    price: "19",
     inStock: true,
   },
   {
@@ -403,7 +403,7 @@ export const products = [
     img: smallPearlEarrings,
     category: "korut",
     color: "kultainen",
-    price: "9,00",
+    price: "9",
     inStock: true,
   },
   {
@@ -413,7 +413,7 @@ export const products = [
     img: longPurpleDress,
     category: "mekot",
     size: "S",
-    price: "99,00",
+    price: "99",
     color: "lila",
     inStock: true,
   },
@@ -424,7 +424,7 @@ export const products = [
     img: blueDress,
     category: "mekot",
     size: "XS",
-    price: "69,00",
+    price: "69",
     color: "sininen",
     inStock: true,
   },
@@ -435,7 +435,7 @@ export const products = [
     img: blackDress,
     category: "mekot",
     size: "M",
-    price: "49,00",
+    price: "49",
     color: "musta",
     inStock: true,
   },
@@ -446,7 +446,7 @@ export const products = [
     img: whiteDress,
     category: "mekot",
     size: "S",
-    price: "49,00",
+    price: "49",
     color: "valkoinen",
     inStock: true,
   },
@@ -457,7 +457,7 @@ export const products = [
     img: redDress,
     category: "mekot",
     size: "S",
-    price: "59,00",
+    price: "59",
     color: "punainen",
     inStock: true,
   },
@@ -468,7 +468,7 @@ export const products = [
     img: yellowDress,
     category: "mekot",
     size: "XL",
-    price: "39,00",
+    price: "39",
     color: "keltainen",
     inStock: true,
   },
@@ -479,7 +479,7 @@ export const products = [
     img: greenDress,
     category: "mekot",
     size: "L",
-    price: "39,00",
+    price: "39",
     color: "vihreä",
     inStock: true,
   },
@@ -490,7 +490,7 @@ export const products = [
     img: orangeDress,
     category: "mekot",
     size: "XS",
-    price: "39,00",
+    price: "39",
     color: "oranssi",
     inStock: true,
   },
@@ -502,7 +502,7 @@ export const products = [
     category: "mekot",
     size: "M",
     color: "lila",
-    price: "39,00",
+    price: "39",
     inStock: true,
   },
   {
@@ -513,7 +513,7 @@ export const products = [
     category: "mekot",
     size: "L",
     color: "musta",
-    price: "59,00",
+    price: "59",
     inStock: true,
   },
   {
@@ -524,7 +524,7 @@ export const products = [
     category: "mekot",
     size: "S",
     color: "harmaa",
-    price: "49,00",
+    price: "49",
     inStock: true,
   },
   {
@@ -535,7 +535,7 @@ export const products = [
     category: "mekot",
     size: "XL",
     color: "punainen",
-    price: "55,00",
+    price: "55",
     inStock: true,
   },
   {
@@ -546,7 +546,7 @@ export const products = [
     category: "mekot",
     size: "XS",
     color: "keltainen",
-    price: "35,00",
+    price: "35",
     inStock: true,
   }
 ];
@@ -560,7 +560,7 @@ export const takit = [
     category: "takit",
     size: "M",
     color: "musta",
-    price: "79,00",
+    price: "79",
     inStock: true,
   },
   {
@@ -571,7 +571,7 @@ export const takit = [
     category: "takit",
     size: "S",
     color: "ruskea",
-    price: "89,00",
+    price: "89",
     inStock: true,
   },
   {
@@ -582,7 +582,7 @@ export const takit = [
     category: "takit",
     size: "XXL",
     color: "beige",
-    price: "129,00",
+    price: "129",
     inStock: true,
   },
   {
@@ -593,7 +593,7 @@ export const takit = [
     category: "takit",
     size: "XS",
     color: "beige",
-    price: "79,00",
+    price: "79",
     inStock: true,
   },
   {
@@ -604,7 +604,7 @@ export const takit = [
     category: "takit",
     size: "S",
     color: "musta",
-    price: "99,00",
+    price: "99",
     inStock: true,
   },
   {
@@ -615,7 +615,7 @@ export const takit = [
     category: "takit",
     size: "XS",
     color: "ruskea",
-    price: "99,00",
+    price: "99",
     inStock: true,
   },
   {
@@ -626,7 +626,7 @@ export const takit = [
     category: "takit",
     size: "M",
     color: "vihreä",
-    price: "109,00",
+    price: "109",
     inStock: true,
   },
   {
@@ -637,7 +637,7 @@ export const takit = [
     category: "takit",
     size: "L",
     color: "roosa",
-    price: "89,00",
+    price: "89",
     inStock: true,
   },
   {
@@ -648,7 +648,7 @@ export const takit = [
     category: "takit",
     size: "L",
     color: "vihreä",
-    price: "75,00",
+    price: "75",
     inStock: true,
   },
   {
@@ -659,7 +659,7 @@ export const takit = [
     category: "takit",
     size: "S",
     color: "ruskea",
-    price: "49,00",
+    price: "49",
     inStock: true,
   },
   {
@@ -670,7 +670,7 @@ export const takit = [
     category: "takit",
     size: "XS",
     color: "beige",
-    price: "69,00",
+    price: "69",
     inStock: true,
   }
 ];
@@ -683,7 +683,7 @@ export const laukut = [
     img: whiteBag,
     category: "laukut",
     color: "valkoinen",
-    price: "29,00",
+    price: "29",
     inStock: true,
   },
   {
@@ -693,7 +693,7 @@ export const laukut = [
     img: fakeLeatherBag,
     category: "laukut",
     color: "ruskea",
-    price: "39,00",
+    price: "39",
     inStock: true,
   },
   {
@@ -703,7 +703,7 @@ export const laukut = [
     img: grayBag,
     category: "laukut",
     color: "harmaa",
-    price: "49,00",
+    price: "49",
     inStock: true,
   },
   {
@@ -713,7 +713,7 @@ export const laukut = [
     img: brownLeatherBag,
     category: "laukut",
     color: "ruskea",
-    price: "45,00",
+    price: "45",
     inStock: true,
   },
   {
@@ -723,7 +723,7 @@ export const laukut = [
     img: blackSmallBag,
     category: "laukut",
     color: "musta",
-    price: "29,00",
+    price: "29",
     inStock: true,
   }
 ];
@@ -737,7 +737,7 @@ export const kengat = [
     category: "kengat",
     size: "39",
     color: "valkoinen",
-    price: "29,00",
+    price: "29",
     inStock: true,
   },
   {
@@ -748,7 +748,7 @@ export const kengat = [
     category: "kengat",
     size: "38",
     color: "monivärinen",
-    price: "39,00",
+    price: "39",
     inStock: true,
   },
   {
@@ -759,7 +759,7 @@ export const kengat = [
     category: "kengat",
     size: "37",
     color: "musta",
-    price: "35,00",
+    price: "35",
     inStock: true,
   },
   {
@@ -770,7 +770,7 @@ export const kengat = [
     category: "kengat",
     size: "39",
     color: "sininen",
-    price: "29,00",
+    price: "29",
     inStock: true,
   },
   {
@@ -781,7 +781,7 @@ export const kengat = [
     category: "kengat",
     size: "40",
     color: "punainen",
-    price: "35,00",
+    price: "35",
     inStock: true,
   },
   {
@@ -792,7 +792,7 @@ export const kengat = [
     category: "kengat",
     size: "39",
     color: "musta",
-    price: "39,00",
+    price: "39",
     inStock: true,
   },
   {
@@ -803,7 +803,7 @@ export const kengat = [
     category: "kengat",
     size: "36",
     color: "punainen",
-    price: "45,00",
+    price: "45",
     inStock: true,
   },
   {
@@ -814,7 +814,7 @@ export const kengat = [
     category: "kengat",
     size: "38",
     color: "musta",
-    price: "49,00",
+    price: "49",
     inStock: true,
   }
 ];
@@ -827,7 +827,7 @@ export const korut = [
     img: zirkoniaEarring,
     category: "korut",
     color: "kultainen",
-    price: "13,00",
+    price: "13",
     inStock: true,
   },
   {
@@ -837,7 +837,7 @@ export const korut = [
     img: pearlEarrings,
     category: "korut",
     color: "kultainen",
-    price: "10,00",
+    price: "10",
     inStock: true,
   },
   {
@@ -848,7 +848,7 @@ export const korut = [
     img: goldGrayBracelet,
     category: "korut",
     color: "kultainen",
-    price: "125,00",
+    price: "125",
     inStock: true,
   },
   {
@@ -859,7 +859,7 @@ export const korut = [
     img: goldBraceletGrayStones,
     category: "korut",
     color: "kultainen",
-    price: "79,00",
+    price: "79",
     inStock: true,
   },
   {
@@ -869,7 +869,7 @@ export const korut = [
     img: goldBraceletThreeStones,
     category: "korut",
     color: "kultainen",
-    price: "119,00",
+    price: "119",
     inStock: true,
   },
   {
@@ -879,7 +879,7 @@ export const korut = [
     img: goldHoopEarrings,
     category: "korut",
     color: "kultainen",
-    price: "69,00",
+    price: "69",
     inStock: true,
   },
   {
@@ -889,7 +889,7 @@ export const korut = [
     img: pearlNecklace,
     category: "korut",
     color: "hopea",
-    price: "39,00",
+    price: "39",
     inStock: true,
   },
   {
@@ -899,7 +899,7 @@ export const korut = [
     img: silverBrooch,
     category: "korut",
     color: "hopea",
-    price: "19,00",
+    price: "19",
     inStock: true,
   },
   {
@@ -909,7 +909,7 @@ export const korut = [
     img: smallPearlEarrings,
     category: "korut",
     color: "kultainen",
-    price: "9,00",
+    price: "9",
     inStock: true,
   }
 ];
@@ -922,7 +922,7 @@ export const mekot = [
     img: longPurpleDress,
     category: "mekot",
     size: "S",
-    price: "99,00",
+    price: "99",
     color: "lila",
     inStock: true,
   },
@@ -933,7 +933,7 @@ export const mekot = [
     img: blueDress,
     category: "mekot",
     size: "XS",
-    price: "69,00",
+    price: "69",
     color: "sininen",
     inStock: true,
   },
@@ -944,7 +944,7 @@ export const mekot = [
     img: blackDress,
     category: "mekot",
     size: "M",
-    price: "49,00",
+    price: "49",
     color: "musta",
     inStock: true,
   },
@@ -955,7 +955,7 @@ export const mekot = [
     img: whiteDress,
     category: "mekot",
     size: "S",
-    price: "49,00",
+    price: "49",
     color: "valkoinen",
     inStock: true,
   },
@@ -966,7 +966,7 @@ export const mekot = [
     img: redDress,
     category: "mekot",
     size: "S",
-    price: "59,00",
+    price: "59",
     color: "punainen",
     inStock: true,
   },
@@ -977,7 +977,7 @@ export const mekot = [
     img: yellowDress,
     category: "mekot",
     size: "XL",
-    price: "39,00",
+    price: "39",
     color: "keltainen",
     inStock: true,
   },
@@ -988,7 +988,7 @@ export const mekot = [
     img: greenDress,
     category: "mekot",
     size: "L",
-    price: "39,00",
+    price: "39",
     color: "vihreä",
     inStock: true,
   },
@@ -999,7 +999,7 @@ export const mekot = [
     img: orangeDress,
     category: "mekot",
     size: "XS",
-    price: "39,00",
+    price: "39",
     color: "oranssi",
     inStock: true,
   },
@@ -1011,7 +1011,7 @@ export const mekot = [
     category: "mekot",
     size: "M",
     color: "lila",
-    price: "39,00",
+    price: "39",
     inStock: true,
   },
   {
@@ -1022,7 +1022,7 @@ export const mekot = [
     category: "mekot",
     size: "L",
     color: "musta",
-    price: "59,00",
+    price: "59",
     inStock: true,
   },
   {
@@ -1033,7 +1033,7 @@ export const mekot = [
     category: "mekot",
     size: "S",
     color: "harmaa",
-    price: "49,00",
+    price: "49",
     inStock: true,
   },
   {
@@ -1044,7 +1044,7 @@ export const mekot = [
     category: "mekot",
     size: "XL",
     color: "punainen",
-    price: "55,00",
+    price: "55",
     inStock: true,
   },
   {
@@ -1055,7 +1055,7 @@ export const mekot = [
     category: "mekot",
     size: "XS",
     color: "keltainen",
-    price: "35,00",
+    price: "35",
     inStock: true,
   }
 ];

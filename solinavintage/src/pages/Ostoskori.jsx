@@ -1,10 +1,9 @@
-import React, {useState} from "react";
+import React from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import CartItem from "../components/CartItem";
-import { products } from "../data";
 
 const Container = styled.div``;
 const Wrapper = styled.div`
@@ -102,17 +101,21 @@ const Ostoskori = ({cart}) => {
 
   const navigate = useNavigate();
 
-  var runId = 0;
+  var totalPrice = 0;
 
-  var totalPrice = [0];
+  cart.map((item) => (
+    totalPrice += JSON.parse(item.price)
+  ))
+
+  var hesyPrice = totalPrice / 10
 
   return (
     <Container>
-      <Header />
+      <Header cart={cart}/>
       <Wrapper>
       <Title>Ostoskorisi</Title>
         <Top>
-            <TopText>Ostoskori(2)</TopText>
+            <TopText>Ostoskori({cart.length})</TopText>
             <TopButton onClick={() => navigate("/tuotteet")}>
               Jatka Ostoksia
             </TopButton>
@@ -120,18 +123,18 @@ const Ostoskori = ({cart}) => {
         <Bottom>
           <Info>
             {cart.map((item) => (
-              <CartItem totalPrice={totalPrice} itemId={item.id} key={item.id}/>
+              <CartItem itemId={item.id} key={item.id}/>
             ))}
           </Info>
           <Summary>
             <SummaryTitle>Yhteenveto</SummaryTitle>
             <SummaryItem type="total">
               <SummaryItemText>Yhteensä</SummaryItemText>
-              <SummaryItemPrice>€ {totalPrice.reduce((accumulator, currentValue) => {return accumulator + currentValue},0)}</SummaryItemPrice>
+              <SummaryItemPrice>€ {totalPrice}</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem>
               <SummaryItemText>Lahjoitus Hesylle 10%</SummaryItemText>
-              <SummaryItemPrice>€ 7,80</SummaryItemPrice>
+              <SummaryItemPrice>€ {hesyPrice}</SummaryItemPrice>
             </SummaryItem>
             <SummaryText>Hinta sisältää alv. Toimituskulut lasketaan kassalla.</SummaryText>
             <Button onClick={() => navigate("/kassa")}>Kassa</Button>

@@ -275,7 +275,7 @@ const Separator = styled.hr`
 
 
 
-const Header = () => {
+const Header = ({cart}) => {
   const [showModal, setShowModal] = useState(0);
 
   const navigate = useNavigate();
@@ -376,7 +376,7 @@ const Header = () => {
           </Link>
           <ShoppingContainer>
             <ShoppingButton>
-              <Badge badgeContent={4} color="secondary">
+              <Badge badgeContent={cart.length} color="secondary">
                 <ShoppingBag
                   onClick={() => navigate("/ostoskori")}
                   size={35}

@@ -83,7 +83,7 @@ const Button = styled.button`
   ${large({ fontSize: "15px" })}
 `;
 
-const Tuote = ({addToCart}) => {
+const Tuote = ({addToCart, cart}) => {
 
   const fullpath = window.location.href;
   const itemId = fullpath.split(/[/]+/).pop();
@@ -92,7 +92,7 @@ const Tuote = ({addToCart}) => {
   return (
     <Container>
       <Announcement />
-      <Header />
+      <Header cart={cart}/>
       <Wrapper>
         <ImgContainer>
           <Image src={item.img}/>

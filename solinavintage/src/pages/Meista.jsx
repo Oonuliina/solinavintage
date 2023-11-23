@@ -5,11 +5,11 @@ import styled from "styled-components";
 import meista from "../assets/meista_page_img.jpg"
 import Announcement from '../components/Announcement';
 
-const Meista = () => {
+const Meista = ({cart}) => {
   return (
     <Container>
       <Announcement />
-      <Header />
+      <Header cart={cart}/>
         <ImgContainer>
             <Image src={meista} />
         </ImgContainer>
