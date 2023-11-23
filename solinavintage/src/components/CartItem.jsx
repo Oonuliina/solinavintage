@@ -54,10 +54,20 @@ height: 1px;
   margin-bottom: 20px;
 `;
 
-const CartItem = (id) => {
 
-    const item = products.find(i => i.id === id);
-    if(item==null) return null;
+const CartItem = ({ itemId, totalPrice }) => {
+
+  const item = products.find(i => i.id == itemId);
+
+  function checkForSizeAndPrice(item){
+    totalPrice.push(item.price)
+    if (!item.size){
+      return null
+    } else {
+      return <ProductSize><b>Koko: </b>{item.size}</ProductSize>
+    }
+  }
+
 
   return (
     <Product>
@@ -65,7 +75,7 @@ const CartItem = (id) => {
       <Image src={item.img} />
       <Details>
         <ProductName><b>Tuote: </b>{item.title}</ProductName>
-        <ProductSize><b>Koko: </b></ProductSize>
+        {checkForSizeAndPrice(item)}
         <ProductColor><b>Väri: </b>{item.color}</ProductColor>
       </Details>
     </ProductDetail>

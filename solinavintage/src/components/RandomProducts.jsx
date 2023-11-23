@@ -19,14 +19,14 @@ const Container = styled.div`
   }
 `;
 
-const RandomProducts = () => {
+const RandomProducts = ({addToCart}) => {
 
     const randomProduct = products.sort(() => Math.random() - Math.random());
 
     return (
     <Container>
       {randomProduct.slice(0, 4).map((randomProduct) => (
-        <Product item={randomProduct} key={randomProduct.id} />
+        <Product item={randomProduct} key={randomProduct.id} addToCart={addToCart}/>
       ))}
     </Container>
   );

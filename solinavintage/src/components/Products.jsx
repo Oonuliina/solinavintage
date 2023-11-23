@@ -23,7 +23,7 @@ const Container = styled.div`
   }
 `;
 
-const Products = () => {
+const Products = ({addToCart}) => {
   
   var category = "";
   const fullpath = window.location.href;
@@ -44,7 +44,7 @@ const Products = () => {
   return (
     <Container>
       {category.map((item) => (
-        <Product item={item} key={item.id} />
+        <Product item={item} key={item.id} addToCart={addToCart}/>
       ))}
     </Container>
   );

@@ -15,16 +15,22 @@ function App() {
   
   const {loginToken, setLoginToken} = useLoginToken();
 
+  const [cart, setCart] = useState([]);
+
+  const addToCart = (item) => {
+    setCart([...cart, {id: item.id}])
+  };
+
   return (
     <div className="App">
       <Router>
         <Routes>
-          <Route path="/" element={<Etusivu />} />
-          <Route path="/tuotteet" element={<Tuotteet />} />
-          <Route path="/tuotteet/:category" element={<Tuotteet />} />
-          <Route path="/tuote/:id" element={<Tuote />} />
+          <Route path="/" element={<Etusivu addToCart={addToCart}/>} />
+          <Route path="/tuotteet" element={<Tuotteet addToCart={addToCart}/>} />
+          <Route path="/tuotteet/:category" element={<Tuotteet  addToCart={addToCart}/>} />
+          <Route path="/tuote/:id" element={<Tuote  addToCart={addToCart}/>} />
           <Route path="/meista" element={<Meista />} />
-          <Route path="/ostoskori" element={<Ostoskori />} />
+          <Route path="/ostoskori" element={<Ostoskori cart={cart} />} />
           <Route path="/kassa" element={<Kassa />} />
           <Route path="/kirjautuminen" element={<Kirjautuminen setLoginToken={setLoginToken}/>} />
           <Route path="/rekisteröityminen" element={<Rekisteröityminen />} />

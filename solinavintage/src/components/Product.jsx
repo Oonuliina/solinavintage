@@ -114,7 +114,7 @@ const Price = styled.span`
     font-size: 11px;
   }
 `;
-const Product = ({ item }) => {
+const Product = ({ item, addToCart }) => {
 
   let navigate = useNavigate();
   const routeChange = () => {
@@ -131,7 +131,7 @@ const Product = ({ item }) => {
             <Eye size={24} weight="light" onClick={routeChange}/>
           </Icon>
           <Icon>
-            <ShoppingBag size={24} weight="light"/>
+            <ShoppingBag size={24} weight="light" onClick={() => addToCart(item)}/>
           </Icon>
         </IconContainer>
       </ImageContainer>
