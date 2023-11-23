@@ -18,22 +18,22 @@ function App() {
   const [cart, setCart] = useState([]);
 
   const addToCart = (item) => {
-    setCart([...cart, {id: item.id}])
+    setCart([...cart, {id: item.id, price: item.price}])
   };
 
   return (
     <div className="App">
       <Router>
         <Routes>
-          <Route path="/" element={<Etusivu addToCart={addToCart}/>} />
-          <Route path="/tuotteet" element={<Tuotteet addToCart={addToCart}/>} />
-          <Route path="/tuotteet/:category" element={<Tuotteet  addToCart={addToCart}/>} />
-          <Route path="/tuote/:id" element={<Tuote  addToCart={addToCart}/>} />
-          <Route path="/meista" element={<Meista />} />
-          <Route path="/ostoskori" element={<Ostoskori cart={cart} />} />
-          <Route path="/kassa" element={<Kassa />} />
-          <Route path="/kirjautuminen" element={<Kirjautuminen setLoginToken={setLoginToken}/>} />
-          <Route path="/rekisteröityminen" element={<Rekisteröityminen />} />
+          <Route path="/" element={<Etusivu cart={cart} addToCart={addToCart}/>} />
+          <Route path="/tuotteet" element={<Tuotteet cart={cart} addToCart={addToCart}/>} />
+          <Route path="/tuotteet/:category" element={<Tuotteet cart={cart}  addToCart={addToCart}/>} />
+          <Route path="/tuote/:id" element={<Tuote cart={cart}  addToCart={addToCart}/>} />
+          <Route path="/meista" element={<Meista cart={cart} />} />
+          <Route path="/ostoskori" element={<Ostoskori  cart={cart} />} />
+          <Route path="/kassa" element={<Kassa cart={cart} />} />
+          <Route path="/kirjautuminen" element={<Kirjautuminen  setLoginToken={setLoginToken}/>} />
+          <Route path="/rekisteröityminen" element={<Rekisteröityminen  />} />
         </Routes>  
       </Router>
     </div>

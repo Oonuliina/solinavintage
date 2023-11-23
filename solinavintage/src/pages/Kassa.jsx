@@ -9,11 +9,11 @@ import hesyLogo from "../assets/Responsibility/hesy_logo.webp";
 import redDress from "../assets/dresses/red_silky_dress.JPG";
 import { large } from "../responsive";
 
-const Kassa = () => {
+const Kassa = ({cart}) => {
   return (
     <Container>
       <Announcement />
-      <Header />
+      <Header cart={cart}/>
       <Wrapper>
         <FormContainer>
           <PaymentForm>

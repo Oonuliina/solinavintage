@@ -55,12 +55,11 @@ height: 1px;
 `;
 
 
-const CartItem = ({ itemId, totalPrice }) => {
+const CartItem = ({ itemId }) => {
 
   const item = products.find(i => i.id == itemId);
 
-  function checkForSizeAndPrice(item){
-    totalPrice.push(item.price)
+  function checkForSize(item){
     if (!item.size){
       return null
     } else {
@@ -75,12 +74,12 @@ const CartItem = ({ itemId, totalPrice }) => {
       <Image src={item.img} />
       <Details>
         <ProductName><b>Tuote: </b>{item.title}</ProductName>
-        {checkForSizeAndPrice(item)}
+        {checkForSize(item)}
         <ProductColor><b>Väri: </b>{item.color}</ProductColor>
       </Details>
     </ProductDetail>
     <PriceDetail>
-      <ProductPrice>{item.price}</ProductPrice>
+      <ProductPrice><b>€ </b>{item.price}</ProductPrice>
       <Removebutton ><DeleteIcon /></Removebutton>
     </PriceDetail>
   </Product>

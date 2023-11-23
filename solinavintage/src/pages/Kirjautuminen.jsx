@@ -92,7 +92,7 @@ async function gettingCart(user){
   })
 }
 
-const Kirjautuminen = ({ setLoginToken }) => {
+const Kirjautuminen = ({ setLoginToken}) => {
 
   const loggedIn = sessionStorage.getItem("loginToken");
 

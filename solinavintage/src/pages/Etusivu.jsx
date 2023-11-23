@@ -17,11 +17,11 @@ const Title = styled.h1`
   text-align: center;
 `;
 
-function Etusivu({addToCart}) {
+function Etusivu({addToCart, cart}) {
   return (
     <Container>
         <Announcement />
-        <Header />
+        <Header cart={cart} />
         <Slider />
         <Title>Uutuuksia</Title>
         <RandomProducts addToCart={addToCart}/>
