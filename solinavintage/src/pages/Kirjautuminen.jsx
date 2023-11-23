@@ -76,7 +76,23 @@ async function loginUser(credentials){
   }) .then(data => data.json())
 }
 
-const Kirjautuminen = ({ setLoginToken, setCartItems }) => {
+async function getCart(user){
+  return fetch('http://localhost:5000/haekori', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(user)
+  }) .then(data => data.json())
+}
+
+async function gettingCart(user){
+  await getCart({
+      user
+  }).then(res => {
+      sessionStorage.setItem(res.cartId, []);
+  })
+}
+
+const Kirjautuminen = ({ setLoginToken }) => {
 
   const loggedIn = sessionStorage.getItem("loginToken");
 
@@ -101,8 +117,10 @@ const Kirjautuminen = ({ setLoginToken, setCartItems }) => {
         if (res === "Salasana on väärin!") {
           alert(res)
         } else {
+          let user = email;
           setLoginToken(res.token)
-          document.location.replace("/");
+          gettingCart(user);
+          /* document.location.replace("/"); */
         }
       }
     });

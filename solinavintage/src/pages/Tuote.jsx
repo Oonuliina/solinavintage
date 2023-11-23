@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import longPurpleDress from "../assets/dresses/long_purple_dress.JPG";
 import Announcement from "../components/Announcement";
 import { large, tablet } from "../responsive";
+import { products } from "../data";
 
 const Container = styled.div``;
 const Wrapper = styled.div`
@@ -84,24 +84,25 @@ const Button = styled.button`
 `;
 
 const Tuote = () => {
+
+  const fullpath = window.location.href;
+  const itemId = fullpath.split(/[/]+/).pop();
+  const item = products.find(i => i.id == itemId);
+
   return (
     <Container>
       <Announcement />
       <Header />
       <Wrapper>
         <ImgContainer>
-          <Image src={longPurpleDress} />
+          <Image src={item.img}/>
         </ImgContainer>
         <InfoContainer>
-          <Title>Pitkä lila iltapuku</Title>
+          <Title>{item.title}</Title>
           <Desc>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            {item.desc}
           </Desc>
-          <Price>€89,00</Price>
+          <Price>{item.price}</Price>
           <Button>Lisää ostoskoriin</Button>
         </InfoContainer>
       </Wrapper>
