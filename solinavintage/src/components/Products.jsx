@@ -6,6 +6,7 @@ import { kengat } from "../data";
 import { laukut } from "../data";
 import styled from "styled-components";
 import Product from "./Product";
+import { useEffect, useState } from "react";
 
 const Container = styled.div`
   padding: 20px;
@@ -23,28 +24,41 @@ const Container = styled.div`
   }
 `;
 
-const Products = ({addToCart}) => {
-  
+const Products = ({ addToCart, filters, sort }) => {
+  const [filteredProducts, setFilteredProducts] = useState([]);
+
   var category = "";
   const fullpath = window.location.href;
-  if (fullpath.includes("takit")){
-    category = takit
+
+  if (fullpath.includes("takit")) {
+    category = takit;
   } else if (fullpath.includes("mekot")) {
-    category = mekot
+    category = mekot;
   } else if (fullpath.includes("korut")) {
-    category = korut
+    category = korut;
   } else if (fullpath.includes("kengat")) {
-    category = kengat
+    category = kengat;
   } else if (fullpath.includes("laukut")) {
-    category = laukut
+    category = laukut;
   } else {
-    category = products
+    category = products;
   }
+
+  useEffect(() => {
+    category &&
+      setFilteredProducts(
+        category.filter((item) =>
+          Object.entries(filters).every(([key, value]) =>
+            item[key] === value
+          )
+        )
+      );
+  }, [category, filters]);
 
   return (
     <Container>
-      {category.map((item) => (
-        <Product item={item} key={item.id} addToCart={addToCart}/>
+      {filteredProducts.map((item) => (
+        <Product item={item} key={item.id} addToCart={addToCart} />
       ))}
     </Container>
   );

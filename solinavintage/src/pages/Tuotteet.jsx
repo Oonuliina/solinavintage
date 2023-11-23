@@ -176,14 +176,23 @@ const Separator = styled.hr`
   background-color: lightgray;
   height: 0.5px;
 `;
-const Tuotteet = ({addToCart}) => {
+const Tuotteet = ({ addToCart, cart }) => {
   const [showModal, setShowModal] = useState(0);
 
   const openModal = () => {
     setShowModal((prev) => !prev);
   };
 
+  const [filters, setFilters] = useState({});
+  const [sort, setSort] = useState("Hinta pienimmästä suurimpaan");
 
+  const handleFilters = (e) => {
+    const value = e.target.value;
+    setFilters({
+      ...filters,
+      [e.target.name]: value,
+    });
+  };
 
   return (
     <Container>
@@ -267,18 +276,7 @@ const Tuotteet = ({addToCart}) => {
                 </FilterIcon>
                 Suodatus:
               </FilterTextLeft>
-              <Select
-                defaultValue="Kategoria"
-                name="category"
-              >
-                <Option>Kategoria</Option>
-                <Option>Mekot</Option>
-                <Option>Takit</Option>
-                <Option>Kengät</Option>
-                <Option>Korut</Option>
-                <Option>Laukut</Option>
-              </Select>
-              <Select defaultValue="Väri" name="color">
+              <Select defaultValue="Väri" name="color" onChange={handleFilters}>
                 <Option>Väri</Option>
                 <Option>valkoinen</Option>
                 <Option>musta</Option>
@@ -296,7 +294,7 @@ const Tuotteet = ({addToCart}) => {
                 <Option>kultainen</Option>
                 <Option>hopea</Option>
               </Select>
-              <Select defaultValue="Koko" name="size">
+              <Select defaultValue="Koko" name="size" onChange={handleFilters}>
                 <Option>Koko</Option>
                 <Option>XS</Option>
                 <Option>S</Option>
@@ -310,9 +308,9 @@ const Tuotteet = ({addToCart}) => {
           <Right>
             <Filter>
               <FilterTextRight>Lajittelu:</FilterTextRight>
-              <Select>
-                <Option value="asc">Hinta pienimmästä suurimpaan</Option>
-                <Option value="desc">Hinta suurimmasta pienimpään</Option>
+              <Select onChange={(e) => setSort(e.target.value)}>
+                <Option value="price asc">Hinta pienimmästä suurimpaan</Option>
+                <Option value="price desc">Hinta suurimmasta pienimpään</Option>
               </Select>
             </Filter>
             <AmountOfProducts>
@@ -322,7 +320,7 @@ const Tuotteet = ({addToCart}) => {
           </Right>
         </FilterContainer>
       </FiltersContainer>
-      <Products addToCart={addToCart}/>
+      <Products addToCart={addToCart} filters={filters} sort={sort}/>
 
       <Footer />
     </Container>
