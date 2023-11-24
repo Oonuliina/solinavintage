@@ -105,9 +105,14 @@ const Ostoskori = ({ cart, removeFromCart }) => {
 
   var hesyPrice = totalPrice / 10;
 
-  let messageStyle ={}
+  let messageStyle = {}
   if (cart.length > 0) {
     messageStyle = {display: "none"};
+  }
+
+  let summaryStyle = {}
+  if (cart.length < 1){
+    summaryStyle = {display: "none"}
   }
 
   return (
@@ -128,7 +133,7 @@ const Ostoskori = ({ cart, removeFromCart }) => {
               <CartItem removeFromCart={removeFromCart} cart={cart} itemId={item.id} key={item.id} />
             ))}
           </Info>
-          <Summary>
+          <Summary style={summaryStyle}>
             <SummaryTitle>Yhteenveto</SummaryTitle>
             <SummaryItem type="total">
               <SummaryItemText>Yhteensä</SummaryItemText>
