@@ -96,6 +96,14 @@ app.post('/haekori', async (req, res) => {
   }
 })
 
+app.post('/updatecart', async (req, res) => {
+  console.log(req.body)
+  const filter = {cartId: req.body.cartId};
+  const update = {cartItems: req.body.cartItems};
+  const updateCart = await ProductSchema.findOneAndUpdate(filter, update, {new: true});
+  updateCart;
+})
+
 app.listen(PORT, () => {
   console.log("Server is up and running at port " + PORT);
 });

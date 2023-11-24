@@ -29,12 +29,37 @@ function App() {
     } return false
   }
 
+  async function updateCart({cartId, cartItems}){
+    return fetch('http://localhost:5000/updatecart', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({cartId, cartItems})
+    }).then(data => data.json())
+  };
+
+  const whatCart = async(a, b) => {
+    await updateCart({
+        cartId: a,
+        cartItems: b
+    }).then(res => {
+        console.log(res)
+    })
+  }
+
+  useEffect(() => {
+    if(loggedIn){
+      let cartToken = loggedIn.replaceAll("\"", "");
+      let toCartToken = [];
+      toCartToken.push(...cart.map(i => i.id));
+      sessionStorage.setItem(cartToken, toCartToken)
+      whatCart(cartToken, toCartToken);
+    }
+  }, [cart])
+
+
   const addToCart = (item) => {
     if(!isInCart(cart, item.id)){
       setCart([...cart, { id: item.id, price: item.price }]);
-      if(loggedIn){
-        sessionStorage.setItem()
-      }
       alert("Tuote lisätty ostoskoriin!");
     } else {
       alert("Tuote on jo ostoskorissasi!")

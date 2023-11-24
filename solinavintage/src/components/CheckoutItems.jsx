@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { products } from "../data";
 
 const SummaryTop = styled.div`
-  margin-bottom: 30px;
+  padding-right: 20px;
 `;
 const ProductContainer = styled.div`
   display: flex;
@@ -63,7 +63,7 @@ const CartItem = ({ itemId }) => {
             {item.title}
           </ProductText>
           {checkForSize(item)}
-          <ProductText>{item.color}</ProductText>
+          <ProductText>Väri: {item.color}</ProductText>
         </ProductTexts>
       </ProductTextContainer>
       <ProductPrice>{item.price} €</ProductPrice>

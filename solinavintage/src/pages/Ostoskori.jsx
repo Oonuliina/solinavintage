@@ -136,7 +136,7 @@ const Ostoskori = ({ cart, removeFromCart }) => {
             </SummaryItem>
             <SummaryItem>
               <SummaryItemText>Lahjoitus Hesylle 10%</SummaryItemText>
-              <SummaryItemPrice>€ {hesyPrice}</SummaryItemPrice>
+              <SummaryItemPrice>€ {Number(hesyPrice).toFixed(2)}</SummaryItemPrice>
             </SummaryItem>
             <SummaryText>
               Hinta sisältää alv. Toimituskulut lasketaan kassalla.
