@@ -16,8 +16,8 @@ const fetchData = async () => {
 
 try {
     const response = await fetch('solinavintage/data.js')
-    const kuvaData = await response
-    setData(kuvaData)
+    const kuvaData = await response.json();
+    setData(kuvaData);
 
 } catch {error} {
 console.error('Error in fetch', error)
