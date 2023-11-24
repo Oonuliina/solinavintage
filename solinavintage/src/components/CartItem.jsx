@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { products } from "../data";
+import { ListItemAvatar } from "@mui/material";
 
 const Product = styled.div`
   display: flex;
@@ -48,7 +49,7 @@ const Removebutton = styled.button`
   margin: 30px;
 `;
 
-const CartItem = ({ itemId, cart }) => {
+const CartItem = ({ itemId, cart, removeFromCart }) => {
   const item = products.find((i) => i.id == itemId);
 
   function checkForSize(item) {
@@ -85,7 +86,7 @@ const CartItem = ({ itemId, cart }) => {
           <b>€ </b>
           {item.price}
         </ProductPrice>
-        <Removebutton>
+        <Removebutton onClick={() => removeFromCart(item)}>
           <DeleteIcon />
         </Removebutton>
       </PriceDetail>
