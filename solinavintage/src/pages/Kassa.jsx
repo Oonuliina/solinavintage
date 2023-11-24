@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -6,10 +6,22 @@ import { CreditCard } from "@phosphor-icons/react";
 import paytrailMini from "../assets/paytrailMini.png";
 import Announcement from "../components/Announcement";
 import hesyLogo from "../assets/Responsibility/hesy_logo.webp";
-import redDress from "../assets/dresses/red_silky_dress.JPG";
 import { large } from "../responsive";
+import CheckoutItems from "../components/CheckoutItems"
 
 const Kassa = ({cart}) => {
+
+  var totalPrice = 0;
+
+  cart.map((item) => (totalPrice += JSON.parse(item.price)));
+
+
+  var hesyPrice = totalPrice / 10;
+
+
+
+
+
   return (
     <Container>
       <Announcement />
@@ -68,7 +80,7 @@ const Kassa = ({cart}) => {
                 <DeliverFee>5.90 €</DeliverFee>
               </RadioInputContainer>
             </InputsContainer>
-            
+
             <HeaderContainer>
               <FormHeader>Maksu</FormHeader>
             </HeaderContainer>
@@ -119,25 +131,13 @@ const Kassa = ({cart}) => {
           <Submit>Maksa</Submit> */}
         <SummaryContainer>
           <SummaryItems>
-            <SummaryTop>
-              <ProductContainer>
-                <ProductImage src={redDress} />
-                <ProductTextContainer>
-                  <ProductTexts>
-                    <ProductText type="name">
-                      Tuotteen nimi
-                    </ProductText>
-                    <ProductText>Tuotteen koko</ProductText>
-                    <ProductText>Tuotteen väri</ProductText>
-                  </ProductTexts>
-                </ProductTextContainer>
-                <ProductPrice>€ 0,00</ProductPrice>
-              </ProductContainer>
-            </SummaryTop>
+          {cart.map((item) => (
+              <CheckoutItems cart={cart} itemId={item.id} key={item.id} />
+            ))}
             <SummaryCenter>
               <SummaryTextsContainer>
                 <SummaryText>
-                  Välisumma<SummaryPrice>€ 0,00</SummaryPrice>
+                  Välisumma<SummaryPrice>{totalPrice} €</SummaryPrice>
                 </SummaryText>
                 <SummaryText>
                   Toimituskulut<SummaryPrice>€ 0,00</SummaryPrice>
@@ -145,7 +145,7 @@ const Kassa = ({cart}) => {
                 <SummaryText type="total">
                   Yhteensä
                   <SummaryPrice>
-                    € 0,00
+                     €
                   </SummaryPrice>
                 </SummaryText>
               </SummaryTextsContainer>
@@ -153,10 +153,10 @@ const Kassa = ({cart}) => {
             <SummaryBottom>
               <HesyContainer>
                 <HesyText>
-                  Tuotteiden loppusummasta lahjoitetaan{" "}
+                  Tuotteiden loppusummasta lahjoitetaan 
                   <HesyDonation>
-                    <b>0,00€</b>
-                  </HesyDonation>{" "}
+                    <b> {hesyPrice} € </b>
+                  </HesyDonation>
                   HESY ry:lle. Sydämmellinen kiitos!
                 </HesyText>
                 <Circle>

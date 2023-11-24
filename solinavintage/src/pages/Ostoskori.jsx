@@ -96,7 +96,7 @@ const Message = styled.h1`
 `;
 
 
-const Ostoskori = ({ cart }) => {
+const Ostoskori = ({ cart, removeFromCart }) => {
   const navigate = useNavigate();
 
   var totalPrice = 0;
@@ -125,7 +125,7 @@ const Ostoskori = ({ cart }) => {
           <Info>
             <Message style={messageStyle}>Ostoskori on tyhjä</Message>
             {cart.map((item) => (
-              <CartItem cart={cart} itemId={item.id} key={item.id} />
+              <CartItem removeFromCart={removeFromCart} cart={cart} itemId={item.id} key={item.id} />
             ))}
           </Info>
           <Summary>

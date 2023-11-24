@@ -7,19 +7,49 @@ import Meista from "./pages/Meista";
 import Ostoskori from "./pages/Ostoskori";
 import Kassa from "./pages/Kassa";
 import useLoginToken from "./components/useLoginToken";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Kirjautuminen from "./pages/Kirjautuminen";
 import Rekisteröityminen from "./pages/Rekisteröityminen";
 
 function App() {
   const { loginToken, setLoginToken } = useLoginToken();
+  const loggedIn = sessionStorage.getItem("loginToken");
 
   const [cart, setCart] = useState([]);
 
+  const [, updateState] = React.useState();
+  const forceUpdate = React.useCallback(() => updateState({}), []);
+
+  function isInCart(a, obj){
+    var i = a.length;
+    while (i--) {
+      if (a[i].id === obj) {
+        return true
+      }
+    } return false
+  }
+
   const addToCart = (item) => {
-    setCart([...cart, { id: item.id, price: item.price }]);
-    alert("Tuote lisätty ostoskoriin!");
+    if(!isInCart(cart, item.id)){
+      setCart([...cart, { id: item.id, price: item.price }]);
+      if(loggedIn){
+        sessionStorage.setItem()
+      }
+      alert("Tuote lisätty ostoskoriin!");
+    } else {
+      alert("Tuote on jo ostoskorissasi!")
+    }
   };
+
+  const removeFromCart = (item) => {
+    let idx = cart.findIndex(function(prod, i){
+      return prod.id === item.id
+    })
+    if (idx > -1){
+      cart.splice(idx, 1);
+      forceUpdate();
+    }
+  }
 
   
 
@@ -44,7 +74,7 @@ function App() {
             element={<Tuote cart={cart} addToCart={addToCart} />}
           />
           <Route path="/meista" element={<Meista cart={cart} />} />
-          <Route path="/ostoskori" element={<Ostoskori cart={cart} />} />
+          <Route path="/ostoskori" element={<Ostoskori removeFromCart={removeFromCart} cart={cart} />} />
           <Route path="/kassa" element={<Kassa cart={cart} />} />
           <Route
             path="/kirjautuminen"

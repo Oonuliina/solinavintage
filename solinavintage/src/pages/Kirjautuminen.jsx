@@ -73,7 +73,7 @@ async function loginUser(credentials){
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify(credentials)
-  }) .then(data => data.json())
+  }).then(data => data.json())
 }
 
 async function getCart(user){
@@ -81,7 +81,7 @@ async function getCart(user){
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify(user)
-  }) .then(data => data.json())
+  }).then(data => data.json())
 }
 
 async function gettingCart(user){
@@ -120,7 +120,7 @@ const Kirjautuminen = ({ setLoginToken}) => {
           let user = email;
           setLoginToken(res.token)
           gettingCart(user);
-          /* document.location.replace("/"); */
+          document.location.replace("/");
         }
       }
     });
