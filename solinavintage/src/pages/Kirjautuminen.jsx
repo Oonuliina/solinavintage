@@ -120,7 +120,7 @@ const Kirjautuminen = ({ setLoginToken}) => {
           let user = email;
           setLoginToken(res.token)
           gettingCart(user);
-          /* document.location.replace("/"); */
+          document.location.replace("/");
         }
       }
     });

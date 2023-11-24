@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { products } from "../data";
-import { ListItemAvatar } from "@mui/material";
 
 const Product = styled.div`
   display: flex;

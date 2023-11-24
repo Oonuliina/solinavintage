@@ -13,6 +13,7 @@ import Rekisteröityminen from "./pages/Rekisteröityminen";
 
 function App() {
   const { loginToken, setLoginToken } = useLoginToken();
+  const loggedIn = sessionStorage.getItem("loginToken");
 
   const [cart, setCart] = useState([]);
 
@@ -31,6 +32,9 @@ function App() {
   const addToCart = (item) => {
     if(!isInCart(cart, item.id)){
       setCart([...cart, { id: item.id, price: item.price }]);
+      if(loggedIn){
+        sessionStorage.setItem()
+      }
       alert("Tuote lisätty ostoskoriin!");
     } else {
       alert("Tuote on jo ostoskorissasi!")
