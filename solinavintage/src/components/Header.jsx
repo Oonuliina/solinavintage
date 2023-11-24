@@ -7,6 +7,7 @@ import { Badge } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { mobile } from "../responsive";
 import Burger from "./Burger";
+import Hakeminen from "./Hakeminen";
 
 const Container = styled.div`
   width: 100vw;
