@@ -11,7 +11,6 @@ const Wrapper = styled.div`
 
   @media only screen and (max-width: 380px) {
     padding: 5px;
-
   }
 `;
 const Title = styled.h1`
@@ -24,12 +23,10 @@ const Title = styled.h1`
   }
 `;
 const Top = styled.div`
-display: flex;
-padding-bottom: 20px;
-justify-content: space-between;
-  
+  display: flex;
+  padding-bottom: 20px;
+  justify-content: space-between;
 `;
-
 
 const TopButton = styled.button`
   border-radius: 30px;
@@ -60,13 +57,13 @@ const Info = styled.div`
 `;
 
 const Summary = styled.div`
-flex: 1;
-border: 0.5px solid lightgray;
-border-radius: 10px;
-padding: 20px;
-height: 50vh;
-display: flex;
-flex-direction: column;
+  flex: 1;
+  border: 0.5px solid lightgray;
+  border-radius: 10px;
+  padding: 20px;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
 `;
 
 const SummaryTitle = styled.h1`
@@ -76,12 +73,10 @@ const SummaryItem = styled.div`
   margin: 30px 0px;
   display: flex;
   justify-content: space-between;
-  font-weight: ${props=>props.type === "total" && "600"};
-  font-size: ${props=>props.type === "total" && "24px"};
+  font-weight: ${(props) => props.type === "total" && "600"};
+  font-size: ${(props) => props.type === "total" && "24px"};
 `;
-const SummaryItemText = styled.span`
-  
-`;
+const SummaryItemText = styled.span``;
 const SummaryItemPrice = styled.span``;
 const SummaryText = styled.span`
   font-size: 14px;
@@ -96,34 +91,41 @@ const Button = styled.button`
   border-radius: 30px;
   font-weight: 600;
 `;
+const Message = styled.h1`
+  text-align: center;
+`;
 
-const Ostoskori = ({cart}) => {
 
+const Ostoskori = ({ cart }) => {
   const navigate = useNavigate();
 
   var totalPrice = 0;
 
-  cart.map((item) => (
-    totalPrice += JSON.parse(item.price)
-  ))
+  cart.map((item) => (totalPrice += JSON.parse(item.price)));
 
-  var hesyPrice = totalPrice / 10
+  var hesyPrice = totalPrice / 10;
+
+  let messageStyle ={}
+  if (cart.length > 0) {
+    messageStyle = {display: "none"};
+  }
 
   return (
     <Container>
-      <Header cart={cart}/>
+      <Header cart={cart} />
       <Wrapper>
-      <Title>Ostoskorisi</Title>
+        <Title>Ostoskorisi</Title>
         <Top>
-            <TopText>Ostoskori({cart.length})</TopText>
-            <TopButton onClick={() => navigate("/tuotteet")}>
-              Jatka Ostoksia
-            </TopButton>
+          <TopText>Ostoskori({cart.length})</TopText>
+          <TopButton onClick={() => navigate("/tuotteet")}>
+            Jatka Ostoksia
+          </TopButton>
         </Top>
         <Bottom>
           <Info>
+            <Message style={messageStyle}>Ostoskori on tyhjä</Message>
             {cart.map((item) => (
-              <CartItem itemId={item.id} key={item.id}/>
+              <CartItem cart={cart} itemId={item.id} key={item.id} />
             ))}
           </Info>
           <Summary>
@@ -136,7 +138,9 @@ const Ostoskori = ({cart}) => {
               <SummaryItemText>Lahjoitus Hesylle 10%</SummaryItemText>
               <SummaryItemPrice>€ {hesyPrice}</SummaryItemPrice>
             </SummaryItem>
-            <SummaryText>Hinta sisältää alv. Toimituskulut lasketaan kassalla.</SummaryText>
+            <SummaryText>
+              Hinta sisältää alv. Toimituskulut lasketaan kassalla.
+            </SummaryText>
             <Button onClick={() => navigate("/kassa")}>Kassa</Button>
           </Summary>
         </Bottom>

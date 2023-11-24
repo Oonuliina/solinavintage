@@ -1,7 +1,7 @@
 import { Eye, ShoppingBag } from "@phosphor-icons/react";
 import React from "react";
 import styled from "styled-components";
-import {tablet} from "../responsive";
+import { tablet } from "../responsive";
 import { useNavigate } from "react-router-dom";
 
 const IconContainer = styled.div`
@@ -115,12 +115,11 @@ const Price = styled.span`
   }
 `;
 const Product = ({ item, addToCart }) => {
-
   let navigate = useNavigate();
   const routeChange = () => {
     let path = "/tuote/" + item.id;
     navigate(path);
-  }
+  };
 
   return (
     <Container>
@@ -128,17 +127,21 @@ const Product = ({ item, addToCart }) => {
         <Image src={item.img} />
         <IconContainer>
           <Icon>
-            <Eye size={24} weight="light" onClick={routeChange}/>
+            <Eye size={24} weight="light" onClick={routeChange} />
           </Icon>
           <Icon>
-            <ShoppingBag size={24} weight="light" onClick={() => addToCart(item)}/>
+            <ShoppingBag
+              size={24}
+              weight="light"
+              onClick={() => addToCart(item)}
+            />
           </Icon>
         </IconContainer>
       </ImageContainer>
       <InfoContainer>
         <Title>{item.title}</Title>
         <Size>{item.size}</Size>
-        <Price>{item.price}</Price>
+        <Price>€ {item.price}</Price>
       </InfoContainer>
     </Container>
   );

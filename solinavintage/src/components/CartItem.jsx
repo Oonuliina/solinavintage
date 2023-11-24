@@ -1,5 +1,5 @@
-import React from 'react'
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { products } from "../data";
 
@@ -26,7 +26,7 @@ const ProductName = styled.span`
 `;
 
 const ProductSize = styled.span`
-padding-bottom: 10px;
+  padding-bottom: 10px;
 `;
 const ProductColor = styled.span``;
 
@@ -37,8 +37,8 @@ const PriceDetail = styled.div`
   justify-content: center;
 `;
 const ProductPrice = styled.span`
-font-size: 30px;
-font-weight: 200;
+  font-size: 30px;
+  font-weight: 200;
 `;
 
 const Removebutton = styled.button`
@@ -47,43 +47,50 @@ const Removebutton = styled.button`
   cursor: pointer;
   margin: 30px;
 `;
-const Hr = styled.hr`
-background-color: lightgray;
-border: none;
-height: 1px;
-  margin-bottom: 20px;
-`;
 
+const CartItem = ({ itemId, cart }) => {
+  const item = products.find((i) => i.id == itemId);
 
-const CartItem = ({ itemId }) => {
-
-  const item = products.find(i => i.id == itemId);
-
-  function checkForSize(item){
-    if (!item.size){
-      return null
+  function checkForSize(item) {
+    if (!item.size) {
+      return null;
     } else {
-      return <ProductSize><b>Koko: </b>{item.size}</ProductSize>
+      return (
+        <ProductSize>
+          <b>Koko: </b>
+          {item.size}
+        </ProductSize>
+      );
     }
   }
 
-
   return (
     <Product>
-    <ProductDetail>
-      <Image src={item.img} />
-      <Details>
-        <ProductName><b>Tuote: </b>{item.title}</ProductName>
-        {checkForSize(item)}
-        <ProductColor><b>Väri: </b>{item.color}</ProductColor>
-      </Details>
-    </ProductDetail>
-    <PriceDetail>
-      <ProductPrice><b>€ </b>{item.price}</ProductPrice>
-      <Removebutton ><DeleteIcon /></Removebutton>
-    </PriceDetail>
-  </Product>
-  )
-}
+      <ProductDetail>
+        <Image src={item.img} />
+        <Details>
+          <ProductName>
+            <b>Tuote: </b>
+            {item.title}
+          </ProductName>
+          {checkForSize(item)}
+          <ProductColor>
+            <b>Väri: </b>
+            {item.color}
+          </ProductColor>
+        </Details>
+      </ProductDetail>
+      <PriceDetail>
+        <ProductPrice>
+          <b>€ </b>
+          {item.price}
+        </ProductPrice>
+        <Removebutton>
+          <DeleteIcon />
+        </Removebutton>
+      </PriceDetail>
+    </Product>
+  );
+};
 
-export default CartItem
+export default CartItem;

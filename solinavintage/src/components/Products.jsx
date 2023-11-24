@@ -23,6 +23,11 @@ const Container = styled.div`
     margin-left: 0px;
   }
 `;
+const Message = styled.h1`
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 70px;
+`;
 
 const Products = ({ addToCart, filters, sort }) => {
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -48,12 +53,26 @@ const Products = ({ addToCart, filters, sort }) => {
     category &&
       setFilteredProducts(
         category.filter((item) =>
-          Object.entries(filters).every(([key, value]) =>
-            item[key] === value
-          )
+          Object.entries(filters).every(([key, value]) => item[key] === value)
         )
       );
   }, [category, filters]);
+
+  useEffect(() => {
+    if (sort === "price asc") {
+      setFilteredProducts((prev) =>
+        [...prev].sort((a, b) => a.price - b.price)
+      );
+    } else {
+      setFilteredProducts((prev) =>
+        [...prev].sort((a, b) => b.price - a.price)
+      );
+    }
+  }, [sort]);
+
+  if (filteredProducts.length === 0) {
+    return <Message>Tuotteita ei löytynyt</Message>;
+  }
 
   return (
     <Container>

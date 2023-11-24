@@ -32,8 +32,7 @@ const ImgContainer = styled.div`
   })}
 `;
 const Image = styled.img`
-  width: auto;
-  height: auto;
+  height: 400px;
   object-fit: cover;
 
   ${large({ height: "400px" })}
@@ -102,7 +101,7 @@ const Tuote = ({addToCart, cart}) => {
           <Desc>
             {item.desc}
           </Desc>
-          <Price>{item.price}</Price>
+          <Price>€ {item.price}</Price>
           <Button onClick={() => addToCart(item)}>Lisää ostoskoriin</Button>
         </InfoContainer>
       </Wrapper>

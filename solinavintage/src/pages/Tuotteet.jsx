@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Products from "../components/Products";
@@ -6,6 +6,12 @@ import Announcement from "../components/Announcement";
 import styled from "styled-components";
 import { useLocation } from "react-router-dom";
 import { Funnel, X } from "@phosphor-icons/react";
+import { products } from "../data";
+import { takit } from "../data";
+import { mekot } from "../data";
+import { korut } from "../data";
+import { kengat } from "../data";
+import { laukut } from "../data";
 
 const Container = styled.div``;
 
@@ -177,22 +183,80 @@ const Separator = styled.hr`
   height: 0.5px;
 `;
 const Tuotteet = ({ addToCart, cart }) => {
-  const [showModal, setShowModal] = useState(0);
+  var category = "";
+  const fullpath = window.location.href;
 
+  if (fullpath.includes("takit")) {
+    category = takit;
+  } else if (fullpath.includes("mekot")) {
+    category = mekot;
+  } else if (fullpath.includes("korut")) {
+    category = korut;
+  } else if (fullpath.includes("kengat")) {
+    category = kengat;
+  } else if (fullpath.includes("laukut")) {
+    category = laukut;
+  } else {
+    category = products;
+  }
+
+  const location = useLocation();
+  const cat = location.pathname.split(/[/]+/).pop();
+  var modCat = cat[0].toUpperCase() + cat.slice(1);
+
+  if (modCat === "Kengat") {
+    modCat = "Kengät";
+  }
+
+  const [showModal, setShowModal] = useState(0);
   const openModal = () => {
     setShowModal((prev) => !prev);
   };
 
   const [filters, setFilters] = useState({});
-  const [sort, setSort] = useState("Hinta pienimmästä suurimpaan");
+  const [sort, setSort] = useState("price asc");
 
   const handleFilters = (e) => {
-    const value = e.target.value;
+    const { name, value } = e.target;
+    const filterValue = value === "Väri" || value === "Koko" ? cat : value;
     setFilters({
       ...filters,
-      [e.target.name]: value,
+      [name]: filterValue,
     });
   };
+
+  const clearFilters = () => {
+    setFilters({});
+  };
+
+  const [availableOptionsSize, setAvailableOptionsSize] = useState([]);
+  const [availableOptionsColor, setAvailableOptionsColor] = useState([]);
+
+  useEffect(() => {
+    const getAvailableOptions = (filter) => {
+      switch (filter) {
+        case "color":
+          return category
+            .filter((item) =>
+              filters.size ? item.size === filters.size : true
+            )
+            .map((item) => item.color)
+            .filter((value, index, self) => self.indexOf(value) === index);
+        case "size":
+          return category
+            .filter((item) =>
+              filters.color ? item.color === filters.color : true
+            )
+            .map((item) => item.size)
+            .filter((value, index, self) => self.indexOf(value) === index);
+        default:
+          return [];
+      }
+    };
+
+    setAvailableOptionsColor(getAvailableOptions("color"));
+    setAvailableOptionsSize(getAvailableOptions("size"));
+  }, [category, filters]);
 
   return (
     <Container>
@@ -217,7 +281,7 @@ const Tuotteet = ({ addToCart, cart }) => {
           <ModalFilter>
             <ModalFilterTextLeft>Suodatus:</ModalFilterTextLeft>
             <ModalSelect name="color">
-              <Option disabled>Väri</Option>
+              <Option>Väri</Option>
               <Option>valkoinen</Option>
               <Option>musta</Option>
               <Option>punainen</Option>
@@ -235,18 +299,10 @@ const Tuotteet = ({ addToCart, cart }) => {
               <Option>hopea</Option>
             </ModalSelect>
             <ModalSelect name="size">
-              <Option disabled>Koko</Option>
-              <Option>XS</Option>
-              <Option>S</Option>
-              <Option>M</Option>
-              <Option>L</Option>
-              <Option>XL</Option>
-              <Option>XXL</Option>
-              <Option>36</Option>
-              <Option>37</Option>
-              <Option>38</Option>
-              <Option>39</Option>
-              <Option>40</Option>
+              <Option>Koko</Option>
+              {availableOptionsSize.map((option) => (
+                <Option key={option}>{option}</Option>
+              ))}
             </ModalSelect>
           </ModalFilter>
           <ModalFilter>
@@ -265,7 +321,7 @@ const Tuotteet = ({ addToCart, cart }) => {
       ) : null}
       <Announcement />
       <Header cart={cart} />
-      <Title>Kaikki tuotteet</Title>
+      <Title>{modCat}</Title>
       <FiltersContainer>
         <FilterContainer>
           <Left>
@@ -278,32 +334,18 @@ const Tuotteet = ({ addToCart, cart }) => {
               </FilterTextLeft>
               <Select defaultValue="Väri" name="color" onChange={handleFilters}>
                 <Option>Väri</Option>
-                <Option>valkoinen</Option>
-                <Option>musta</Option>
-                <Option>punainen</Option>
-                <Option>sininen</Option>
-                <Option>vihreä</Option>
-                <Option>keltainen</Option>
-                <Option>oranssi</Option>
-                <Option>lila</Option>
-                <Option>ruskea</Option>
-                <Option>harmaa</Option>
-                <Option>beige</Option>
-                <Option>roosa</Option>
-                <Option>monivärinen</Option>
-                <Option>kultainen</Option>
-                <Option>hopea</Option>
+                {availableOptionsColor.map((option) => (
+                  <Option key={option}>{option}</Option>
+                ))}
               </Select>
               <Select defaultValue="Koko" name="size" onChange={handleFilters}>
                 <Option>Koko</Option>
-                <Option>XS</Option>
-                <Option>S</Option>
-                <Option>M</Option>
-                <Option>L</Option>
-                <Option>XL</Option>
-                <Option>XXL</Option>
+                {availableOptionsSize.map((option) => (
+                  <Option key={option}>{option}</Option>
+                ))}
               </Select>
             </Filter>
+            <button onClick={clearFilters}>Clear Filters</button>
           </Left>
           <Right>
             <Filter>
