@@ -7,7 +7,7 @@ import { Badge } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { mobile } from "../responsive";
 import Burger from "./Burger";
-import { products } from "../data";
+import Search from "../components/Search";
 
 const Container = styled.div`
   width: 100vw;
@@ -66,29 +66,7 @@ const ShoppingButton = styled.button`
   border: none;
   background: transparent;
 `;
-const SearchModal = styled.div`
-  display: none;
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  z-index: 2;
-  height: 200px;
-  background: white;
-  left: 0;
-  top: 30;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 0.5px solid;
-  padding: 10px;
-  box-shadow: 5px 2px #888888;
-  overflow: auto; /* Enable scroll if needed */
 
-  @media only screen and (max-width: 380px) {
-    height: 40px;
-    overflow: hidden;
-  }
-`;
 const CloseModalButton = styled.button`
   height: 35px;
   font-size: 20px;
@@ -98,35 +76,6 @@ const CloseModalButton = styled.button`
   background: none;
 `;
 
-const SearchContainer = styled.div`
-  position: relative;
-  border: 0.5px solid gray;
-  display: flex;
-  align-items: center;
-  margin-left: 25px;
-  padding: 5px;
-  height: 35px;
-  width: 360px;
-
-  @media only screen and (max-width: 380px) {
-    height: 20px;
-    width: 70%;
-    margin-left: 0px;
-  }
-`;
-const Input = styled.input`
-  position: alsolute;
-  height: 25px;
-  border: none;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background-color: transparent;
-  outline: none;
-  font-size: 16px;
-  border: 1px solid transparent;
-`;
 const SearchIconButton = styled.button`
   position: relative;
   display: flex;
@@ -274,6 +223,7 @@ const Separator = styled.hr`
 `;
 
 const Header = ({ cart }) => {
+
   const [showModal, setShowModal] = useState(0);
 
   const navigate = useNavigate();
@@ -325,17 +275,7 @@ const Header = ({ cart }) => {
   return (
     <Container>
       {showModal ? (
-        <SearchModal>
-          <SearchContainer>
-            <Input type="text" name="search" />
-            <SearchIconButton>
-              <MagnifyingGlass size={24} weight="light" />
-            </SearchIconButton>
-          </SearchContainer>
-          <CloseModalButton onClick={() => setShowModal((prev) => !prev)}>
-            X
-          </CloseModalButton>
-        </SearchModal>
+        <Search />
       ) : null}
       <NavBarSide style={showHideBurger}>
         <CloseModalButton onClick={() => setBurgerOpen((curr) => !curr)}>
