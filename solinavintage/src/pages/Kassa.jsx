@@ -17,25 +17,19 @@ const Kassa = ({cart}) => {
       <Wrapper>
         <FormContainer>
           <PaymentForm>
-            {/*  <InfoSection> */}
             <HeaderContainer>
               <FormHeader for="contact">Yhteystietosi</FormHeader>
             </HeaderContainer>
-            {/*        <Inputs> */}
             <InputsContainer>
               <InputContainer>
                 <Input type="email" placeholder="Sähköposti" />
                 <Input type="tel" placeholder="Puhelinnumero" />
               </InputContainer>
             </InputsContainer>
-            {/*   </Inputs> */}
-            {/*   </InfoSection> */}
 
-            {/*   <InfoSection> */}
             <HeaderContainer>
               <FormHeader for="contact">Toimitus</FormHeader>
             </HeaderContainer>
-            {/*  <Inputs> */}
             <InputsContainer>
               <InputContainer>
                 <Select>
@@ -56,40 +50,30 @@ const Kassa = ({cart}) => {
                 <Input type="text" placeholder="Kaupunki" />
               </InputContainer>
             </InputsContainer>
-            {/*   </Inputs> */}
-            {/*  </InfoSection> */}
 
-            {/*   <InfoSection> */}
             <HeaderContainer>
               <FormHeader for="contact">Toimitustapa</FormHeader>
             </HeaderContainer>
             <InputsContainer>
               <RadioInputContainer>
-                {/*      <Wrapper> */}
                 <RadioInput type="radio" id="posti" name="toimitus" />
                 <DeliverTypeLabel htmlFor="posti">1. Posti</DeliverTypeLabel>
                 <DeliverFee>4.95 €</DeliverFee>
-                {/*    </Wrapper> */}
               </RadioInputContainer>
               <RadioInputContainer>
-                {/*      <Wrapper> */}
                 <RadioInput type="radio" id="matkahuolto" name="toimitus" />
                 <DeliverTypeLabel htmlFor="matkahuolto">
                   2. Matkahuolto
                 </DeliverTypeLabel>
                 <DeliverFee>5.90 €</DeliverFee>
-                {/*    </Wrapper> */}
               </RadioInputContainer>
             </InputsContainer>
-            {/*   </InfoSection> */}
-
-            {/*  <InfoSection> */}
+            
             <HeaderContainer>
               <FormHeader>Maksu</FormHeader>
             </HeaderContainer>
             <InputsContainer>
               <RadioInputContainer>
-                {/* <Wrapper> */}
                 <RadioInput type="radio" id="kortti" name="maksutapa" />
                 <DeliverTypeLabel htmlFor="kortti">
                   Korttimaksu
@@ -97,40 +81,30 @@ const Kassa = ({cart}) => {
                 <IconContainer>
                   <CreditCard size={25} weight="light" />
                 </IconContainer>
-                {/*  </Wrapper> */}
               </RadioInputContainer>
               <RadioInputContainer>
-                {/*    <Wrapper> */}
                 <RadioInput type="radio" id="verkkopankki" name="maksutapa" />
                 <DeliverTypeLabel htmlFor="verkkopankki">
                   Verkkopankki
                 </DeliverTypeLabel>
                 <LogoImage src={paytrailMini} alt="" />
-                {/* </Wrapper> */}
               </RadioInputContainer>
               <RadioInputContainer>
-                {/* <Wrapper> */}
                 <RadioInput type="radio" id="mobilepay" name="maksutapa" />
                 <DeliverTypeLabel htmlFor="mobilepay">
                   MobilePay
                 </DeliverTypeLabel>
-                {/* </Wrapper> */}
               </RadioInputContainer>
               <RadioInputContainer>
-                {/*  <Wrapper> */}
                 <RadioInput type="radio" id="siirto" name="maksutapa" />
                 <DeliverTypeLabel htmlFor="siirto">Siirto</DeliverTypeLabel>
-                {/*  </Wrapper> */}
               </RadioInputContainer>
               <RadioInputContainer>
-                {/* <Wrapper> */}
                 <RadioInput type="radio" id="pivo" name="maksutapa" />
                 <DeliverTypeLabel htmlFor="pivo">Pivo</DeliverTypeLabel>
-                {/*  </Wrapper> */}
               </RadioInputContainer>
             </InputsContainer>
-            {/*    </InfoSection> */}
-
+      
             <Submit type="submit" value="Maksa" />
           </PaymentForm>
         </FormContainer>
