@@ -22,9 +22,6 @@ function App() {
 
   const [cart, setCart] = useState(cartFromStorage);
 
-  const [, updateState] = React.useState();
-  const forceUpdate = React.useCallback(() => updateState({}), []);
-
   function isInCart(a, obj){
     var i = a.length;
     while (i--) {
