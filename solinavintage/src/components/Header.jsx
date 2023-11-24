@@ -7,7 +7,7 @@ import { Badge } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { mobile } from "../responsive";
 import Burger from "./Burger";
-import Hakeminen from "./Hakeminen";
+import { products } from "../data";
 
 const Container = styled.div`
   width: 100vw;
@@ -143,7 +143,7 @@ const BurgerButton = styled.button`
   border: none;
   z-index: 1;
   background: none;
-  @media (max-width: 767px){
+  @media (max-width: 767px) {
     display: flex;
   }
 `;
@@ -175,7 +175,7 @@ const NavBar = styled.div`
   align-items: center;
   justify-content: center;
 
-  @media (max-width: 767px){
+  @media (max-width: 767px) {
     display: none;
   }
 `;
@@ -197,7 +197,6 @@ const NavBarSide = styled.div`
   box-shadow: 5px 2px #888888;
   overflow: none;
   flex-direction: column;
-  
 `;
 
 const NavItem = styled.a`
@@ -274,9 +273,7 @@ const Separator = styled.hr`
   }
 `;
 
-
-
-const Header = ({cart}) => {
+const Header = ({ cart }) => {
   const [showModal, setShowModal] = useState(0);
 
   const navigate = useNavigate();
@@ -286,43 +283,43 @@ const Header = ({cart}) => {
   };
 
   const [burgerOpen, setBurgerOpen] = useState(0);
-  
+
   const openBurger = () => {
     setBurgerOpen((curr) => !curr);
   };
 
   const [navSideOpen, setNavSideOpen] = useState(0);
-  
+
   const openNavSide = () => {
     setNavSideOpen((curr) => !curr);
   };
 
   let showHideBurger = {
-    display: 'none'
-  }
+    display: "none",
+  };
 
   if (burgerOpen) {
     showHideBurger = {
-      display: 'flex'
-    }
+      display: "flex",
+    };
   } else {
     showHideBurger = {
-      display: 'none'
-    }
+      display: "none",
+    };
   }
 
   let showHideTuotteet = {
-    display: 'none'
-  }
+    display: "none",
+  };
 
   if (navSideOpen) {
     showHideTuotteet = {
-      display: 'flex'
-    }
+      display: "flex",
+    };
   } else {
     showHideTuotteet = {
-      display: 'none'
-    }
+      display: "none",
+    };
   }
 
   return (
@@ -330,7 +327,7 @@ const Header = ({cart}) => {
       {showModal ? (
         <SearchModal>
           <SearchContainer>
-            <Input />
+            <Input type="text" name="search" />
             <SearchIconButton>
               <MagnifyingGlass size={24} weight="light" />
             </SearchIconButton>
@@ -340,25 +337,25 @@ const Header = ({cart}) => {
           </CloseModalButton>
         </SearchModal>
       ) : null}
-      <NavBarSide style={showHideBurger}> 
-          <CloseModalButton onClick={() => setBurgerOpen((curr) => !curr)}>
+      <NavBarSide style={showHideBurger}>
+        <CloseModalButton onClick={() => setBurgerOpen((curr) => !curr)}>
+          X
+        </CloseModalButton>
+        <NavItem onClick={() => navigate("/")}>ETUSIVU</NavItem>
+        <NavButton onClick={openNavSide}>TUOTTEET</NavButton>
+        <NavDropContentSide style={showHideTuotteet}>
+          <NavLink onClick={() => navigate("/tuotteet")}>Tuotteet</NavLink>
+          <NavLink onClick={() => navigate("/tuotteet/mekot")}>Mekot</NavLink>
+          <NavLink onClick={() => navigate("/tuotteet/kengat")}>Kengät</NavLink>
+          <NavLink onClick={() => navigate("/tuotteet/laukut")}>Laukut</NavLink>
+          <NavLink onClick={() => navigate("/tuotteet/takit")}>Takit</NavLink>
+          <NavLink onClick={() => navigate("/tuotteet/korut")}>Korut</NavLink>
+          <CloseModalButton onClick={() => setNavSideOpen((curr) => !curr)}>
             X
           </CloseModalButton>
-        <NavItem onClick={() => navigate("/")}>ETUSIVU</NavItem>
-          <NavButton onClick={openNavSide}>TUOTTEET</NavButton>
-          <NavDropContentSide style={showHideTuotteet}>
-            <NavLink onClick={() => navigate("/tuotteet")}>Tuotteet</NavLink>
-            <NavLink onClick={() => navigate("/tuotteet/mekot")}>Mekot</NavLink>
-            <NavLink onClick={() => navigate("/tuotteet/kengat")}>Kengät</NavLink>
-            <NavLink onClick={() => navigate("/tuotteet/laukut")}>Laukut</NavLink>
-            <NavLink onClick={() => navigate("/tuotteet/takit")}>Takit</NavLink>
-            <NavLink onClick={() => navigate("/tuotteet/korut")}>Korut</NavLink>
-            <CloseModalButton onClick={() => setNavSideOpen((curr) => !curr)}>
-            X
-            </CloseModalButton>
-          </NavDropContentSide>
+        </NavDropContentSide>
         <NavItem onClick={() => navigate("/meista")}>MEISTÄ</NavItem>
-      </NavBarSide> 
+      </NavBarSide>
       <UpperNavigation>
         <UpperLeft>
           <BurgerButton onClick={openBurger}>
@@ -368,7 +365,7 @@ const Header = ({cart}) => {
             <MagnifyingGlass size={35} weight="light" />
           </SearchIconButton>
         </UpperLeft>
-        <UpperCenter >
+        <UpperCenter>
           <TitleLogo onClick={() => navigate("/")}>Solina Vintage</TitleLogo>
         </UpperCenter>
         <UpperRight>
@@ -404,8 +401,12 @@ const Header = ({cart}) => {
           <NavButton onClick={() => navigate("/tuotteet")}>TUOTTEET</NavButton>
           <NavDropContent>
             <NavLink onClick={() => navigate("/tuotteet/mekot")}>Mekot</NavLink>
-            <NavLink onClick={() => navigate("/tuotteet/kengat")}>Kengät</NavLink>
-            <NavLink onClick={() => navigate("/tuotteet/laukut")}>Laukut</NavLink>
+            <NavLink onClick={() => navigate("/tuotteet/kengat")}>
+              Kengät
+            </NavLink>
+            <NavLink onClick={() => navigate("/tuotteet/laukut")}>
+              Laukut
+            </NavLink>
             <NavLink onClick={() => navigate("/tuotteet/takit")}>Takit</NavLink>
             <NavLink onClick={() => navigate("/tuotteet/korut")}>Korut</NavLink>
           </NavDropContent>
