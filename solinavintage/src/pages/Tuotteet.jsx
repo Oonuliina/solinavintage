@@ -12,32 +12,30 @@ import { mekot } from "../data";
 import { korut } from "../data";
 import { kengat } from "../data";
 import { laukut } from "../data";
+import { mobile, tablet, large } from "../responsive";
 
 const Container = styled.div``;
 
 const FiltersContainer = styled.div`
   padding-left: 3%;
   padding-right: 3%;
-
-  @media only screen and (max-width: 380px) {
-    display: flex;
-    margin-left: 15px;
-    margin-right: 15px;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 25px;
+  ${large({ display: "flex" })}
 `;
 const Title = styled.h1`
-  font-size: 40px;
+  font-size: 35px;
   align-text: left;
   padding-left: 3%;
   padding-right: 3%;
 
-  @media only screen and (max-width: 380px) {
-    font-size: 20px;
-    margin-top: 30px;
-    margin-bottom: 40px;
-  }
+  ${tablet({ fontSize: "30px" })}
+  ${mobile({ fontSize: "20px", marginTop: "30px", marginBottom: "35px" })}
 `;
 
+/* Filter modal*/
 const FilterModalContainer = styled.div`
   height: 100vh;
   width: 80vw;
@@ -96,7 +94,7 @@ const CloseModalButton = styled.button`
   margin-left: 20px;
 `;
 const ModalFilter = styled.div``;
-const RemoveFiltersButton = styled.button`
+const ModalClearButton = styled.button`
   border: none;
   background: none;
   text-decoration: underline;
@@ -114,38 +112,33 @@ const UseFiltersButton = styled.button`
   margin: 0px 10px 0px 10px;
 `;
 
-const FilterContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  height: 25px;
-`;
 const Left = styled.div`
   display: flex;
 `;
 
-const Filter = styled.div``;
+const Filter = styled.div`
+  ${large({ display: "none" })}
+`;
 
 const FilterIcon = styled.span`
   display: none;
 
-  @media only screen and (max-width: 380px) {
-    display: flex;
-  }
+  ${large({ display: "flex" })}
 `;
 const FilterTextLeft = styled.span`
   font-size: 15px;
 
-  @media only screen and (max-width: 380px) {
-    display: flex;
-    cursor: pointer;
-  }
+  ${large({
+    display: "flex",
+    cursor: "pointer",
+    alignItems: "center",
+    justifyContent: "center",
+  })}
 `;
 const FilterTextRight = styled.span`
   font-size: 15px;
 
-  @media only screen and (max-width: 380px) {
-    display: none;
-  }
+  ${large({ display: "none" })}
 `;
 const Select = styled.select`
   padding: 5px;
@@ -163,11 +156,15 @@ const Select = styled.select`
   }
 `;
 const Option = styled.option``;
+
 const Right = styled.div`
   display: flex;
 `;
 const AmountOfProducts = styled.div`
   padding-left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 const NumberTotal = styled.span`
   font-size: 15px;
@@ -181,6 +178,16 @@ const Separator = styled.hr`
   border: none;
   background-color: lightgray;
   height: 0.5px;
+`;
+
+const ClearButton = styled.button`
+  border: none;
+  background-color: #222222;
+  color: white;
+  border-radius: 30px;
+  padding: 5px 20px 5px 20px;
+
+  ${large({ display: "none" })}
 `;
 const Tuotteet = ({ addToCart, cart }) => {
   var category = "";
@@ -314,7 +321,7 @@ const Tuotteet = ({ addToCart, cart }) => {
           </ModalFilter>
           <Separator />
           <FilterModalBottom>
-            <RemoveFiltersButton>Poista Kaikki</RemoveFiltersButton>
+            <ModalClearButton onClick={clearFilters}>Tyhjennä</ModalClearButton>
             <UseFiltersButton>Käytä</UseFiltersButton>
           </FilterModalBottom>
         </FilterModalContainer>
@@ -323,47 +330,44 @@ const Tuotteet = ({ addToCart, cart }) => {
       <Header cart={cart} />
       <Title>{modCat}</Title>
       <FiltersContainer>
-        <FilterContainer>
-          <Left>
-            <Filter>
-              <FilterTextLeft>
-                <FilterIcon onClick={openModal}>
-                  <Funnel size={20} weight="light" />
-                </FilterIcon>
-                Suodatus:
-              </FilterTextLeft>
-              <Select defaultValue="Väri" name="color" onChange={handleFilters}>
-                <Option>Väri</Option>
-                {availableOptionsColor.map((option) => (
-                  <Option key={option}>{option}</Option>
-                ))}
-              </Select>
-              <Select defaultValue="Koko" name="size" onChange={handleFilters}>
-                <Option>Koko</Option>
-                {availableOptionsSize.map((option) => (
-                  <Option key={option}>{option}</Option>
-                ))}
-              </Select>
-            </Filter>
-            <button onClick={clearFilters}>Clear Filters</button>
-          </Left>
-          <Right>
-            <Filter>
-              <FilterTextRight>Lajittelu:</FilterTextRight>
-              <Select onChange={(e) => setSort(e.target.value)}>
-                <Option value="price asc">Hinta pienimmästä suurimpaan</Option>
-                <Option value="price desc">Hinta suurimmasta pienimpään</Option>
-              </Select>
-            </Filter>
-            <AmountOfProducts>
-              <NumberTotal>9</NumberTotal>
-              <Desc>tuotetta</Desc>
-            </AmountOfProducts>
-          </Right>
-        </FilterContainer>
+        <Left>
+          <FilterTextLeft>
+            <FilterIcon onClick={openModal}>
+              <Funnel size={20} weight="light" />
+            </FilterIcon>
+            Suodatus:
+          </FilterTextLeft>
+          <Filter>
+            <Select defaultValue="Väri" name="color" onChange={handleFilters}>
+              <Option>Väri</Option>
+              {availableOptionsColor.map((option) => (
+                <Option key={option}>{option}</Option>
+              ))}
+            </Select>
+            <Select defaultValue="Koko" name="size" onChange={handleFilters}>
+              <Option>Koko</Option>
+              {availableOptionsSize.map((option) => (
+                <Option key={option}>{option}</Option>
+              ))}
+            </Select>
+          </Filter>
+          <ClearButton onClick={clearFilters}>Tyhjennä</ClearButton>
+        </Left>
+        <Right>
+          <Filter>
+            <FilterTextRight>Lajittelu:</FilterTextRight>
+            <Select onChange={(e) => setSort(e.target.value)}>
+              <Option value="price asc">Hinta pienimmästä suurimpaan</Option>
+              <Option value="price desc">Hinta suurimmasta pienimpään</Option>
+            </Select>
+          </Filter>
+          <AmountOfProducts>
+            <NumberTotal>9</NumberTotal>
+            <Desc>tuotetta</Desc>
+          </AmountOfProducts>
+        </Right>
       </FiltersContainer>
       <Products addToCart={addToCart} filters={filters} sort={sort} />
-
       <Footer />
     </Container>
   );
