@@ -7,7 +7,7 @@ import { Badge } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { mobile } from "../responsive";
 import Burger from "./Burger";
-import Hakeminen from "./Hakeminen";
+import { products } from "../data";
 
 const Container = styled.div`
   width: 100vw;
@@ -330,7 +330,7 @@ const Header = ({cart}) => {
       {showModal ? (
         <SearchModal>
           <SearchContainer>
-            <Input />
+            <Input type="text" name="search"/>
             <SearchIconButton>
               <MagnifyingGlass size={24} weight="light" />
             </SearchIconButton>
