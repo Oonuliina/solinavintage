@@ -10,7 +10,7 @@ import { large } from "../responsive";
 import CheckoutItems from "../components/CheckoutItems"
 
 const Kassa = ({cart}) => {
-  const [deliveryFee, setDeliveryFee] = useState()
+  const [deliveryFee, setDeliveryFee] = useState(0)
 
   var totalPrice = 0;
 
