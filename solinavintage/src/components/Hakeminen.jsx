@@ -38,16 +38,17 @@ const handleInputChange = (event) => {
 const query = event.target.value;
 setSearchQuery(query)
 
-}
+
 
 const filtered = data.filter((item) =>
-    item.title.toLowerCase().includes(query.toLowerCase())
-);
+    item.title.toLowerCase().includes(searchQuery.toLowerCase())
+
+
+    );
 
     setFilteredData(filtered);
 
-
-
+};
 
 
 return (
