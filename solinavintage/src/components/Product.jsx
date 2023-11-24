@@ -1,7 +1,6 @@
 import { Eye, ShoppingBag } from "@phosphor-icons/react";
 import React from "react";
 import styled from "styled-components";
-import { tablet } from "../responsive";
 import { useNavigate } from "react-router-dom";
 
 const IconContainer = styled.div`

@@ -334,8 +334,8 @@ const Tuotteet = ({ addToCart, cart }) => {
           <FilterTextLeft>
             <FilterIcon onClick={openModal}>
               <Funnel size={20} weight="light" />
-              Suodatus:
             </FilterIcon>
+            Suodatus:
           </FilterTextLeft>
           <Filter>
             <Select defaultValue="Väri" name="color" onChange={handleFilters}>
