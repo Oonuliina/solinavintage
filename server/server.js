@@ -71,8 +71,6 @@ app.post('/rekisteroityminen', async (req, res) => {
 
 //Login
 app.post('/kirjautuminen', async (req, res) => {
-  console.log(req.body)
-
   const checkKäyttäjä = await Käyttäjäskeema.findOne({Sahkoposti: req.body.email})
 
   if(!checkKäyttäjä){
@@ -97,7 +95,6 @@ app.post('/haekori', async (req, res) => {
 })
 
 app.post('/updatecart', async (req, res) => {
-  console.log(req.body)
   const filter = {cartId: req.body.cartId};
   const update = {cartItems: req.body.cartItems};
   const updateCart = await ProductSchema.findOneAndUpdate(filter, update, {new: true});
