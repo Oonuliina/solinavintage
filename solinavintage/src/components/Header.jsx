@@ -275,7 +275,7 @@ const Header = ({ cart }) => {
   return (
     <Container>
       {showModal ? (
-        <Search />
+        <Search setShowModal={setShowModal} />
       ) : null}
       <NavBarSide style={showHideBurger}>
         <CloseModalButton onClick={() => setBurgerOpen((curr) => !curr)}>
