@@ -23,6 +23,7 @@ const FiltersContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   height: 25px;
+
   ${large({ display: "flex" })}
 `;
 const Title = styled.h1`
@@ -37,26 +38,19 @@ const Title = styled.h1`
 
 /* Filter modal*/
 const FilterModalContainer = styled.div`
-  height: 100vh;
+  height: 50vh;
   width: 80vw;
   display: flex;
+  position: fixed;
   flex-direction: column;
   z-index: 2;
   background-color: white;
   overflow: auto;
 `;
-
+/* Filter modal top*/
 const FilterModalTop = styled.div`
+  flex: 1;
   display: flex;
-  height: 10%;
-  width: 100%;
-`;
-const FilterModalBottom = styled.div`
-  height: 10%;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `;
 const FiltermodalTopText = styled.span`
   font-size: 13px;
@@ -79,6 +73,16 @@ const FilterModalTopRight = styled.div`
   align-items: center;
   justify-content: center;
 `;
+const CloseModalButton = styled.button`
+  border: none;
+  background: none;
+  margin-left: 20px;
+`;
+/* Filter modal center*/
+
+const FilterModalCenter = styled.div`
+  flex: 2;
+`;
 const ModalSelect = styled.select`
   border: none;
 `;
@@ -88,12 +92,16 @@ const ModalFilterTextLeft = styled.span`
 const ModalFilterTextRight = styled.span`
   font-size: 12px;
 `;
-const CloseModalButton = styled.button`
-  border: none;
-  background: none;
-  margin-left: 20px;
-`;
 const ModalFilter = styled.div``;
+
+/*Filter modal bottom*/
+const FilterModalBottom = styled.div`
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 const ModalClearButton = styled.button`
   border: none;
   background: none;
@@ -112,8 +120,11 @@ const UseFiltersButton = styled.button`
   margin: 0px 10px 0px 10px;
 `;
 
+/*Main page*/
 const Left = styled.div`
   display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const Filter = styled.div`
@@ -127,13 +138,8 @@ const FilterIcon = styled.span`
 `;
 const FilterTextLeft = styled.span`
   font-size: 15px;
+  ${large({ display: "flex" })}
 
-  ${large({
-    display: "flex",
-    cursor: "pointer",
-    alignItems: "center",
-    justifyContent: "center",
-  })}
 `;
 const FilterTextRight = styled.span`
   font-size: 15px;
@@ -172,12 +178,6 @@ const NumberTotal = styled.span`
 const Desc = styled.span`
   font-size: 15px;
   padding-left: 10px;
-`;
-const Separator = styled.hr`
-  width: 100%;
-  border: none;
-  background-color: lightgray;
-  height: 0.5px;
 `;
 
 const ClearButton = styled.button`
@@ -284,7 +284,7 @@ const Tuotteet = ({ addToCart, cart }) => {
               </CloseModalButton>
             </FilterModalTopRight>
           </FilterModalTop>
-          <Separator />
+          <FilterModalCenter>
           <ModalFilter>
             <ModalFilterTextLeft>Suodatus:</ModalFilterTextLeft>
             <ModalSelect name="color">
@@ -319,7 +319,7 @@ const Tuotteet = ({ addToCart, cart }) => {
               <Option value="desc">Hinta suurimmasta pienimpään</Option>
             </ModalSelect>
           </ModalFilter>
-          <Separator />
+          </FilterModalCenter>
           <FilterModalBottom>
             <ModalClearButton onClick={clearFilters}>Tyhjennä</ModalClearButton>
             <UseFiltersButton>Käytä</UseFiltersButton>
@@ -334,8 +334,8 @@ const Tuotteet = ({ addToCart, cart }) => {
           <FilterTextLeft>
             <FilterIcon onClick={openModal}>
               <Funnel size={20} weight="light" />
+              Suodatus:
             </FilterIcon>
-            Suodatus:
           </FilterTextLeft>
           <Filter>
             <Select defaultValue="Väri" name="color" onChange={handleFilters}>
