@@ -90,6 +90,7 @@ app.post('/kirjautuminen', async (req, res) => {
 app.post('/haekori', async (req, res) => {
   const getCart = await ProductSchema.findOne({cartId: req.body.user})
   if(getCart){
+    console.log(getCart)
     res.send(getCart)
   } else {
     res.status(401)
@@ -97,7 +98,6 @@ app.post('/haekori', async (req, res) => {
 })
 
 app.post('/updatecart', async (req, res) => {
-  console.log(req.body)
   const filter = {cartId: req.body.cartId};
   const update = {cartItems: req.body.cartItems};
   const updateCart = await ProductSchema.findOneAndUpdate(filter, update, {new: true});

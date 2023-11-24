@@ -14,8 +14,13 @@ import Rekisteröityminen from "./pages/Rekisteröityminen";
 function App() {
   const { loginToken, setLoginToken } = useLoginToken();
   const loggedIn = sessionStorage.getItem("loginToken");
+  var findCart = "asd";
+  if(loggedIn){
+    findCart = loggedIn.replaceAll("\"", "");
+  }
+  const cartFromStorage = JSON.parse(sessionStorage.getItem(findCart) || "[]")
 
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState(cartFromStorage);
 
   const [, updateState] = React.useState();
   const forceUpdate = React.useCallback(() => updateState({}), []);
@@ -49,10 +54,8 @@ function App() {
   useEffect(() => {
     if(loggedIn){
       let cartToken = loggedIn.replaceAll("\"", "");
-      let toCartToken = [];
-      toCartToken.push(...cart.map(i => i.id));
-      sessionStorage.setItem(cartToken, toCartToken)
-      whatCart(cartToken, toCartToken);
+      sessionStorage.setItem(cartToken, JSON.stringify(cart))
+      whatCart(cartToken, cart);
     }
   }, [cart])
 
@@ -67,14 +70,9 @@ function App() {
   };
 
   const removeFromCart = (item) => {
-    let idx = cart.findIndex(function(prod, i){
-      return prod.id === item.id
-    })
-    if (idx > -1){
-      cart.splice(idx, 1);
-      forceUpdate();
-    }
-  }
+    const newCart = cart.filter((a) => a.id !== item.id);
+    setCart(newCart)
+  };
 
   
 

@@ -88,7 +88,7 @@ async function gettingCart(user){
   await getCart({
       user
   }).then(res => {
-      sessionStorage.setItem(res.cartId, []);
+    sessionStorage.setItem(res.cartId, JSON.stringify(res.cartItems));
   })
 }
 
