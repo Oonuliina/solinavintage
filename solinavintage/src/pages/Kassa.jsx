@@ -15,11 +15,7 @@ const Kassa = ({cart}) => {
 
   cart.map((item) => (totalPrice += JSON.parse(item.price)));
 
-
   var hesyPrice = totalPrice / 10;
-
-
-
 
 
   return (
@@ -131,9 +127,11 @@ const Kassa = ({cart}) => {
           <Submit>Maksa</Submit> */}
         <SummaryContainer>
           <SummaryItems>
-          {cart.map((item) => (
-              <CheckoutItems cart={cart} itemId={item.id} key={item.id} />
-            ))}
+            <ItemsContainer>
+              {cart.map((item) => (
+                  <CheckoutItems cart={cart} itemId={item.id} key={item.id} />
+                ))}
+            </ItemsContainer>
             <SummaryCenter>
               <SummaryTextsContainer>
                 <SummaryText>
@@ -360,44 +358,37 @@ const SummaryContainer = styled.div`
 `;
 const SummaryItems = styled.div`
   display: flex;
-  width: 500px;
+  width: 550px;
   margin: 20px;
   padding: 20px;
   flex-direction: column;
+
+  ::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background-color: #F5F5F5;
+  }
+  
+  ::-webkit-scrollbar {
+    width: 12px;
+    background-color: #F5F5F5;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+    background-color: #b8b8b8;
+  }
 `;
-const SummaryTop = styled.div`
-  margin-bottom: 30px;
+const ItemsContainer = styled.div`
+  max-height: 500px;
+  overflow-y: auto;
 `;
-const ProductContainer = styled.div`
-  display: flex;
-  margin-bottom: 15px;
-`;
-const ProductImage = styled.img`
-  flex: 1;
-  height: 130px;
-`;
-const ProductTextContainer = styled.div`
-  flex: 3;
-  display: flex;
-  align-items: center;
-`;
-const ProductTexts = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding-left: 15px;
-`;
-const ProductText = styled.span`
-  padding-bottom: 2px;
-  font-weight: ${props=>props.type === "name" && "600"};
-`;
-const ProductPrice = styled.span`
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-`;
+
 const SummaryCenter = styled.div`
   margin-bottom: 30px;
+  margin-right: 35px;
+  margin-top: 30px;
 `;
 const SummaryTextsContainer = styled.div`
   display: flex;
