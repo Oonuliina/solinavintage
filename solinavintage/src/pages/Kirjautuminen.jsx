@@ -96,6 +96,12 @@ const Kirjautuminen = ({ setLoginToken}) => {
 
   const loggedIn = sessionStorage.getItem("loginToken");
 
+  const delay = ms => new Promise(res => setTimeout(res, ms));
+  const waitThenRedirect= async () => {
+    await delay(1500);
+    document.location.replace("/");
+  }
+
   useEffect(() => {
     if(loggedIn){
       document.location.replace("/");
@@ -120,7 +126,7 @@ const Kirjautuminen = ({ setLoginToken}) => {
           let user = email;
           setLoginToken(res.token)
           gettingCart(user);
-          document.location.replace("/");
+          waitThenRedirect();
         }
       }
     });
