@@ -71,8 +71,6 @@ app.post('/rekisteroityminen', async (req, res) => {
 
 //Login
 app.post('/kirjautuminen', async (req, res) => {
-  console.log(req.body)
-
   const checkKäyttäjä = await Käyttäjäskeema.findOne({Sahkoposti: req.body.email})
 
   if(!checkKäyttäjä){
@@ -90,7 +88,6 @@ app.post('/kirjautuminen', async (req, res) => {
 app.post('/haekori', async (req, res) => {
   const getCart = await ProductSchema.findOne({cartId: req.body.user})
   if(getCart){
-    console.log(getCart)
     res.send(getCart)
   } else {
     res.status(401)
