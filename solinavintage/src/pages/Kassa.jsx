@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -10,6 +10,7 @@ import { large } from "../responsive";
 import CheckoutItems from "../components/CheckoutItems"
 
 const Kassa = ({cart}) => {
+  const [deliveryFee, setDeliveryFee] = useState()
 
   var totalPrice = 0;
 
@@ -17,6 +18,7 @@ const Kassa = ({cart}) => {
 
   var hesyPrice = totalPrice / 10;
 
+  var subtotal = totalPrice + JSON.parse(deliveryFee)
 
   return (
     <Container>
@@ -62,14 +64,14 @@ const Kassa = ({cart}) => {
             <HeaderContainer>
               <FormHeader for="contact">Toimitustapa</FormHeader>
             </HeaderContainer>
-            <InputsContainer>
+            <InputsContainer >
               <RadioInputContainer>
-                <RadioInput type="radio" id="posti" name="toimitus" />
+                <RadioInput type="radio" id="posti" value={4.80} name="toimitus" onChange={e=>setDeliveryFee(e.target.value)} />
                 <DeliverTypeLabel htmlFor="posti">1. Posti</DeliverTypeLabel>
-                <DeliverFee>4.95 €</DeliverFee>
+                <DeliverFee>4.80 €</DeliverFee>
               </RadioInputContainer>
               <RadioInputContainer>
-                <RadioInput type="radio" id="matkahuolto" name="toimitus" />
+                <RadioInput type="radio" id="matkahuolto" value={5.90} name="toimitus" onChange={e=>setDeliveryFee(e.target.value)} />
                 <DeliverTypeLabel htmlFor="matkahuolto">
                   2. Matkahuolto
                 </DeliverTypeLabel>
@@ -138,12 +140,12 @@ const Kassa = ({cart}) => {
                   Välisumma<SummaryPrice>{totalPrice} €</SummaryPrice>
                 </SummaryText>
                 <SummaryText>
-                  Toimituskulut<SummaryPrice>€ 0,00</SummaryPrice>
+                  Toimituskulut<SummaryPrice>{Number(deliveryFee).toFixed(2)} €</SummaryPrice>
                 </SummaryText>
                 <SummaryText type="total">
                   Yhteensä
                   <SummaryPrice>
-                     €
+                  {Number(subtotal).toFixed(2)} €
                   </SummaryPrice>
                 </SummaryText>
               </SummaryTextsContainer>
@@ -153,7 +155,7 @@ const Kassa = ({cart}) => {
                 <HesyText>
                   Tuotteiden loppusummasta lahjoitetaan 
                   <HesyDonation>
-                    <b> {hesyPrice} € </b>
+                    <b> {Number(hesyPrice).toFixed(2)} € </b>
                   </HesyDonation>
                   HESY ry:lle. Sydämmellinen kiitos!
                 </HesyText>
