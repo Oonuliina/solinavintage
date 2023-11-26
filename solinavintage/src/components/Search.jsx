@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import { products } from "../data";
 import React, { useState } from "react";
-import { MagnifyingGlass } from "@phosphor-icons/react";
-import {useNavigate } from "react-router-dom";
+import { X } from "@phosphor-icons/react";
+import { useNavigate } from "react-router-dom";
+import { mobile } from "../responsive";
 
 const Search = ({ setShowModal }) => {
   const [query, setQuery] = useState("");
@@ -24,31 +25,30 @@ const Search = ({ setShowModal }) => {
               placeholder="Haku"
               onChange={(e) => setQuery(e.target.value)}
             />
-            <SearchIconButton>
-              <MagnifyingGlass size={24} weight="light" />
-            </SearchIconButton>
             <CloseModalButton onClick={() => setShowModal((prev) => !prev)}>
-              X
+              <X size={32} weight="light" />
             </CloseModalButton>
           </SearchContent>
         </SearchContainer>
-        <ResultContainer>
-          <List name="list">
-            {products
-              .filter((item) => item.title.toLowerCase().includes(query))
-              .slice(0, 4)
-              .map((item) => (
-                <ListItem
-                  key={item.id}
-                  name="listItem"
-                  onClick={() => routeChange(item)}
-                >
-                  <SearchImage src={item.img} />
-                  <SearchItemTitle>{item.title}</SearchItemTitle>
-                </ListItem>
-              ))}
-          </List>
-        </ResultContainer>
+        {query.length !== 0 && (
+          <ResultContainer>
+            <List name="list">
+              {products
+                .filter((item) => item.title.toLowerCase().includes(query))
+                .slice(0, 4)
+                .map((item) => (
+                  <ListItem
+                    key={item.id}
+                    name="listItem"
+                    onClick={() => routeChange(item)}
+                  >
+                    <SearchImage src={item.img} />
+                    <SearchItemTitle>{item.title}</SearchItemTitle>
+                  </ListItem>
+                ))}
+            </List>
+          </ResultContainer>
+        )}
       </Wrapper>
     </SearchModal>
   );
@@ -60,17 +60,22 @@ const SearchModal = styled.div`
   position: fixed;
   width: 100%;
   height: 200px;
-  z-index: 3;
+  z-index: 6;
   background: white;
   left: 0;
-  top: 30;
+  top: 40px;
   border: 0.5px solid;
-  padding: 10px;
-  box-shadow: 5px 2px #888888;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 
-  @media only screen and (max-width: 380px) {
-    height: 40px;
-  }
+  ${mobile({
+    height: "50px",
+    paddingTop: "5px",
+    paddingBottom: "5px",
+    top: "35px",
+  })}
 `;
 const Wrapper = styled.div`
   display: flex;
@@ -79,17 +84,22 @@ const Wrapper = styled.div`
   justify-content: center;
 `;
 const ResultContainer = styled.div`
-  display: block;
+  position: absolute;
+  top: 60%;
   width: 370px;
   padding: 5px;
+  background-color: whitesmoke;
+  border: 0.5px solid gray;
+
+  ${mobile({ width: "340px", top: "88%" })}
 `;
 const CloseModalButton = styled.button`
   height: 35px;
-  font-size: 20px;
-  font-weight: 100;
   border: none;
   width: 30px;
   background: none;
+  display: flex;
+  align-items: center;
 `;
 
 const SearchContainer = styled.div`
@@ -99,22 +109,17 @@ const SearchContainer = styled.div`
   font-size: 13px;
   height: 35px;
   width: 370px;
-
-  @media only screen and (max-width: 380px) {
-    height: 20px;
-    margin-left: 0px;
-  }
-`;
-const SearchIconButton = styled.button`
-  position: relative;
   display: flex;
-  cursor: pointer;
-  border: none;
-  background: none;
+  align-items; center;
+  justify-content: center;
+
+  ${mobile({ width: "340px" })}
 `;
 const SearchContent = styled.div`
   display: flex;
   width: 370px;
+
+  ${mobile({ width: "340px" })}
 `;
 const Input = styled.input`
   height: 25px;
@@ -129,14 +134,16 @@ const Input = styled.input`
   border: 1px solid transparent;
 `;
 const List = styled.ul`
-  padding: 10px;
+  padding: 5px;
   width: 350px;
   background-color: whitesmoke;
   list-style: none;
-  z-index: 2;
+  z-index: 3;
+  margin: 0;
+
+  ${mobile({ width: "320px" })}
 `;
 const ListItem = styled.li`
-  padding: 5px;
   display: flex;
   align-items: center;
   padding: 7px;

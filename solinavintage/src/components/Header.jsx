@@ -11,6 +11,8 @@ import Search from "../components/Search";
 
 const Container = styled.div`
   width: 100vw;
+  border-bottom: 0.5px solid lightgray;
+  padding-bottom: 20px;
 `;
 const UpperNavigation = styled.div`
   position: relative;
@@ -67,15 +69,6 @@ const ShoppingButton = styled.button`
   background: transparent;
 `;
 
-const CloseModalButton = styled.button`
-  height: 35px;
-  font-size: 20px;
-  font-weight: 100;
-  border: none;
-  width: 30px;
-  background: none;
-`;
-
 const SearchIconButton = styled.button`
   position: relative;
   display: flex;
@@ -85,17 +78,6 @@ const SearchIconButton = styled.button`
   background: none;
 `;
 
-const BurgerButton = styled.button`
-  position: relative;
-  display: none;
-  cursor: pointer;
-  border: none;
-  z-index: 1;
-  background: none;
-  @media (max-width: 767px) {
-    display: flex;
-  }
-`;
 
 const LogoContainer = styled.div`
   display: flex;
@@ -129,24 +111,7 @@ const NavBar = styled.div`
   }
 `;
 
-const NavBarSide = styled.div`
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  z-index: 2;
-  height: 275px;
-  background: white;
-  left: 0;
-  top: 30;
-  display: flex;
-  align-items: left;
-  justify-content: center;
-  border: 0.5px solid;
-  padding: 10px;
-  box-shadow: 5px 2px #888888;
-  overflow: none;
-  flex-direction: column;
-`;
+
 
 const NavItem = styled.a`
   margin-left: 15px;
@@ -166,18 +131,10 @@ const NavDropContent = styled.div`
   background-color: #f9f9f9;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  color: white;
   z-index: 1;
 `;
 
-const NavDropContentSide = styled.div`
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
-  flex-direction: column;
-`;
 
 const NavDrop = styled.div`
   position: relative;
@@ -211,20 +168,11 @@ const NavLink = styled.a`
     background-color: #f1f1f1;
   }
 `;
-const Separator = styled.hr`
-  margin: 20px 20px 0px 20px;
-  border: none;
-  background-color: lightgray;
-  height: 1px;
-
-  @media only screen and (max-width: 380px) {
-    margin: 5px 5px 0px 5px;
-  }
-`;
 
 const Header = ({ cart }) => {
 
   const [showModal, setShowModal] = useState(0);
+
 
   const navigate = useNavigate();
 
@@ -232,75 +180,17 @@ const Header = ({ cart }) => {
     setShowModal((prev) => !prev);
   };
 
-  const [burgerOpen, setBurgerOpen] = useState(0);
 
-  const openBurger = () => {
-    setBurgerOpen((curr) => !curr);
-  };
-
-  const [navSideOpen, setNavSideOpen] = useState(0);
-
-  const openNavSide = () => {
-    setNavSideOpen((curr) => !curr);
-  };
-
-  let showHideBurger = {
-    display: "none",
-  };
-
-  if (burgerOpen) {
-    showHideBurger = {
-      display: "flex",
-    };
-  } else {
-    showHideBurger = {
-      display: "none",
-    };
-  }
-
-  let showHideTuotteet = {
-    display: "none",
-  };
-
-  if (navSideOpen) {
-    showHideTuotteet = {
-      display: "flex",
-    };
-  } else {
-    showHideTuotteet = {
-      display: "none",
-    };
-  }
 
   return (
+    <>
     <Container>
       {showModal ? (
         <Search setShowModal={setShowModal} />
       ) : null}
-      <NavBarSide style={showHideBurger}>
-        <CloseModalButton onClick={() => setBurgerOpen((curr) => !curr)}>
-          X
-        </CloseModalButton>
-        <NavItem onClick={() => navigate("/")}>ETUSIVU</NavItem>
-        <NavButton onClick={openNavSide}>TUOTTEET</NavButton>
-        <NavDropContentSide style={showHideTuotteet}>
-          <NavLink onClick={() => navigate("/tuotteet")}>Tuotteet</NavLink>
-          <NavLink onClick={() => navigate("/tuotteet/mekot")}>Mekot</NavLink>
-          <NavLink onClick={() => navigate("/tuotteet/kengat")}>Kengät</NavLink>
-          <NavLink onClick={() => navigate("/tuotteet/laukut")}>Laukut</NavLink>
-          <NavLink onClick={() => navigate("/tuotteet/takit")}>Takit</NavLink>
-          <NavLink onClick={() => navigate("/tuotteet/korut")}>Korut</NavLink>
-          <CloseModalButton onClick={() => setNavSideOpen((curr) => !curr)}>
-            X
-          </CloseModalButton>
-        </NavDropContentSide>
-        <NavItem onClick={() => navigate("/meista")}>MEISTÄ</NavItem>
-      </NavBarSide>
       <UpperNavigation>
         <UpperLeft>
-          <BurgerButton onClick={openBurger}>
-            <Burger />
-          </BurgerButton>
+        <Burger/>
           <SearchIconButton onClick={openModal}>
             <MagnifyingGlass size={35} weight="light" />
           </SearchIconButton>
@@ -353,8 +243,8 @@ const Header = ({ cart }) => {
         </NavDrop>
         <NavItem onClick={() => navigate("/meista")}>MEISTÄ</NavItem>
       </NavBar>
-      <Separator />
     </Container>
+    </>
   );
 };
 

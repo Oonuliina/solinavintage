@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -7,10 +7,10 @@ import paytrailMini from "../assets/paytrailMini.png";
 import Announcement from "../components/Announcement";
 import hesyLogo from "../assets/Responsibility/hesy_logo.webp";
 import { large } from "../responsive";
-import CheckoutItems from "../components/CheckoutItems"
+import CheckoutItems from "../components/CheckoutItems";
 
-const Kassa = ({cart}) => {
-  const [deliveryFee, setDeliveryFee] = useState(0)
+const Kassa = ({ cart }) => {
+  const [deliveryFee, setDeliveryFee] = useState(0);
 
   var totalPrice = 0;
 
@@ -18,17 +18,17 @@ const Kassa = ({cart}) => {
 
   var hesyPrice = totalPrice / 10;
 
-  var subtotal = totalPrice + JSON.parse(deliveryFee)
+  var subtotal = totalPrice + JSON.parse(deliveryFee);
 
   return (
     <Container>
       <Announcement />
-      <Header cart={cart}/>
+      <Header cart={cart} />
       <Wrapper>
         <FormContainer>
           <PaymentForm>
             <HeaderContainer>
-              <FormHeader for="contact">Yhteystietosi</FormHeader>
+              <FormHeader htmlFor="contact">Yhteystietosi</FormHeader>
             </HeaderContainer>
             <InputsContainer>
               <InputContainer>
@@ -38,14 +38,12 @@ const Kassa = ({cart}) => {
             </InputsContainer>
 
             <HeaderContainer>
-              <FormHeader for="contact">Toimitus</FormHeader>
+              <FormHeader htmlFor="contact">Toimitus</FormHeader>
             </HeaderContainer>
             <InputsContainer>
               <InputContainer>
                 <Select>
-                  <Option value="Suomi" selected>
-                    Suomi
-                  </Option>
+                  <Option defaultValue="Suomi">Suomi</Option>
                 </Select>
               </InputContainer>
               <InputContainer>
@@ -62,16 +60,28 @@ const Kassa = ({cart}) => {
             </InputsContainer>
 
             <HeaderContainer>
-              <FormHeader for="contact">Toimitustapa</FormHeader>
+              <FormHeader htmlFor="contact">Toimitustapa</FormHeader>
             </HeaderContainer>
-            <InputsContainer >
+            <InputsContainer>
               <RadioInputContainer>
-                <RadioInput type="radio" id="posti" value={4.80} name="toimitus" onChange={e=>setDeliveryFee(e.target.value)} />
+                <RadioInput
+                  type="radio"
+                  id="posti"
+                  value={4.8}
+                  name="toimitus"
+                  onChange={(e) => setDeliveryFee(e.target.value)}
+                />
                 <DeliverTypeLabel htmlFor="posti">1. Posti</DeliverTypeLabel>
                 <DeliverFee>4.80 €</DeliverFee>
               </RadioInputContainer>
               <RadioInputContainer>
-                <RadioInput type="radio" id="matkahuolto" value={5.90} name="toimitus" onChange={e=>setDeliveryFee(e.target.value)} />
+                <RadioInput
+                  type="radio"
+                  id="matkahuolto"
+                  value={5.9}
+                  name="toimitus"
+                  onChange={(e) => setDeliveryFee(e.target.value)}
+                />
                 <DeliverTypeLabel htmlFor="matkahuolto">
                   2. Matkahuolto
                 </DeliverTypeLabel>
@@ -114,7 +124,7 @@ const Kassa = ({cart}) => {
                 <DeliverTypeLabel htmlFor="pivo">Pivo</DeliverTypeLabel>
               </RadioInputContainer>
             </InputsContainer>
-      
+
             <Submit type="submit" value="Maksa" />
           </PaymentForm>
         </FormContainer>
@@ -131,8 +141,8 @@ const Kassa = ({cart}) => {
           <SummaryItems>
             <ItemsContainer>
               {cart.map((item) => (
-                  <CheckoutItems cart={cart} itemId={item.id} key={item.id} />
-                ))}
+                <CheckoutItems cart={cart} itemId={item.id} key={item.id} />
+              ))}
             </ItemsContainer>
             <SummaryCenter>
               <SummaryTextsContainer>
@@ -140,20 +150,21 @@ const Kassa = ({cart}) => {
                   Välisumma<SummaryPrice>{totalPrice} €</SummaryPrice>
                 </SummaryText>
                 <SummaryText>
-                  Toimituskulut<SummaryPrice>{Number(deliveryFee).toFixed(2)} €</SummaryPrice>
+                  Toimituskulut
+                  <SummaryPrice>
+                    {Number(deliveryFee).toFixed(2)} €
+                  </SummaryPrice>
                 </SummaryText>
                 <SummaryText type="total">
                   Yhteensä
-                  <SummaryPrice>
-                  {Number(subtotal).toFixed(2)} €
-                  </SummaryPrice>
+                  <SummaryPrice>{Number(subtotal).toFixed(2)} €</SummaryPrice>
                 </SummaryText>
               </SummaryTextsContainer>
             </SummaryCenter>
             <SummaryBottom>
               <HesyContainer>
                 <HesyText>
-                  Tuotteiden loppusummasta lahjoitetaan 
+                  Tuotteiden loppusummasta lahjoitetaan
                   <HesyDonation>
                     <b> {Number(hesyPrice).toFixed(2)} € </b>
                   </HesyDonation>
@@ -178,7 +189,12 @@ const Container = styled.div`
 const Wrapper = styled.div`
   display: flex;
 
-    ${large({ flexDirection: "column", width: "100%", alignItems: "center", justifyContent: "center"})}
+  ${large({
+    flexDirection: "column",
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+  })}
 `;
 
 const FormContainer = styled.div`
@@ -187,13 +203,23 @@ const FormContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   padding-top: 20px;
-  
-  ${large({ display: "block" ,width: "95vw",alignItems: "center", justifyContent: "center"})}
+
+  ${large({
+    display: "block",
+    width: "95vw",
+    alignItems: "center",
+    justifyContent: "center",
+  })}
 `;
 const PaymentForm = styled.form`
   border-right: 1px solid black;
 
-  ${large({ border: "none", width: "95vw",alignItems: "center", justifyContent: "center"})}
+  ${large({
+    border: "none",
+    width: "95vw",
+    alignItems: "center",
+    justifyContent: "center",
+  })}
 `;
 
 /* const InfoSection= styled.section`
@@ -241,7 +267,7 @@ const Input = styled.input`
   @media (max-width: 1100px) {
     width: 400px;
   }
-  ${large({ width: "80%"})}
+  ${large({ width: "80%" })}
 `;
 
 const Select = styled.select`
@@ -255,7 +281,7 @@ const Select = styled.select`
   @media (max-width: 1100px) {
     width: 442px;
   }
-  ${large({ width: "79vw"})}
+  ${large({ width: "79vw" })}
 `;
 
 const LongInput = styled.input`
@@ -270,7 +296,7 @@ const LongInput = styled.input`
   @media (max-width: 1100px) {
     width: 400px;
   }
-  ${large({ width: "74vw"})}
+  ${large({ width: "74vw" })}
 `;
 
 const Option = styled.option``;
@@ -295,7 +321,7 @@ const RadioInputContainer = styled.div`
   @media (max-width: 1100px) {
     width: 400px;
   }
-  ${large({ width: "74vw"})}
+  ${large({ width: "74vw" })}
 `;
 
 const RadioInput = styled.input`
@@ -346,7 +372,7 @@ const Submit = styled.input`
   @media (max-width: 1100px) {
     width: 440px;
   }
-  ${large({ width: "80vw"})}
+  ${large({ width: "80vw" })}
 `;
 
 const SummaryContainer = styled.div`
@@ -356,7 +382,7 @@ const SummaryContainer = styled.div`
   width: 50%;
   justify-content: flex-start;
 
-  ${large({ width: "100%", alignItems: "center", justifyContent: "center"})}
+  ${large({ width: "100%", alignItems: "center", justifyContent: "center" })}
 `;
 const SummaryItems = styled.div`
   display: flex;
@@ -368,17 +394,17 @@ const SummaryItems = styled.div`
   ::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
     border-radius: 10px;
-    background-color: #F5F5F5;
+    background-color: #f5f5f5;
   }
-  
+
   ::-webkit-scrollbar {
     width: 12px;
-    background-color: #F5F5F5;
+    background-color: #f5f5f5;
   }
-  
+
   ::-webkit-scrollbar-thumb {
     border-radius: 10px;
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
     background-color: #b8b8b8;
   }
 `;
@@ -400,8 +426,8 @@ const SummaryText = styled.span`
   display: flex;
   justify-content: space-between;
   padding-bottom: 15px;
-  font-weight: ${props=>props.type === "total" && "600"};
-  font-size: ${props=>props.type === "total" && "17px"};
+  font-weight: ${(props) => props.type === "total" && "600"};
+  font-size: ${(props) => props.type === "total" && "17px"};
 `;
 const SummaryPrice = styled.span``;
 

@@ -43,14 +43,16 @@ const FilterModalContainer = styled.div`
   display: flex;
   position: fixed;
   flex-direction: column;
-  z-index: 2;
+  z-index: 6;
   background-color: white;
   overflow: auto;
+  border: 0.5px solid lightgray;
 `;
 /* Filter modal top*/
 const FilterModalTop = styled.div`
   flex: 1;
   display: flex;
+  border-bottom: 0.5px solid lightgray;
 `;
 const FiltermodalTopText = styled.span`
   font-size: 13px;
@@ -81,18 +83,26 @@ const CloseModalButton = styled.button`
 /* Filter modal center*/
 
 const FilterModalCenter = styled.div`
-  flex: 2;
+  flex: 3;
+  margin: 15px;
 `;
 const ModalSelect = styled.select`
   border: none;
+  font-size: 15px;
+  padding-bottom: 20px;
 `;
-const ModalFilterTextLeft = styled.span`
-  font-size: 12px;
+
+const ModalSortText = styled.span`
+  font-size: 15px;
 `;
-const ModalFilterTextRight = styled.span`
-  font-size: 12px;
+const ModalFilter = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
-const ModalFilter = styled.div``;
+const ModalSort = styled.div`
+  display: flex;
+ 
+`;
 
 /*Filter modal bottom*/
 const FilterModalBottom = styled.div`
@@ -100,6 +110,7 @@ const FilterModalBottom = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  border-top: 0.5px solid lightgray;
 `;
 
 const ModalClearButton = styled.button`
@@ -286,24 +297,11 @@ const Tuotteet = ({ addToCart, cart }) => {
           </FilterModalTop>
           <FilterModalCenter>
           <ModalFilter>
-            <ModalFilterTextLeft>Suodatus:</ModalFilterTextLeft>
-            <ModalSelect name="color">
+            <ModalSelect defaultValue="Väri" name="color" onChange={handleFilters}>
               <Option>Väri</Option>
-              <Option>valkoinen</Option>
-              <Option>musta</Option>
-              <Option>punainen</Option>
-              <Option>sininen</Option>
-              <Option>vihreä</Option>
-              <Option>keltainen</Option>
-              <Option>oranssi</Option>
-              <Option>lila</Option>
-              <Option>ruskea</Option>
-              <Option>harmaa</Option>
-              <Option>beige</Option>
-              <Option>roosa</Option>
-              <Option>monivärinen</Option>
-              <Option>kultainen</Option>
-              <Option>hopea</Option>
+              {availableOptionsColor.map((option) => (
+                <Option key={option}>{option}</Option>
+              ))}
             </ModalSelect>
             <ModalSelect name="size">
               <Option>Koko</Option>
@@ -312,13 +310,13 @@ const Tuotteet = ({ addToCart, cart }) => {
               ))}
             </ModalSelect>
           </ModalFilter>
-          <ModalFilter>
-            <ModalFilterTextRight>Lajittelu:</ModalFilterTextRight>
+          <ModalSort>
+            <ModalSortText>Lajittelu:</ModalSortText>
             <ModalSelect>
               <Option value="asc">Hinta pienimmästä suurimpaan</Option>
               <Option value="desc">Hinta suurimmasta pienimpään</Option>
             </ModalSelect>
-          </ModalFilter>
+          </ModalSort>
           </FilterModalCenter>
           <FilterModalBottom>
             <ModalClearButton onClick={clearFilters}>Tyhjennä</ModalClearButton>
