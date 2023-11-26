@@ -4,6 +4,7 @@ import Footer from '../components/Footer'
 import styled from "styled-components";
 import meista from "../assets/meista_page_img.jpg"
 import Announcement from '../components/Announcement';
+import Responsibility from '../components/Responsibility'
 
 const Meista = ({cart}) => {
   return (
@@ -34,6 +35,7 @@ const Meista = ({cart}) => {
             ja edistetään eläinten hyvinvointia!
           </TextAboutUs>
         </TextContainer>
+        <Responsibility />
       <Footer />
     </Container>
   )

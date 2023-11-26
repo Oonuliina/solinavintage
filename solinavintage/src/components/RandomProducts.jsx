@@ -25,7 +25,7 @@ const RandomProducts = ({addToCart}) => {
 
     return (
     <Container>
-      {randomProduct.slice(0, 4).map((randomProduct) => (
+      {randomProduct.slice(0, 10).map((randomProduct) => (
         <Product item={randomProduct} key={randomProduct.id} addToCart={addToCart}/>
       ))}
     </Container>

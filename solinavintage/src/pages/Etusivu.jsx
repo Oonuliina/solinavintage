@@ -3,7 +3,6 @@ import Header from '../components/Header'
 import Slider from "../components/Slider";
 import Footer from '../components/Footer'
 import RandomProducts from '../components/RandomProducts'
-import Responsibility from '../components/Responsibility'
 import styled from 'styled-components'
 import Announcement from '../components/Announcement';
 
@@ -25,7 +24,6 @@ function Etusivu({addToCart, cart}) {
         <Slider />
         <Title>Uutuuksia</Title>
         <RandomProducts addToCart={addToCart}/>
-        <Responsibility />
         <Footer />
     </Container>
   )
