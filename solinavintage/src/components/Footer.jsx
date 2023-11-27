@@ -13,7 +13,7 @@ import mobilepay from "../assets/mobilepayLogo.png";
 import pivo from "../assets/pivoLogo.png";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { tablet } from "../responsive";
+import { mobile, tablet } from "../responsive";
 
 const Container = styled.div`
   bottom: 0;
@@ -25,7 +25,7 @@ const FooterInfo = styled.div`
   display: flex;
   padding-bottom: 30px;
 
-  ${tablet({ flexDirection: "column", marginLeft: "30px"})}
+  ${tablet({ flexDirection: "column", marginLeft: "30px" })}
 `;
 const Left = styled.div`
   flex: 1;
@@ -34,25 +34,21 @@ const Left = styled.div`
   align-items: center;
   justify-content: center;
 
-  ${tablet({ alignItems: "left", justifyContent: "left"})}
-
+  ${tablet({ alignItems: "left", justifyContent: "left" })}
 `;
 
 const LinksBox = styled.div`
-  
-
-  @media only screen and (max-width: 380px) {
-    padding: 0% 5% 0% 5%;
-    width: 70%;
-    display: flex;
-    flex-direction: column;
-    aligt-text: left;
-  }
+  ${mobile({
+    padding: "0% 5% 0% 5%",
+    width: "70%",
+    display: "flex",
+    flexDirection: "column",
+  })}
 `;
 const LinksTitle = styled.h1`
   margin-bottom: 17px;
   align-text: left;
-  font-size: 16px;
+  font-size: 20px;
 `;
 const LinksList = styled.ul`
   list-style: none;
@@ -60,7 +56,7 @@ const LinksList = styled.ul`
   margin: 0;
 `;
 const LinkItem = styled.li`
-  font-size: 14px;
+  font-size: 18px;
   padding-bottom: 6px;
   list-style: none;
   text-align: left;
@@ -78,16 +74,11 @@ const Center = styled.div`
   align-items: center;
   justify-content: center;
 
-  ${tablet({ alignItems: "left", justifyContent: "left"})}
-  @media only screen and (max-width: 380px) {
-    margin-top: 10px;
-  }
+  ${tablet({ alignItems: "left", justifyContent: "left" })}
+  ${mobile({ marginTop: "10px" })}
 `;
 
 const ContactBox = styled.div`
-
-
-
   @media only screen and (max-width: 380px) {
     padding: 0% 5px 0% 5%;
     width: 70%;
@@ -98,13 +89,13 @@ const ContactBox = styled.div`
 `;
 const ContactTitle = styled.h1`
   text-align: left;
-  font-size: 16px;
+  font-size: 20px;
   margin-bottom: 17px;
 `;
 const ContactItem = styled.p`
   display: flex;
   text-align: left;
-  font-size: 14px;
+  font-size: 18px;
   align-items: center;
   justify-content: left;
   margin: 0;
@@ -127,7 +118,7 @@ const Right = styled.div`
   align-items: center;
   justify-content: center;
 
-  ${tablet({ alignItems: "left", justifyContent: "left"})}
+  ${tablet({ alignItems: "left", justifyContent: "left" })}
   @media only screen and (max-width: 380px) {
     margin-top: 10px;
   }
@@ -144,7 +135,7 @@ const PaymentContainer = styled.div`
 `;
 const PaymentTitle = styled.h1`
   text-align: left;
-  font-size: 16px;
+  font-size: 20px;
 `;
 const PaymentImageContainer = styled.div`
   display: flex;
@@ -196,7 +187,7 @@ const CopyrightContainer = styled.div`
   justify-content: center;
 `;
 const Copyright = styled.p`
-  font-size: 10px;
+  font-size: 14px;
 `;
 
 const Footer = () => {
@@ -260,13 +251,13 @@ const Footer = () => {
       <FooterBot>
         <SocialIconContainer>
           <SocialIcon>
-            <FacebookLogo size={32} weight="light" />
+            <FacebookLogo size={38} weight="light" />
           </SocialIcon>
           <SocialIcon>
-            <PinterestLogo size={32} weight="light" />
+            <PinterestLogo size={38} weight="light" />
           </SocialIcon>
           <SocialIcon>
-            <InstagramLogo size={32} weight="light" />
+            <InstagramLogo size={38} weight="light" />
           </SocialIcon>
         </SocialIconContainer>
         <CopyrightContainer>

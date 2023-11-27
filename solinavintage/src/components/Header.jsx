@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import logo from "../assets/SolinaLogo.png";
 import logoMobile from "../assets/SolinaLogoMobile.png";
 import { ShoppingBag, MagnifyingGlass, User } from "@phosphor-icons/react";
 import styled from "styled-components";
 import { Badge } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
-import { mobile } from "../responsive";
+import { mobile, tablet, large } from "../responsive";
 import Burger from "./Burger";
 import Search from "../components/Search";
 
@@ -13,6 +13,8 @@ const Container = styled.div`
   width: 100vw;
   border-bottom: 0.5px solid lightgray;
   padding-bottom: 20px;
+
+  ${mobile({ paddingBottom: "0px" })}
 `;
 const UpperNavigation = styled.div`
   position: relative;
@@ -21,7 +23,7 @@ const UpperNavigation = styled.div`
   padding: 0px 30px 0px 30px;
   margin-top: 30px;
 
-  ${mobile({ padding: "0px 5px 0px 5px", marginTop: "10px" })}
+  ${mobile({ padding: "5px 15px 5px 15px", marginTop: "10px" })}
 `;
 const UpperLeft = styled.div`
   flex: 1;
@@ -31,42 +33,33 @@ const UpperLeft = styled.div`
 
 const UpperCenter = styled.div`
   flex: 1;
+  display: flex;
   align-items: center;
   justify-content: center;
 
-  @media only screen and (max-width: 380px) {
-    flex: 2;
-    font-size: 1px;
-  }
+  ${mobile({ flex: "2" })}
 `;
-const TitleLogo = styled.h1`
+const MobileLogo = styled.img`
   display: none;
   top: 0;
 
-  @media only screen and (max-width: 380px) {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    margin-top: 5px;
-  }
+  ${mobile({ display: "flex", height: "50px!important" })}
+  ${tablet({ display: "flex", height: "100px" })}
 `;
 const UpperRight = styled.div`
   flex: 1;
   display: flex;
-  align-items: center;
+  position: relative;
   justify-content: end;
 `;
-const ShoppingContainer = styled.div`
-  display: flex;
-  align-items: center;
-  padding-left: 20px;
-`;
+const ShoppingContainer = styled.div``;
 const ShoppingButton = styled.button`
-  padding: 0;
+  padding-left: 15px;
   cursor: pointer;
   border: none;
   background: transparent;
+
+  ${mobile({ paddingLeft: "5px" })}
 `;
 
 const SearchIconButton = styled.button`
@@ -78,16 +71,13 @@ const SearchIconButton = styled.button`
   background: none;
 `;
 
-
 const LogoContainer = styled.div`
   display: flex;
   justify-content: center;
   margin-bottom: 15px;
+
+  ${tablet({ display: "none" })}
 `;
-
-const Picture = styled.picture``;
-
-const Source = styled.source``;
 
 const LogoImage = styled.img`
   width: 350px;
@@ -96,9 +86,8 @@ const LogoImage = styled.img`
   &:hover {
     cursor: pointer;
   }
-  @media only screen and (max-width: 380px) {
-    display: none;
-  }
+  ${tablet({ display: "none" })}
+  ${large({ width: "300px" })}
 `;
 const NavBar = styled.div`
   width: 100%;
@@ -106,17 +95,12 @@ const NavBar = styled.div`
   align-items: center;
   justify-content: center;
 
-  @media (max-width: 767px) {
-    display: none;
-  }
+  ${tablet({ display: "none" })}
 `;
-
-
-
 const NavItem = styled.a`
   margin-left: 15px;
   margin-right: 15px;
-  font-size: 16px;
+  font-size: 24px;
   color: #222222;
   text-decoration: none;
   cursor: pointer;
@@ -135,7 +119,6 @@ const NavDropContent = styled.div`
   z-index: 1;
 `;
 
-
 const NavDrop = styled.div`
   position: relative;
   display: inline-block;
@@ -148,7 +131,7 @@ const NavDrop = styled.div`
 const NavButton = styled.a`
   margin-left: 15px;
   margin-right: 15px;
-  font-size: 16px;
+  font-size: 24px;
   color: #222222;
   text-decoration: none;
   cursor: pointer;
@@ -170,9 +153,7 @@ const NavLink = styled.a`
 `;
 
 const Header = ({ cart }) => {
-
   const [showModal, setShowModal] = useState(0);
-
 
   const navigate = useNavigate();
 
@@ -180,70 +161,68 @@ const Header = ({ cart }) => {
     setShowModal((prev) => !prev);
   };
 
-
-
   return (
     <>
-    <Container>
-      {showModal ? (
-        <Search setShowModal={setShowModal} />
-      ) : null}
-      <UpperNavigation>
-        <UpperLeft>
-        <Burger/>
-          <SearchIconButton onClick={openModal}>
-            <MagnifyingGlass size={35} weight="light" />
-          </SearchIconButton>
-        </UpperLeft>
-        <UpperCenter>
-          <TitleLogo onClick={() => navigate("/")}>Solina Vintage</TitleLogo>
-        </UpperCenter>
-        <UpperRight>
-          <Link to={"/kirjautuminen"}>
-            <User size={32} weight="light" />
-          </Link>
-          <ShoppingContainer>
-            <ShoppingButton>
-              <Badge badgeContent={cart.length} color="secondary">
-                <ShoppingBag
-                  onClick={() => navigate("/ostoskori")}
-                  size={35}
-                  weight="light"
-                />
-              </Badge>
-            </ShoppingButton>
-          </ShoppingContainer>
-        </UpperRight>
-      </UpperNavigation>
-      <LogoContainer>
-        <Picture>
-          <Source
-            media="(max-width: 768px)"
-            srcSet={logoMobile}
-            sizes="768px"
-          />
+      <Container>
+        {showModal ? <Search setShowModal={setShowModal} /> : null}
+        <UpperNavigation>
+          <UpperLeft>
+            <Burger />
+            <SearchIconButton onClick={openModal}>
+              <MagnifyingGlass size={35} weight="light" />
+            </SearchIconButton>
+          </UpperLeft>
+          <UpperCenter>
+            <MobileLogo
+              src={logoMobile}
+              onClick={() => navigate("/")}
+            ></MobileLogo>
+          </UpperCenter>
+          <UpperRight>
+              <User onClick={() => navigate("/kirjautuminen")}  size={32} weight="light" />
+            <ShoppingContainer>
+              <ShoppingButton>
+                <Badge badgeContent={cart.length} color="secondary">
+                  <ShoppingBag
+                    onClick={() => navigate("/ostoskori")}
+                    size={35}
+                    weight="light"
+                  />
+                </Badge>
+              </ShoppingButton>
+            </ShoppingContainer>
+          </UpperRight>
+        </UpperNavigation>
+        <LogoContainer>
           <LogoImage onClick={() => navigate("/")} src={logo} />
-        </Picture>
-      </LogoContainer>
-      <NavBar>
-        <NavItem onClick={() => navigate("/")}>ETUSIVU</NavItem>
-        <NavDrop>
-          <NavButton onClick={() => navigate("/tuotteet")}>TUOTTEET</NavButton>
-          <NavDropContent>
-            <NavLink onClick={() => navigate("/tuotteet/mekot")}>Mekot</NavLink>
-            <NavLink onClick={() => navigate("/tuotteet/kengat")}>
-              Kengät
-            </NavLink>
-            <NavLink onClick={() => navigate("/tuotteet/laukut")}>
-              Laukut
-            </NavLink>
-            <NavLink onClick={() => navigate("/tuotteet/takit")}>Takit</NavLink>
-            <NavLink onClick={() => navigate("/tuotteet/korut")}>Korut</NavLink>
-          </NavDropContent>
-        </NavDrop>
-        <NavItem onClick={() => navigate("/meista")}>MEISTÄ</NavItem>
-      </NavBar>
-    </Container>
+        </LogoContainer>
+        <NavBar>
+          <NavItem onClick={() => navigate("/")}>ETUSIVU</NavItem>
+          <NavDrop>
+            <NavButton onClick={() => navigate("/tuotteet")}>
+              TUOTTEET
+            </NavButton>
+            <NavDropContent>
+              <NavLink onClick={() => navigate("/tuotteet/mekot")}>
+                Mekot
+              </NavLink>
+              <NavLink onClick={() => navigate("/tuotteet/kengat")}>
+                Kengät
+              </NavLink>
+              <NavLink onClick={() => navigate("/tuotteet/laukut")}>
+                Laukut
+              </NavLink>
+              <NavLink onClick={() => navigate("/tuotteet/takit")}>
+                Takit
+              </NavLink>
+              <NavLink onClick={() => navigate("/tuotteet/korut")}>
+                Korut
+              </NavLink>
+            </NavDropContent>
+          </NavDrop>
+          <NavItem onClick={() => navigate("/meista")}>MEISTÄ</NavItem>
+        </NavBar>
+      </Container>
     </>
   );
 };

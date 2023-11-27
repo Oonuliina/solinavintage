@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { tablet } from "../responsive";
 
 const Burger = () => {
   const [open, setOpen] = useState(false);
@@ -59,10 +60,10 @@ const Burger = () => {
 export default Burger;
 
 const StyledBurger = styled.div`
+  display: none;
   position: relative;
   width; 2rem;
   height: 2rem;
-  display: flex;
   justify-content: space-around;
   flex-flow: column nowrap;
   cursor: pointer;
@@ -87,6 +88,8 @@ transform: ${({ open }) => (open ? "rotate(45deg)" : "rotate(0)")};
   transform: ${({ open }) => (open ? "rotate(-45deg)" : "rotate(0)")};
 }
 }
+
+${tablet({ display: "flex"})}
 `;
 
 const SideMenu = styled.div`

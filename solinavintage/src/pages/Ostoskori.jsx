@@ -4,6 +4,7 @@ import Footer from "../components/Footer";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import CartItem from "../components/CartItem";
+import Announcement from "../components/Announcement";
 
 const Container = styled.div``;
 const Wrapper = styled.div`
@@ -117,6 +118,7 @@ const Ostoskori = ({ cart, removeFromCart }) => {
 
   return (
     <Container>
+      <Announcement />
       <Header cart={cart} />
       <Wrapper>
         <Title>Ostoskorisi</Title>

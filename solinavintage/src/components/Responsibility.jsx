@@ -75,10 +75,10 @@ const Image = styled.img`
     
   }
 `;
-const Desc = styled.p`
-  font-size: 20px;
+const Desc = styled.span`
+  font-size: 24px;
+  padding: 20px;
   text-align: center;
-
 
   ${large({ fontSize: "1rem", paddingLeft: "10px", paddingRight: "10px"})}
   @media only screen and (max-width: 380px) {
