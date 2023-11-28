@@ -15,181 +15,6 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { mobile, tablet } from "../responsive";
 
-const Container = styled.div`
-  bottom: 0;
-  left: 0;
-  width: 100vw;
-  border-top: 0.5px solid lightgray;
-`;
-const FooterInfo = styled.div`
-  display: flex;
-  padding-bottom: 30px;
-
-  ${tablet({ flexDirection: "column", marginLeft: "30px" })}
-`;
-const Left = styled.div`
-  flex: 1;
-  margin-top: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  ${tablet({ alignItems: "left", justifyContent: "left" })}
-`;
-
-const LinksBox = styled.div`
-  ${mobile({
-    padding: "0% 5% 0% 5%",
-    width: "70%",
-    display: "flex",
-    flexDirection: "column",
-  })}
-`;
-const LinksTitle = styled.h1`
-  margin-bottom: 17px;
-  align-text: left;
-  font-size: 20px;
-`;
-const LinksList = styled.ul`
-  list-style: none;
-  padding: 0;
-  margin: 0;
-`;
-const LinkItem = styled.li`
-  font-size: 18px;
-  padding-bottom: 6px;
-  list-style: none;
-  text-align: left;
-  cursor: pointer;
-
-  &:hover {
-    font-weight: bold;
-  }
-`;
-
-const Center = styled.div`
-  flex: 1;
-  margin-top: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  ${tablet({ alignItems: "left", justifyContent: "left" })}
-  ${mobile({ marginTop: "10px" })}
-`;
-
-const ContactBox = styled.div`
-  @media only screen and (max-width: 380px) {
-    padding: 0% 5px 0% 5%;
-    width: 70%;
-    display: flex;
-    flex-direction: column;
-    aligt-text: left;
-  }
-`;
-const ContactTitle = styled.h1`
-  text-align: left;
-  font-size: 20px;
-  margin-bottom: 17px;
-`;
-const ContactItem = styled.p`
-  display: flex;
-  text-align: left;
-  font-size: 18px;
-  align-items: center;
-  justify-content: left;
-  margin: 0;
-  padding-bottom: 6px;
-
-  @media only screen and (max-width: 380px) {
-    margin: 2px;
-  
-`;
-const ContactIcon = styled.span`
-  padding-right: 5px;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-`;
-const Right = styled.div`
-  flex: 1;
-  margin-top: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  ${tablet({ alignItems: "left", justifyContent: "left" })}
-  @media only screen and (max-width: 380px) {
-    margin-top: 10px;
-  }
-`;
-
-const PaymentContainer = styled.div`
-  @media only screen and (max-width: 380px) {
-    padding: 0% 5% 0% 5%;
-    width: 70%;
-    display: flex;
-    flex-direction: column;
-    aligt-text: left;
-  }
-`;
-const PaymentTitle = styled.h1`
-  text-align: left;
-  font-size: 20px;
-`;
-const PaymentImageContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  padding: 0;
-  filter: grayscale();
-`;
-
-const BigImageContainer = styled.div`
-  display: flex;
-  margin: 10px 0;
-  justify-content: center;
-`;
-const BigImage = styled.img`
-  height: 100px;
-  width: auto;
-  padding-left: 0;
-`;
-const SmallImageContainer = styled.div`
-  padding-left: 3px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-`;
-const SmallImage = styled.img`
-  height: 32px;
-  padding-bottom: 1px;
-`;
-
-const FooterBot = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-const SocialIconContainer = styled.div`
-  display: flex;
-  margin: auto;
-`;
-const SocialIcon = styled.div`
-  display: flex;
-  transition: all 0.5s ease;
-
-  &:hover {
-    transform: scale(1.1);
-  }
-`;
-const CopyrightContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-const Copyright = styled.p`
-  font-size: 14px;
-`;
-
 const Footer = () => {
   const navigate = useNavigate();
 
@@ -269,3 +94,173 @@ const Footer = () => {
 };
 
 export default Footer;
+
+const Container = styled.div`
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  border-top: 0.5px solid lightgray;
+`;
+const FooterInfo = styled.div`
+  display: flex;
+  padding-bottom: 30px;
+
+  ${tablet({ flexDirection: "column", marginLeft: "30px" })}
+`;
+const Left = styled.div`
+  flex: 1;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  ${tablet({ alignItems: "left", justifyContent: "left" })}
+`;
+
+const LinksBox = styled.div`
+  ${mobile({
+    padding: "0% 5% 0% 5%",
+    width: "70%",
+    display: "flex",
+    flexDirection: "column",
+  })}
+`;
+const LinksTitle = styled.h1`
+  margin-bottom: 17px;
+  align-text: left;
+  font-size: 20px;
+`;
+const LinksList = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin: 0;
+`;
+const LinkItem = styled.li`
+  font-size: 18px;
+  padding-bottom: 6px;
+  list-style: none;
+  text-align: left;
+  cursor: pointer;
+
+  &:hover {
+    font-weight: bold;
+  }
+`;
+
+const Center = styled.div`
+  flex: 1;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  ${tablet({ alignItems: "left", justifyContent: "left" })}
+  ${mobile({ marginTop: "10px" })}
+`;
+
+const ContactBox = styled.div`
+  ${mobile({
+    padding: "0% 5% 0% 5%",
+    width: "70%",
+    display: "flex",
+    flexDirection: "column",
+  })}
+`;
+const ContactTitle = styled.h1`
+  text-align: left;
+  font-size: 20px;
+  margin-bottom: 17px;
+`;
+const ContactItem = styled.p`
+  display: flex;
+  text-align: left;
+  font-size: 18px;
+  align-items: center;
+  justify-content: left;
+  margin: 0;
+  padding-bottom: 6px;
+
+  ${mobile({ margin: "2px" })}
+`;
+const ContactIcon = styled.span`
+  padding-right: 5px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+`;
+const Right = styled.div`
+  flex: 1;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  ${tablet({ alignItems: "left", justifyContent: "left" })}
+  ${mobile({ marginTop: "10px" })}
+`;
+
+const PaymentContainer = styled.div`
+  ${mobile({
+    padding: "0% 5% 0% 5%",
+    width: "70%",
+    display: "flex",
+    flexDirection: "column",
+    alignText: "left",
+  })}
+`;
+const PaymentTitle = styled.h1`
+  text-align: left;
+  font-size: 20px;
+`;
+const PaymentImageContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  filter: grayscale();
+`;
+
+const BigImageContainer = styled.div`
+  display: flex;
+  margin: 10px 0;
+  justify-content: center;
+`;
+const BigImage = styled.img`
+  height: 100px;
+  width: auto;
+  padding-left: 0;
+`;
+const SmallImageContainer = styled.div`
+  padding-left: 3px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+const SmallImage = styled.img`
+  height: 32px;
+  padding-bottom: 1px;
+`;
+
+const FooterBot = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+const SocialIconContainer = styled.div`
+  display: flex;
+  margin: auto;
+`;
+const SocialIcon = styled.div`
+  display: flex;
+  transition: all 0.5s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+`;
+const CopyrightContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+const Copyright = styled.p`
+  font-size: 14px;
+`;

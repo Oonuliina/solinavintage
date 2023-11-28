@@ -4,7 +4,7 @@ import logoMobile from "../assets/SolinaLogoMobile.png";
 import { ShoppingBag, MagnifyingGlass, User } from "@phosphor-icons/react";
 import styled from "styled-components";
 import { Badge } from "@mui/material";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { mobile, tablet, large } from "../responsive";
 import Burger from "./Burger";
 import Search from "../components/Search";
@@ -52,12 +52,25 @@ const UpperRight = styled.div`
   position: relative;
   justify-content: end;
 `;
+const LoginIcon = styled.span`
+  cursor: pointer;
+  transition: all 0.5s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+`;
 const ShoppingContainer = styled.div``;
 const ShoppingButton = styled.button`
   padding-left: 15px;
   cursor: pointer;
   border: none;
   background: transparent;
+  transition: all 0.5s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 
   ${mobile({ paddingLeft: "5px" })}
 `;
@@ -69,6 +82,11 @@ const SearchIconButton = styled.button`
   border: none;
   z-index: 1;
   background: none;
+  transition: all 0.5s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 `;
 
 const LogoContainer = styled.div`
@@ -179,7 +197,7 @@ const Header = ({ cart }) => {
             ></MobileLogo>
           </UpperCenter>
           <UpperRight>
-              <User onClick={() => navigate("/kirjautuminen")}  size={32} weight="light" />
+              <LoginIcon><User onClick={() => navigate("/kirjautuminen")}  size={32} weight="light" /></LoginIcon>
             <ShoppingContainer>
               <ShoppingButton>
                 <Badge badgeContent={cart.length} color="secondary">
