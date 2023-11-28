@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import logo from "../assets/SolinaLogo.png";
 import logoMobile from "../assets/SolinaLogoMobile.png";
-import { ShoppingBag, MagnifyingGlass, User } from "@phosphor-icons/react";
+import {
+  ShoppingBag,
+  MagnifyingGlass,
+  User,
+  SignOut,
+} from "@phosphor-icons/react";
 import styled from "styled-components";
 import { Badge } from "@mui/material";
 import { useNavigate } from "react-router-dom";
@@ -53,6 +58,15 @@ const UpperRight = styled.div`
   justify-content: end;
 `;
 const LoginIcon = styled.span`
+  cursor: pointer;
+  transition: all 0.5s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+`;
+
+const LogoutIcon = styled.span`  
   cursor: pointer;
   transition: all 0.5s ease;
 
@@ -171,12 +185,46 @@ const NavLink = styled.a`
 `;
 
 const Header = ({ cart }) => {
+
+  const loggedIn = sessionStorage.getItem("loginToken");
+
   const [showModal, setShowModal] = useState(0);
 
   const navigate = useNavigate();
 
   const openModal = () => {
     setShowModal((prev) => !prev);
+  };
+
+  let LoggedIn = {
+    display: "none",
+  };
+  if (loggedIn) {
+    LoggedIn = {
+      display: "flex",
+    };
+  } else {
+    LoggedIn = {
+      display: "none",
+    };
+  }
+
+  let LoggedOut = {
+    display: "flex",
+  };
+  if (loggedIn) {
+    LoggedOut = {
+      display: "none",
+    };
+  } else {
+    LoggedOut = {
+      display: "flex",
+    };
+  }
+
+  function logOut() {
+    sessionStorage.clear();
+    window.location.reload();
   };
 
   return (
@@ -197,7 +245,16 @@ const Header = ({ cart }) => {
             ></MobileLogo>
           </UpperCenter>
           <UpperRight>
-              <LoginIcon><User onClick={() => navigate("/kirjautuminen")}  size={32} weight="light" /></LoginIcon>
+            <LoginIcon style={LoggedOut}>
+              <User
+                onClick={() => navigate("/kirjautuminen")}
+                size={32}
+                weight="light"
+              />
+            </LoginIcon>
+            <LogoutIcon style={LoggedIn}>
+              <SignOut size={32} onClick={() => logOut()}/>
+            </LogoutIcon>
             <ShoppingContainer>
               <ShoppingButton>
                 <Badge badgeContent={cart.length} color="secondary">
