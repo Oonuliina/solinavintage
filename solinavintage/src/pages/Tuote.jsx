@@ -5,7 +5,11 @@ import Announcement from "../components/Announcement";
 import { large, tablet } from "../responsive";
 import { products } from "../data";
 
-const Container = styled.div``;
+const Container = styled.div`
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+`;
 const Wrapper = styled.div`
   margin-top: 50px;
   padding 50px;
@@ -33,7 +37,6 @@ const ImgContainer = styled.div`
 `;
 const Image = styled.img`
   height: 400px;
-  object-fit: cover;
 
   ${large({ height: "400px" })}
 `;
