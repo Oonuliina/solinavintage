@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import React, {useState, useEffect} from 'react';
+import { tablet, large } from "../responsive";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   width: 100vw;
@@ -9,7 +11,7 @@ const Container = styled.div`
       rgba(255, 255, 255, 0.5),
       rgba(255, 255, 255, 0.5)
     ),
-    url("https://images.pexels.com/photos/33678/vintage-1950s-pretty-woman-vintage-car-1955-montclair.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
+    url("https://images.pexels.com/photos/9260836/pexels-photo-9260836.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
       center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -20,11 +22,12 @@ const Container = styled.div`
 `;
 
 const Wrapper = styled.div`
-  width: 30%;
+  width: 500px;
   padding: 20px;
   background-color: white;
   border-radius: 5px;
-  box-shadow: 3px 3px 3px 5px lightgray;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  ${tablet({ width: "65%"})}
 `;
 const Title = styled.h1`
   font-size: 24px;
@@ -46,9 +49,8 @@ const Input = styled.input`
 const CreateAccountButton = styled.button`
     background-color: black;
     color: white;
-    padding: 10px;
-    margin: 20px 0px;
-    width: 20%;
+    padding: 10px 30px;
+    margin: 20px 30px;
     border: none;
     cursor: pointer;
 `;
@@ -59,6 +61,8 @@ const BackToHomeButtom = styled.button`
 `;
 
 const Rekisteröityminen = () => {
+
+  const navigate = useNavigate();
 
   const loggedIn = sessionStorage.getItem("loginToken");
 
@@ -87,13 +91,13 @@ const Rekisteröityminen = () => {
           return resp.json();
         };
 
-        postUser("http://localhost:5000/rekisteroityminen", {Sahkoposti: Sahkoposti, Salasana: Password})
+        postUser("https://solina-server.onrender.com/rekisteroityminen", {Sahkoposti: Sahkoposti, Salasana: Password})
         .then((res) => {
           if (res === "Sähkoposti on jo käytössä!"){
             alert(res)
           } else {
             alert("Käyttäjätili on luotu!")
-            document.location.replace("/kirjautuminen");
+            navigate("/kirjautuminen");
           }
         });
       } else {

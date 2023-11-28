@@ -14,193 +14,7 @@ import { kengat } from "../data";
 import { laukut } from "../data";
 import { mobile, tablet, large } from "../responsive";
 
-const Container = styled.div``;
 
-const FiltersContainer = styled.div`
-  padding-left: 3%;
-  padding-right: 3%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 25px;
-
-  ${large({ display: "flex" })}
-`;
-const Title = styled.h1`
-  font-size: 35px;
-  align-text: left;
-  padding-left: 3%;
-  padding-right: 3%;
-
-  ${tablet({ fontSize: "30px" })}
-  ${mobile({ fontSize: "25px", marginTop: "30px", marginBottom: "35px" })}
-`;
-
-/* Filter modal*/
-const FilterModalContainer = styled.div`
-  height: 50vh;
-  width: 80vw;
-  display: flex;
-  position: fixed;
-  flex-direction: column;
-  z-index: 6;
-  background-color: white;
-  overflow: auto;
-  border: 0.5px solid lightgray;
-`;
-/* Filter modal top*/
-const FilterModalTop = styled.div`
-  flex: 1;
-  display: flex;
-  border-bottom: 0.5px solid lightgray;
-`;
-const FiltermodalTopText = styled.span`
-  font-size: 13px;
-  font-weight: 100;
-  color: gray;
-`;
-const FilterModalTopLeft = styled.div`
-  flex: 1;
-`;
-const FilterModalTopCenter = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
-const FilterModalTopRight = styled.div`
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-const CloseModalButton = styled.button`
-  border: none;
-  background: none;
-  margin-left: 20px;
-`;
-/* Filter modal center*/
-
-const FilterModalCenter = styled.div`
-  flex: 3;
-  margin: 15px;
-`;
-const ModalSelect = styled.select`
-  border: none;
-  font-size: 15px;
-  padding-bottom: 20px;
-`;
-
-const ModalSortText = styled.span`
-  font-size: 15px;
-`;
-const ModalFilter = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-const ModalSort = styled.div`
-  display: flex;
- 
-`;
-
-/*Filter modal bottom*/
-const FilterModalBottom = styled.div`
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-top: 0.5px solid lightgray;
-`;
-
-const ModalClearButton = styled.button`
-  border: none;
-  background: none;
-  text-decoration: underline;
-  cursor: pointer;
-  margin: 0px 10px 0px 10px;
-`;
-const UseFiltersButton = styled.button`
-  background-color: black;
-  border: none;
-  border-radius: 1px;
-  color: whitesmoke;
-  padding: 10px;
-  cursor: pointer;
-  width: 100px;
-  margin: 0px 10px 0px 10px;
-`;
-
-/*Main page*/
-const Left = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const Filter = styled.div`
-  ${large({ display: "none" })}
-`;
-
-const FilterIcon = styled.span`
-  display: none;
-
-  ${large({ display: "flex" })}
-`;
-const FilterTextLeft = styled.span`
-  font-size: 20px;
-  ${large({ display: "flex" })}
-
-`;
-const FilterTextRight = styled.span`
-  font-size: 20px;
-
-  ${large({ display: "none" })}
-`;
-const Select = styled.select`
-  padding: 5px;
-  font-size: 20px;
-  border: none;
-  color: gray;
-  margin: 0px 8px;
-  background-color: transparent;
-
-  &:hover {
-    text-decoration: underline;
-  }
-  @media only screen and (max-width: 380px) {
-    display: none;
-  }
-`;
-const Option = styled.option``;
-
-const Right = styled.div`
-  display: flex;
-`;
-const AmountOfProducts = styled.div`
-  padding-left: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-const NumberTotal = styled.span`
-  font-size: 20px;
-`;
-const Desc = styled.span`
-  font-size: 20px;
-  padding-left: 10px;
-`;
-
-const ClearButton = styled.button`
-  border: none;
-  background-color: #222222;
-  color: white;
-  border-radius: 30px;
-  font-size: 18px;
-  padding: 5px 20px 5px 20px;
-
-  ${large({ display: "none" })}
-`;
 const Tuotteet = ({ addToCart, cart }) => {
   var category = "";
   const fullpath = window.location.href;
@@ -286,7 +100,7 @@ const Tuotteet = ({ addToCart, cart }) => {
             <FilterModalTopCenter>
               <FiltermodalTopText>Suodatus</FiltermodalTopText>
               <AmountOfProducts>
-                <NumberTotal>9</NumberTotal>
+                <NumberTotal>{category.length}</NumberTotal>
                 <Desc>tuotetta</Desc>
               </AmountOfProducts>
             </FilterModalTopCenter>
@@ -313,7 +127,7 @@ const Tuotteet = ({ addToCart, cart }) => {
           </ModalFilter>
           <ModalSort>
             <ModalSortText>Lajittelu:</ModalSortText>
-            <ModalSelect>
+            <ModalSelect onChange={(e) => setSort(e.target.value)}>
               <Option value="asc">Hinta pienimmästä suurimpaan</Option>
               <Option value="desc">Hinta suurimmasta pienimpään</Option>
             </ModalSelect>
@@ -321,7 +135,6 @@ const Tuotteet = ({ addToCart, cart }) => {
           </FilterModalCenter>
           <FilterModalBottom>
             <ModalClearButton onClick={clearFilters}>Tyhjennä</ModalClearButton>
-            <UseFiltersButton>Käytä</UseFiltersButton>
           </FilterModalBottom>
         </FilterModalContainer>
       ) : null}
@@ -361,7 +174,7 @@ const Tuotteet = ({ addToCart, cart }) => {
             </Select>
           </Filter>
           <AmountOfProducts>
-            <NumberTotal>9</NumberTotal>
+            <NumberTotal>{category.length}</NumberTotal>
             <Desc>tuotetta</Desc>
           </AmountOfProducts>
         </Right>
@@ -373,3 +186,186 @@ const Tuotteet = ({ addToCart, cart }) => {
 };
 
 export default Tuotteet;
+
+
+const Container = styled.div``;
+
+const FiltersContainer = styled.div`
+  padding-left: 3%;
+  padding-right: 3%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 25px;
+
+  ${large({ display: "flex" })}
+`;
+const Title = styled.h1`
+  font-size: 35px;
+  align-text: left;
+  padding-left: 3%;
+  padding-right: 3%;
+
+  ${tablet({ fontSize: "30px" })}
+  ${mobile({ fontSize: "25px", marginTop: "30px", marginBottom: "35px" })}
+`;
+
+/* Filter modal*/
+const FilterModalContainer = styled.div`
+  height: 50vh;
+  width: 80vw;
+  display: flex;
+  position: fixed;
+  flex-direction: column;
+  z-index: 6;
+  background-color: white;
+  overflow: auto;
+  border: 0.5px solid lightgray;
+`;
+/* Filter modal top*/
+const FilterModalTop = styled.div`
+  flex: 1;
+  display: flex;
+  border-bottom: 0.5px solid lightgray;
+`;
+const FiltermodalTopText = styled.span`
+  font-size: 13px;
+  font-weight: 100;
+  color: gray;
+`;
+const FilterModalTopLeft = styled.div`
+  flex: 1;
+`;
+const FilterModalTopCenter = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+const FilterModalTopRight = styled.div`
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+const CloseModalButton = styled.button`
+  border: none;
+  background: none;
+  margin-left: 20px;
+`;
+/* Filter modal center*/
+
+const FilterModalCenter = styled.div`
+  flex: 3;
+  margin: 15px;
+`;
+const ModalSelect = styled.select`
+  border: none;
+  font-size: 15px;
+  padding-bottom: 20px;
+`;
+
+const ModalSortText = styled.span`
+  font-size: 15px;
+  padding-bottom: 10px;
+`;
+const ModalFilter = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+const ModalSort = styled.div`
+  display: flex;
+  flex-direction: column;
+ 
+`;
+
+/*Filter modal bottom*/
+const FilterModalBottom = styled.div`
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 0.5px solid lightgray;
+`;
+
+const ModalClearButton = styled.button`
+  border: none;
+  background-color: #222222;
+  cursor: pointer;
+  color: whitesmoke;
+  padding: 15px 30px;
+  margin: 0px 10px 0px 10px;
+  border-radius: 30px;
+`;
+
+/*Main page*/
+const Left = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const Filter = styled.div`
+  ${large({ display: "none" })}
+`;
+
+const FilterIcon = styled.span`
+  display: none;
+  ${large({ display: "flex" })}
+`;
+const FilterTextLeft = styled.span`
+  font-size: 20px;
+  ${large({ display: "flex" })}
+  ${mobile({ fontSize: "17px" })}
+`;
+const FilterTextRight = styled.span`
+  font-size: 20px;
+  ${large({ display: "none" })}
+`;
+const Select = styled.select`
+  padding: 5px;
+  font-size: 20px;
+  border: none;
+  color: gray;
+  margin: 0px 8px;
+  background-color: transparent;
+
+  &:hover {
+    text-decoration: underline;
+  }
+  @media only screen and (max-width: 380px) {
+    display: none;
+  }
+`;
+const Option = styled.option``;
+
+const Right = styled.div`
+  display: flex;
+`;
+const AmountOfProducts = styled.div`
+  padding-left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+const NumberTotal = styled.span`
+  font-size: 20px;
+  ${mobile({ fontSize: "17px" })}
+`;
+const Desc = styled.span`
+  font-size: 20px;
+  padding-left: 10px;
+  ${mobile({ fontSize: "17px" })}
+`;
+
+const ClearButton = styled.button`
+  border: none;
+  background-color: #222222;
+  color: white;
+  border-radius: 30px;
+  font-size: 18px;
+  padding: 5px 20px 5px 20px;
+
+  ${large({ display: "none" })}
+`;

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { mobile, tablet } from "../responsive";
 
 const Container = styled.div`
   height: 40px;
@@ -9,10 +10,8 @@ const Container = styled.div`
   justify-content: center;
   font-size: 15px;
 
-  @media (max-width: 768px) {
-    font-size: 10px;
-    height: 35px;
-  }
+  ${tablet({ fontSize: "12px", height: "35px" })}
+
 `;
 
 const Announcement = () => {

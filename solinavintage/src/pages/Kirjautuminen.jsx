@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { tablet, mobile, large } from "../responsive";
 /* import PropTypes from 'prop-types'; */
 import React, { useState, useEffect } from 'react';
 
@@ -10,7 +11,7 @@ const Container = styled.div`
       rgba(255, 255, 255, 0.5),
       rgba(255, 255, 255, 0.5)
     ),
-    url("https://images.pexels.com/photos/33678/vintage-1950s-pretty-woman-vintage-car-1955-montclair.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
+    url("https://images.pexels.com/photos/9260836/pexels-photo-9260836.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
       center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -21,11 +22,12 @@ const Container = styled.div`
 `;
 
 const Wrapper = styled.div`
-  width: 30%;
+  width: 500px;
   padding: 20px;
   background-color: white;
   border-radius: 5px;
-  box-shadow: 3px 3px 3px 5px lightgray;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  ${tablet({ width: "65%"})}
 `;
 const Title = styled.h1`
   font-size: 24px;
@@ -50,7 +52,6 @@ const LoginButton = styled.button`
     color: white;
     padding: 10px 30px;
     margin: 20px 30px;
-    width: 20%;
     border: none;
     cursor: pointer;
 `;
@@ -69,7 +70,7 @@ const BackToHomeButtom = styled.button`
 `;
 
 async function loginUser(credentials){
-  return fetch('http://localhost:5000/kirjautuminen', {
+  return fetch('https://solina-server.onrender.com/kirjautuminen', {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify(credentials)
@@ -77,7 +78,7 @@ async function loginUser(credentials){
 }
 
 async function getCart(user){
-  return fetch('http://localhost:5000/haekori', {
+  return fetch('https://solina-server.onrender.com/haekori', {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify(user)
@@ -136,7 +137,7 @@ const Kirjautuminen = ({ setLoginToken}) => {
     <Container>
         <Wrapper>
             <Form>
-              <Title>Kirjautuminen</Title>
+              <Title>Kirjaudu sisään</Title>
               <Input type="text" placeholder="Sähköposti" onChange={e => setEmail(e.target.value)}/>
               <Input type="password" placeholder="Salasana" onChange={e => setPasswo(e.target.value)}/>
               <LoginButton onClick={handleLogin}>Kirjaudu sisään</LoginButton>
