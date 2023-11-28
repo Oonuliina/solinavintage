@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import logo from "../assets/SolinaLogo.png";
 import logoMobile from "../assets/SolinaLogoMobile.png";
-import { ShoppingBag, MagnifyingGlass, User } from "@phosphor-icons/react";
+import {
+  ShoppingBag,
+  MagnifyingGlass,
+  User,
+  SignOut,
+} from "@phosphor-icons/react";
 import styled from "styled-components";
 import { Badge } from "@mui/material";
 import { useNavigate } from "react-router-dom";
@@ -60,6 +65,8 @@ const LoginIcon = styled.span`
     transform: scale(1.1);
   }
 `;
+
+const LogoutIcon = styled.span``;
 const ShoppingContainer = styled.div``;
 const ShoppingButton = styled.button`
   padding-left: 15px;
@@ -197,7 +204,16 @@ const Header = ({ cart }) => {
             ></MobileLogo>
           </UpperCenter>
           <UpperRight>
-              <LoginIcon><User onClick={() => navigate("/kirjautuminen")}  size={32} weight="light" /></LoginIcon>
+            <LoginIcon>
+              <User
+                onClick={() => navigate("/kirjautuminen")}
+                size={32}
+                weight="light"
+              />
+            </LoginIcon>
+            <LogoutIcon>
+              <SignOut size={32} />
+            </LogoutIcon>
             <ShoppingContainer>
               <ShoppingButton>
                 <Badge badgeContent={cart.length} color="secondary">
