@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import React, {useState, useEffect} from 'react';
 import { tablet, large } from "../responsive";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   width: 100vw;
@@ -61,6 +62,8 @@ const BackToHomeButtom = styled.button`
 
 const Rekisteröityminen = () => {
 
+  const navigate = useNavigate();
+
   const loggedIn = sessionStorage.getItem("loginToken");
 
   useEffect(() => {
@@ -94,7 +97,7 @@ const Rekisteröityminen = () => {
             alert(res)
           } else {
             alert("Käyttäjätili on luotu!")
-            document.location.replace("/kirjautuminen");
+            navigate("/kirjautuminen");
           }
         });
       } else {
