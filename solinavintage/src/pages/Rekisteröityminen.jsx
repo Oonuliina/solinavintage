@@ -88,7 +88,7 @@ const Rekisteröityminen = () => {
           return resp.json();
         };
 
-        postUser("http://localhost:5000/rekisteroityminen", {Sahkoposti: Sahkoposti, Salasana: Password})
+        postUser("http://solina-server.onrender.com/rekisteroityminen", {Sahkoposti: Sahkoposti, Salasana: Password})
         .then((res) => {
           if (res === "Sähkoposti on jo käytössä!"){
             alert(res)
