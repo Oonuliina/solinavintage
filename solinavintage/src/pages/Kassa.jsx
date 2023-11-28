@@ -13,7 +13,7 @@ const Kassa = ({ cart }) => {
   const [deliveryFee, setDeliveryFee] = useState(0);
 
   var totalPrice = 0;
-
+  
   cart.map((item) => (totalPrice += JSON.parse(item.price)));
 
   var hesyPrice = totalPrice / 10;
