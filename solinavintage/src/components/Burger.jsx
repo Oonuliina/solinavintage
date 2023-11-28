@@ -94,7 +94,6 @@ ${tablet({ display: "flex"})}
 
 const SideMenu = styled.div`
   position: absolute;
-
   margin: 0;
   top: -10px;
   left: -10px;
@@ -107,15 +106,15 @@ const NavList = styled.ul`
   display: flex;
   align-items: left;
   border: 0.5px solid;
-  padding: 50px 20px 20px 40px;
-  background-color: #222222;
+  padding: 30px 20px 20px 40px;
+  background-color: white;
   flex-direction: column;
 `;
 const NavLink = styled.li`
   margin-left: 15px;
   margin-right: 15px;
   font-size: 20px;
-  color: white;
+  color: #222222;
   cursor: pointer;
   padding: 5px;
 
@@ -133,7 +132,7 @@ const NavDropContentSide = styled.span`
 const NavButton = styled.li`
   margin-right: 15px;
   font-size: 25px;
-  color: white;
+  color: #222222;
   text-decoration: none;
   cursor: pointer;
   padding: 5px;
@@ -147,14 +146,12 @@ const NavButton = styled.li`
 const NavItem = styled.li`
   margin-right: 15px;
   font-size: 25px;
-  color: white;
+  color: #222222;
   text-decoration: none;
   cursor: pointer;
   padding: 5px;
 
   &:hover {
     font-weight: bold;
-    background-color: whitesmoke;
-    color: #222222;
   }
 `;

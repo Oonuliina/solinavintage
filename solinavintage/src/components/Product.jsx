@@ -2,6 +2,7 @@ import { Eye, ShoppingBag } from "@phosphor-icons/react";
 import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { mobile } from "../responsive";
 
 const IconContainer = styled.div`
   opacity: 0;
@@ -25,15 +26,12 @@ const Container = styled.div`
     opacity: 1;
   }
 
-  @media only screen and (max-width: 380px) {
-    margin: 3px;
-  }
+  ${mobile({ margin: "3px" })}
 `;
 const ImageContainer = styled.div`
   display: flex;
   position: relative;
 `;
-
 const Image = styled.img`
   display: flex;
   height: 400px;
@@ -41,12 +39,8 @@ const Image = styled.img`
   cursor: pointer;
   position: relative;
 
-  @media only screen and (max-width: 380px) {
-    height: 200px;
-    width: 170px;
-  }
+  ${mobile({ height: "200px", width: "170px" })}
 `;
-
 const Icon = styled.div`
   width: 40px;
   height: 40px;
@@ -64,54 +58,44 @@ const Icon = styled.div`
     background-color: lightpink;
   }
 `;
-
 const InfoContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100px;
+  height: 120px;
   width: 350px;
 
-  @media only screen and (max-width: 380px) {
-    width: 170px;
-    height: 65px;
-    margin-top: 2px;
-    margin-bottom: 3px;
-    padding
-  }
+  ${mobile({
+    width: "170px",
+    height: "105px",
+    marginTop: "2px",
+    marginBottom: "3px",
+  })}
 `;
 const Title = styled.span`
   padding: 5px;
-  font-size: 15px;
+  font-size: 20px;
   text-align: left;
 
   &:hover {
     font-weight: bold;
   }
-  @media only screen and (max-width: 380px) {
-    padding: 3px;
-    font-size: 11px;
-  }
+
+  ${mobile({ padding: "3px", fontSize: "15px" })}
 `;
 const Size = styled.span`
   padding: 5px;
-  font-size: 15px;
+  font-size: 20px;
   text-align: left;
   font-weight: 600;
 
-  @media only screen and (max-width: 380px) {
-    padding: 2px;
-    font-size: 11px;
-  }
+  ${mobile({ padding: "3px", fontSize: "15px" })}
 `;
 const Price = styled.span`
   padding: 5px;
-  font-size: 15px;
+  font-size: 20px;
   text-align: left;
 
-  @media only screen and (max-width: 380px) {
-    padding: 2px;
-    font-size: 11px;
-  }
+  ${mobile({ padding: "3px", fontSize: "15px" })}
 `;
 const Product = ({ item, addToCart }) => {
   let navigate = useNavigate();
@@ -140,7 +124,7 @@ const Product = ({ item, addToCart }) => {
       <InfoContainer>
         <Title>{item.title}</Title>
         <Size>{item.size}</Size>
-        <Price>€ {item.price}</Price>
+        <Price>{item.price} €</Price>
       </InfoContainer>
     </Container>
   );

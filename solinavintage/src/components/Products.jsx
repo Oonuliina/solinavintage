@@ -7,6 +7,7 @@ import { laukut } from "../data";
 import styled from "styled-components";
 import Product from "./Product";
 import { useEffect, useState } from "react";
+import { mobile } from "../responsive";
 
 const Container = styled.div`
   padding: 20px;
@@ -15,13 +16,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
 
-  @media only screen and (max-width: 380px) {
-    padding: 11px;
-    display: flex;
-    justify-content: flex-start;
-    width: 100%;
-    margin-left: 0px;
-  }
+  ${mobile({ padding: "11px"})}
 `;
 const Message = styled.h1`
   text-align: center;

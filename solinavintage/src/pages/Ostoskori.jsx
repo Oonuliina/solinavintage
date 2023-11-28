@@ -5,6 +5,8 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import CartItem from "../components/CartItem";
 import Announcement from "../components/Announcement";
+import {mobile, tablet} from "../responsive";
+
 
 const Container = styled.div``;
 const Wrapper = styled.div`
@@ -18,10 +20,8 @@ const Title = styled.h1`
   font-size: 30px;
   text-align: left;
   font-wight: 200;
+  ${mobile({ fontSize: "23px" })}
 
-  @media only screen and (max-width: 380px) {
-    font-size: 20px;
-  }
 `;
 const Top = styled.div`
   display: flex;
@@ -37,10 +37,7 @@ const TopButton = styled.button`
   cursor: pointer;
   border: 1px solid gray;
 
-  @media only screen and (max-width: 380px) {
-    width: 100px;
-    font-size: 11px;
-  }
+  ${mobile({ width: "120px", fontSize: "13px", padding: "7px 10px" })}
 `;
 const TopText = styled.span`
   display: flex;
@@ -52,6 +49,8 @@ const TopText = styled.span`
 const Bottom = styled.div`
   display: flex;
   justify-content: space-between;
+
+  ${tablet({ flexDirection: "column" })}
 `;
 const Info = styled.div`
   flex: 3;
@@ -80,7 +79,7 @@ const SummaryItem = styled.div`
 const SummaryItemText = styled.span``;
 const SummaryItemPrice = styled.span``;
 const SummaryText = styled.span`
-  font-size: 14px;
+  font-size: 15px;
 `;
 const Button = styled.button`
   padding: 10px;
@@ -139,11 +138,11 @@ const Ostoskori = ({ cart, removeFromCart }) => {
             <SummaryTitle>Yhteenveto</SummaryTitle>
             <SummaryItem type="total">
               <SummaryItemText>Yhteensä</SummaryItemText>
-              <SummaryItemPrice>€ {totalPrice}</SummaryItemPrice>
+              <SummaryItemPrice>{totalPrice} €</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem>
               <SummaryItemText>Lahjoitus Hesylle 10%</SummaryItemText>
-              <SummaryItemPrice>€ {Number(hesyPrice).toFixed(2)}</SummaryItemPrice>
+              <SummaryItemPrice>{Number(hesyPrice).toFixed(2)} €</SummaryItemPrice>
             </SummaryItem>
             <SummaryText>
               Hinta sisältää alv. Toimituskulut lasketaan kassalla.

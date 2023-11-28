@@ -33,7 +33,7 @@ const Title = styled.h1`
   padding-right: 3%;
 
   ${tablet({ fontSize: "30px" })}
-  ${mobile({ fontSize: "20px", marginTop: "30px", marginBottom: "35px" })}
+  ${mobile({ fontSize: "25px", marginTop: "30px", marginBottom: "35px" })}
 `;
 
 /* Filter modal*/
@@ -148,18 +148,18 @@ const FilterIcon = styled.span`
   ${large({ display: "flex" })}
 `;
 const FilterTextLeft = styled.span`
-  font-size: 15px;
+  font-size: 20px;
   ${large({ display: "flex" })}
 
 `;
 const FilterTextRight = styled.span`
-  font-size: 15px;
+  font-size: 20px;
 
   ${large({ display: "none" })}
 `;
 const Select = styled.select`
   padding: 5px;
-  font-size: 15px;
+  font-size: 20px;
   border: none;
   color: gray;
   margin: 0px 8px;
@@ -184,10 +184,10 @@ const AmountOfProducts = styled.div`
   justify-content: center;
 `;
 const NumberTotal = styled.span`
-  font-size: 15px;
+  font-size: 20px;
 `;
 const Desc = styled.span`
-  font-size: 15px;
+  font-size: 20px;
   padding-left: 10px;
 `;
 
@@ -196,6 +196,7 @@ const ClearButton = styled.button`
   background-color: #222222;
   color: white;
   border-radius: 30px;
+  font-size: 18px;
   padding: 5px 20px 5px 20px;
 
   ${large({ display: "none" })}

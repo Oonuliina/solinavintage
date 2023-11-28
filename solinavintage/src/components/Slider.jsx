@@ -17,7 +17,7 @@ const Container = styled.div`
 
   ${large({ height: "400px"})}
   ${tablet({ height: "300px"})}
-  ${mobile({ height: "200px"})}
+  ${mobile({ display: "none"})}
 `;
 const Arrow = styled.div`
   width: 50px;

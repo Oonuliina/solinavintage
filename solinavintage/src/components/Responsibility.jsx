@@ -2,7 +2,7 @@ import styled from "styled-components";
 import recycled from "../assets/Responsibility/Recycling_symbol.svg.png";
 import hesy from "../assets/Responsibility/hesy_logo.webp";
 import qualityCheck from "../assets/Responsibility/quality-check.png";
-import { large, tablet } from "../responsive";
+import { mobile, large, tablet } from "../responsive";
 
 
 const Container = styled.div`
@@ -15,12 +15,8 @@ const Title = styled.h1`
   font-size: 40px;
   text-align: center;
   margin-bottom: 30px;
-  
 
-  ${large({ fontSize: "30px"})}
-  @media only screen and (max-width: 380px) {
-    font-size: 20px;
-  }
+  ${large({ fontSize: "35px"})}
 `;
 const Wrapper = styled.div`
   width: 100vw;
@@ -29,10 +25,7 @@ const Wrapper = styled.div`
   justfy-content: center;
 
   ${tablet({ flexDirection: "column"})}
-  @media only screen and (max-width: 380px) {
-    margin: 0px 5px 0px 5px;
-    flex-direction: column;
-  }
+  ${mobile({ margin: "0px 5px 0px 5px", flexDirection: "column"})}
 `;
 const Item = styled.div`
   flex: 1;
@@ -44,9 +37,7 @@ const Item = styled.div`
   width: 276px;
 
   ${large({ height: "300px"})}
-  @media only screen and (max-width: 380px) {
-    height: 217px;
-  }
+  ${mobile({ height: "217px"})}
 `;
 const Circle = styled.div`
   display: flex;
@@ -59,21 +50,12 @@ const Circle = styled.div`
   align-items: center;
   justify-content: center;
 
-  ${large({ height: "200px", width: "200px" })}
-  @media only screen and (max-width: 380px) {
-    max-height: 150px;
-    max-width: 150px;
-  }
+  ${large({ maxWidth: "200px", maxHeight: "200px"})}
 `;
 const Image = styled.img`
   height: 200px;
-
-
   ${large({ height: "125px"})}
-  @media only screen and (max-width: 380px) {
-    height: 100px;
-    
-  }
+  ${mobile({ Height: "100px"})}
 `;
 const Desc = styled.span`
   font-size: 24px;
@@ -81,9 +63,7 @@ const Desc = styled.span`
   text-align: center;
 
   ${large({ fontSize: "1rem", paddingLeft: "10px", paddingRight: "10px"})}
-  @media only screen and (max-width: 380px) {
-    font-size: 10px;
-  }
+  ${tablet({ fontSize: "20px"})}
 `;
 
 const Responsibility = () => {
