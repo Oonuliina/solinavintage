@@ -70,7 +70,7 @@ const BackToHomeButtom = styled.button`
 `;
 
 async function loginUser(credentials){
-  return fetch('http://solina-server.onrender.com/kirjautuminen', {
+  return fetch('https://solina-server.onrender.com/kirjautuminen', {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify(credentials)
@@ -78,7 +78,7 @@ async function loginUser(credentials){
 }
 
 async function getCart(user){
-  return fetch('http://solina-server.onrender.com/haekori', {
+  return fetch('https://solina-server.onrender.com/haekori', {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify(user)

@@ -32,7 +32,7 @@ function App() {
   }
 
   async function updateCart({cartId, cartItems}){
-    return fetch('http://solina-server.onrender.com/updatecart', {
+    return fetch('https://solina-server.onrender.com/updatecart', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({cartId, cartItems})
