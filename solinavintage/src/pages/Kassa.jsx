@@ -13,20 +13,46 @@ const Kassa = ({ cart }) => {
   const [deliveryFee, setDeliveryFee] = useState(0);
 
   var totalPrice = 0;
-  
+
   cart.map((item) => (totalPrice += JSON.parse(item.price)));
 
   var hesyPrice = totalPrice / 10;
 
   var whatDeliveryFee = 0;
   var subtotal = 0;
-  
+
   if (totalPrice > 100) {
     whatDeliveryFee = 0;
     subtotal = totalPrice;
   } else {
     whatDeliveryFee = JSON.parse(deliveryFee);
     subtotal = totalPrice + JSON.parse(deliveryFee);
+  }
+
+  let showHideDeliverytext = {
+    display: "none",
+  };
+  if (totalPrice > 100) {
+    showHideDeliverytext = {
+      display: "flex",
+    };
+  } else {
+    showHideDeliverytext = {
+      display: "none",
+    };
+  }
+
+  let showHideDeliveryfee = {
+    display: "none",
+  };
+  if (totalPrice < 100) {
+    showHideDeliveryfee = {
+      display: "flex",
+    };
+  } else {
+    showHideDeliveryfee = {
+      display: "none",
+    };
   }
 
   return (
@@ -37,7 +63,9 @@ const Kassa = ({ cart }) => {
         <FormContainer>
           <PaymentForm>
             <HeaderContainer id="Header-Container">
-              <FormHeader id="Form-Header" htmlFor="contact">Yhteystietosi</FormHeader>
+              <FormHeader id="Form-Header" htmlFor="contact">
+                Yhteystietosi
+              </FormHeader>
             </HeaderContainer>
             <InputsContainer id="Iputs-Container">
               <InputContainer id="Input-container">
@@ -47,7 +75,9 @@ const Kassa = ({ cart }) => {
             </InputsContainer>
 
             <HeaderContainer id="Header-Container">
-              <FormHeader id="Form-Header" htmlFor="contact">Toimitus</FormHeader>
+              <FormHeader id="Form-Header" htmlFor="contact">
+                Toimitus
+              </FormHeader>
             </HeaderContainer>
             <InputsContainer id="Inputs-Container">
               <InputContainer id="Input-Container">
@@ -154,12 +184,18 @@ const Kassa = ({ cart }) => {
             <SummaryCenter>
               <SummaryTextsContainer>
                 <SummaryText>
-                  Välisumma<SummaryPrice>{Number(totalPrice).toFixed(2)} €</SummaryPrice>
+                  Välisumma
+                  <SummaryPrice>{Number(totalPrice).toFixed(2)} €</SummaryPrice>
                 </SummaryText>
                 <SummaryText>
                   Toimituskulut
                   <SummaryPrice>
-                    {Number(whatDeliveryFee).toFixed(2)} €
+                    <DeliveryFee style={showHideDeliveryfee}>
+                      {Number(whatDeliveryFee).toFixed(2)} €
+                    </DeliveryFee>
+                    <FreeDeliveryMessage style={showHideDeliverytext}>
+                      Toimitus ilmainen!
+                    </FreeDeliveryMessage>
                   </SummaryPrice>
                 </SummaryText>
                 <SummaryText type="total">
@@ -168,8 +204,8 @@ const Kassa = ({ cart }) => {
                 </SummaryText>
               </SummaryTextsContainer>
               <InputContainer>
-              <Submit type="submit" value="Maksa" />
-            </InputContainer>
+                <Submit type="submit" value="Maksa" />
+              </InputContainer>
             </SummaryCenter>
             <SummaryBottom>
               <HesyContainer>
@@ -193,6 +229,8 @@ const Kassa = ({ cart }) => {
   );
 };
 
+const FreeDeliveryMessage = styled.span``;
+const DeliveryFee = styled.span``;
 const Container = styled.div`
   width: 100%;
 `;
@@ -231,8 +269,8 @@ const HeaderContainer = styled.div`
   display: flex;
 
   ${large({
-    marginBottom: "10px"
-  })} 
+    marginBottom: "10px",
+  })}
 `;
 
 const FormHeader = styled.h2`
@@ -244,9 +282,9 @@ const FormHeader = styled.h2`
     margin-left: 15px;
   }
   ${large({
-    width: "85%", 
-    marginLeft: "0px"
-  })} 
+    width: "85%",
+    marginLeft: "0px",
+  })}
 `;
 
 const InputsContainer = styled.div`
@@ -254,15 +292,15 @@ const InputsContainer = styled.div`
   ${large({
     margin: "0px",
     display: "flex",
-    flexDirection: "column" 
-  })}    
+    flexDirection: "column",
+  })}
 `;
 
 const InputContainer = styled.div`
   align-items: center;
   ${large({
     display: "flex",
-    flexDirection: "column"
+    flexDirection: "column",
   })}
 `;
 
@@ -280,7 +318,7 @@ const Input = styled.input`
   }
   ${large({
     width: "80%",
-    margin: "8px, 0px"
+    margin: "8px, 0px",
   })}
 `;
 
@@ -295,8 +333,8 @@ const Select = styled.select`
   @media (max-width: 1100px) {
     width: 442px;
   }
- ${large({ width: "85%", margin: "8px 0px"  })}
- ${tablet({ width: "87%", margin: "8px 0px"  })}
+  ${large({ width: "85%", margin: "8px 0px" })}
+  ${tablet({ width: "87%", margin: "8px 0px" })}
  ${mobile({ width: "90%", margin: "8px 0px" })}
 `;
 
@@ -314,24 +352,22 @@ const LongInput = styled.input`
   }
   ${large({
     width: "80%",
-    margin: "8px 0px"
+    margin: "8px 0px",
   })}
 `;
 
-const Option = styled.option`
-`;
+const Option = styled.option``;
 
 const RadioInputsContainer = styled.div`
   margin: 10px 10px 10px 10px;
 
-  ${large({ 
-    margin: "0px", 
-    display: "flex", 
-    flexDirection: "column", 
-    alignItems: "center" 
-  })}   
+  ${large({
+    margin: "0px",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  })}
 `;
-
 
 const RadioInputContainer = styled.div`
   width: 460px;
@@ -348,9 +384,8 @@ const RadioInputContainer = styled.div`
   }
   ${large({
     width: "80%",
-   margin: "8px 0px"
+    margin: "8px 0px",
   })}
-  
 `;
 
 const RadioInput = styled.input`
@@ -388,6 +423,8 @@ const LogoImage = styled.img`
 const Submit = styled.input`
   width: 500px;
   height: 40px;
+  border: none;
+  cursor: pointer;
   border-radius: 30px;
   background-color: black;
   color: #fff9e3;
@@ -398,10 +435,10 @@ const Submit = styled.input`
     width: 440px;
   }
   ${large({
-    width: "80%", 
+    width: "80%",
     margin: "20px 0px",
     display: "flex",
-    justifyContent: "center"
+    justifyContent: "center",
   })}
 `;
 
@@ -412,10 +449,10 @@ const SummaryContainer = styled.div`
   width: 50%;
   justify-content: flex-start;
 
-  ${large({ 
+  ${large({
     width: "100%",
     alignItems: "center",
-    justifyContent: "center" 
+    justifyContent: "center",
   })}
 `;
 
@@ -446,9 +483,9 @@ const SummaryItems = styled.div`
   ${mobile({
     width: "100%",
     margin: "20px 15px",
-    padding: "0px", 
-    display: "flex", 
-    justifyContent: "center"
+    padding: "0px",
+    display: "flex",
+    justifyContent: "center",
   })}
 `;
 
@@ -462,7 +499,7 @@ const SummaryCenter = styled.div`
   margin-right: 20px;
   margin-top: 30px;
 
-  ${large({ marginRight: "0px"})}    
+  ${large({ marginRight: "0px" })}
 `;
 
 const SummaryTextsContainer = styled.div`
