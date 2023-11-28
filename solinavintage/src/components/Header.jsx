@@ -66,7 +66,14 @@ const LoginIcon = styled.span`
   }
 `;
 
-const LogoutIcon = styled.span``;
+const LogoutIcon = styled.span`  
+  cursor: pointer;
+  transition: all 0.5s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+`;
 const ShoppingContainer = styled.div``;
 const ShoppingButton = styled.button`
   padding-left: 15px;
@@ -215,6 +222,11 @@ const Header = ({ cart }) => {
     };
   }
 
+  function logOut() {
+    sessionStorage.clear();
+    window.location.reload();
+  };
+
   return (
     <>
       <Container>
@@ -241,7 +253,7 @@ const Header = ({ cart }) => {
               />
             </LoginIcon>
             <LogoutIcon style={LoggedIn}>
-              <SignOut size={32} />
+              <SignOut size={32} onClick={() => logOut()}/>
             </LogoutIcon>
             <ShoppingContainer>
               <ShoppingButton>

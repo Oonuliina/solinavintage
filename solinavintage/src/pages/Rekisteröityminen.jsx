@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { tablet, large } from "../responsive";
 import { useNavigate } from "react-router-dom";
 
@@ -27,7 +27,7 @@ const Wrapper = styled.div`
   background-color: white;
   border-radius: 5px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  ${tablet({ width: "65%"})}
+  ${tablet({ width: "65%" })}
 `;
 const Title = styled.h1`
   font-size: 24px;
@@ -67,46 +67,58 @@ const Rekisteröityminen = () => {
   const loggedIn = sessionStorage.getItem("loginToken");
 
   useEffect(() => {
-    if(loggedIn){
+    if (loggedIn) {
       document.location.replace("/");
     }
-  },[]);
+  }, []);
+
+  const validateEmail = (email) => {
+    return String(email)
+      .toLowerCase()
+      .match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      );
+  };
 
   const Rekisteröi = async () => {
     const Sahkoposti = document.getElementById("email").value;
     const Password = document.getElementById("passw").value;
-    
-    if (Sahkoposti){
-      if (Password){
-        async function postUser(url="", data={}){
-          const resp = await fetch(url, {
-            method: "POST",
-            mode: "cors",
-            cache: "no-cache",
-            credentials: "same-origin",
-            headers: {"Content-Type": "application/json",},
-            body: JSON.stringify(data),
-            referrerPolicy: "no-referrer",
-          });
-          return resp.json();
-        };
 
-        postUser("https://solina-server.onrender.com/rekisteroityminen", {Sahkoposti: Sahkoposti, Salasana: Password})
-        .then((res) => {
-          if (res === "Sähkoposti on jo käytössä!"){
-            alert(res)
-          } else {
-            alert("Käyttäjätili on luotu!")
-            navigate("/kirjautuminen");
-          }
-        });
+
+    if (Sahkoposti) {
+      if (validateEmail(Sahkoposti)) {
+        if (Password) {
+          async function postUser(url = "", data = {}) {
+            const resp = await fetch(url, {
+              method: "POST",
+              mode: "cors",
+              cache: "no-cache",
+              credentials: "same-origin",
+              headers: { "Content-Type": "application/json", },
+              body: JSON.stringify(data),
+              referrerPolicy: "no-referrer",
+            });
+            return resp.json();
+          };
+
+          postUser("https://solina-server.onrender.com/rekisteroityminen", { Sahkoposti: Sahkoposti, Salasana: Password })
+            .then((res) => {
+              if (res === "Sähkoposti on jo käytössä!") {
+                alert(res)
+              } else {
+                alert("Käyttäjätili on luotu!")
+                navigate("/kirjautuminen");
+              }
+            });
+        } else {
+          alert("Kaikki kentät ovat pakollisia!")
+        }
       } else {
-        alert("Kaikki kentät ovat pakollisia!")
+        alert("Sähköposti on virheellinen!")
       }
     } else {
       alert("Kaikki kentät ovat pakollisia!")
     }
-
   }
 
   return (
@@ -114,11 +126,11 @@ const Rekisteröityminen = () => {
       <Wrapper>
         <Title>Luo tili</Title>
         <Form>
-          <Input type="text" placeholder="Sähköposti" id="email"/>
-          <Input type="password" placeholder="Salasana" id="passw"/>
+          <Input type="email" placeholder="Sähköposti" id="email" />
+          <Input type="password" placeholder="Salasana" id="passw" />
           <CreateAccountButton onClick={Rekisteröi}>Luo</CreateAccountButton>
           <Link to={"/"}>
-          <BackToHomeButtom>Palaa etusivulle</BackToHomeButtom>
+            <BackToHomeButtom>Palaa etusivulle</BackToHomeButtom>
           </Link>
         </Form>
       </Wrapper>
