@@ -1,9 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 import { products } from "../data";
+import { large, mobile } from "../responsive";
 
 const SummaryTop = styled.div`
   padding-right: 20px;
+
+  ${mobile({ padding: "0px"})}
+  ${large({ paddingRight: "4px"})}   
 `;
 const ProductContainer = styled.div`
   display: flex;

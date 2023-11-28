@@ -6,7 +6,7 @@ import { CreditCard } from "@phosphor-icons/react";
 import paytrailMini from "../assets/paytrailMini.png";
 import Announcement from "../components/Announcement";
 import hesyLogo from "../assets/Responsibility/hesy_logo.webp";
-import { large } from "../responsive";
+import { large, tablet, mobile } from "../responsive";
 import CheckoutItems from "../components/CheckoutItems";
 
 const Kassa = ({ cart }) => {
@@ -18,7 +18,16 @@ const Kassa = ({ cart }) => {
 
   var hesyPrice = totalPrice / 10;
 
-  var subtotal = totalPrice + JSON.parse(deliveryFee);
+  var whatDeliveryFee = 0;
+  var subtotal = 0;
+  
+  if (totalPrice > 100) {
+    whatDeliveryFee = 0;
+    subtotal = totalPrice;
+  } else {
+    whatDeliveryFee = JSON.parse(deliveryFee);
+    subtotal = totalPrice + JSON.parse(deliveryFee);
+  }
 
   return (
     <Container>
@@ -27,33 +36,33 @@ const Kassa = ({ cart }) => {
       <Wrapper>
         <FormContainer>
           <PaymentForm>
-            <HeaderContainer>
-              <FormHeader htmlFor="contact">Yhteystietosi</FormHeader>
+            <HeaderContainer id="Header-Container">
+              <FormHeader id="Form-Header" htmlFor="contact">Yhteystietosi</FormHeader>
             </HeaderContainer>
-            <InputsContainer>
-              <InputContainer>
+            <InputsContainer id="Iputs-Container">
+              <InputContainer id="Input-container">
                 <Input type="email" placeholder="Sähköposti" />
                 <Input type="tel" placeholder="Puhelinnumero" />
               </InputContainer>
             </InputsContainer>
 
-            <HeaderContainer>
-              <FormHeader htmlFor="contact">Toimitus</FormHeader>
+            <HeaderContainer id="Header-Container">
+              <FormHeader id="Form-Header" htmlFor="contact">Toimitus</FormHeader>
             </HeaderContainer>
-            <InputsContainer>
-              <InputContainer>
+            <InputsContainer id="Inputs-Container">
+              <InputContainer id="Input-Container">
                 <Select>
                   <Option defaultValue="Suomi">Suomi</Option>
                 </Select>
               </InputContainer>
-              <InputContainer>
+              <InputContainer id="Input-Container">
                 <Input type="text" placeholder="Etunimi" />
                 <Input type="text" placeholder="Sukunimi" />
               </InputContainer>
-              <InputContainer>
+              <InputContainer id="Input-Container">
                 <LongInput type="text" placeholder="Osoite" />
               </InputContainer>
-              <InputContainer>
+              <InputContainer id="Input-Container">
                 <Input type="text" placeholder="Postinumero" />
                 <Input type="text" placeholder="Kaupunki" />
               </InputContainer>
@@ -62,7 +71,7 @@ const Kassa = ({ cart }) => {
             <HeaderContainer>
               <FormHeader htmlFor="contact">Toimitustapa</FormHeader>
             </HeaderContainer>
-            <InputsContainer>
+            <RadioInputsContainer>
               <RadioInputContainer>
                 <RadioInput
                   type="radio"
@@ -87,12 +96,12 @@ const Kassa = ({ cart }) => {
                 </DeliverTypeLabel>
                 <DeliverFee>5.90 €</DeliverFee>
               </RadioInputContainer>
-            </InputsContainer>
+            </RadioInputsContainer>
 
             <HeaderContainer>
               <FormHeader>Maksu</FormHeader>
             </HeaderContainer>
-            <InputsContainer>
+            <RadioInputsContainer>
               <RadioInputContainer>
                 <RadioInput type="radio" id="kortti" name="maksutapa" />
                 <DeliverTypeLabel htmlFor="kortti">
@@ -123,9 +132,7 @@ const Kassa = ({ cart }) => {
                 <RadioInput type="radio" id="pivo" name="maksutapa" />
                 <DeliverTypeLabel htmlFor="pivo">Pivo</DeliverTypeLabel>
               </RadioInputContainer>
-            </InputsContainer>
-
-            <Submit type="submit" value="Maksa" />
+            </RadioInputsContainer>
           </PaymentForm>
         </FormContainer>
         {/*        
@@ -147,12 +154,12 @@ const Kassa = ({ cart }) => {
             <SummaryCenter>
               <SummaryTextsContainer>
                 <SummaryText>
-                  Välisumma<SummaryPrice>{totalPrice} €</SummaryPrice>
+                  Välisumma<SummaryPrice>{Number(totalPrice).toFixed(2)} €</SummaryPrice>
                 </SummaryText>
                 <SummaryText>
                   Toimituskulut
                   <SummaryPrice>
-                    {Number(deliveryFee).toFixed(2)} €
+                    {Number(whatDeliveryFee).toFixed(2)} €
                   </SummaryPrice>
                 </SummaryText>
                 <SummaryText type="total">
@@ -160,6 +167,9 @@ const Kassa = ({ cart }) => {
                   <SummaryPrice>{Number(subtotal).toFixed(2)} €</SummaryPrice>
                 </SummaryText>
               </SummaryTextsContainer>
+              <InputContainer>
+              <Submit type="submit" value="Maksa" />
+            </InputContainer>
             </SummaryCenter>
             <SummaryBottom>
               <HesyContainer>
@@ -188,12 +198,12 @@ const Container = styled.div`
 `;
 const Wrapper = styled.div`
   display: flex;
+  margin-bottom: 15px;
 
   ${large({
     flexDirection: "column",
     width: "100%",
     alignItems: "center",
-    justifyContent: "center",
   })}
 `;
 
@@ -204,30 +214,25 @@ const FormContainer = styled.div`
   justify-content: flex-end;
   padding-top: 20px;
 
-  ${large({
-    display: "block",
-    width: "95vw",
-    alignItems: "center",
-    justifyContent: "center",
-  })}
+  ${large({ width: "100%" })}
 `;
+
 const PaymentForm = styled.form`
   border-right: 1px solid black;
 
   ${large({
     border: "none",
-    width: "95vw",
-    alignItems: "center",
-    justifyContent: "center",
+    width: "100%",
   })}
 `;
 
-/* const InfoSection= styled.section`
-`;
- */
 const HeaderContainer = styled.div`
   justify-content: center;
   display: flex;
+
+  ${large({
+    marginBottom: "10px"
+  })} 
 `;
 
 const FormHeader = styled.h2`
@@ -238,21 +243,27 @@ const FormHeader = styled.h2`
   @media (max-width: 1100px) {
     margin-left: 15px;
   }
+  ${large({
+    width: "85%", 
+    marginLeft: "0px"
+  })} 
 `;
-
-/* const Inputs = styled.div`
-text-align:center;
-@media(max-width: 1100px) {
-  width: 520px;
-}
-`; */
 
 const InputsContainer = styled.div`
   margin: 10px 10px 10px 10px;
+  ${large({
+    margin: "0px",
+    display: "flex",
+    flexDirection: "column" 
+  })}    
 `;
 
 const InputContainer = styled.div`
   align-items: center;
+  ${large({
+    display: "flex",
+    flexDirection: "column"
+  })}
 `;
 
 const Input = styled.input`
@@ -267,7 +278,10 @@ const Input = styled.input`
   @media (max-width: 1100px) {
     width: 400px;
   }
-  ${large({ width: "80%" })}
+  ${large({
+    width: "80%",
+    margin: "8px, 0px"
+  })}
 `;
 
 const Select = styled.select`
@@ -281,7 +295,9 @@ const Select = styled.select`
   @media (max-width: 1100px) {
     width: 442px;
   }
-  ${large({ width: "79vw" })}
+ ${large({ width: "85%", margin: "8px 0px"  })}
+ ${tablet({ width: "87%", margin: "8px 0px"  })}
+ ${mobile({ width: "90%", margin: "8px 0px" })}
 `;
 
 const LongInput = styled.input`
@@ -296,18 +312,27 @@ const LongInput = styled.input`
   @media (max-width: 1100px) {
     width: 400px;
   }
-  ${large({ width: "74vw" })}
+  ${large({
+    width: "80%",
+    margin: "8px 0px"
+  })}
 `;
 
-const Option = styled.option``;
-/* 
-const Wrapper = styled.div`
-`; */
-
-/* const RadioInputsContainer = styled.div`
-margin: 10px 10px 10px 10px;
+const Option = styled.option`
 `;
- */
+
+const RadioInputsContainer = styled.div`
+  margin: 10px 10px 10px 10px;
+
+  ${large({ 
+    margin: "0px", 
+    display: "flex", 
+    flexDirection: "column", 
+    alignItems: "center" 
+  })}   
+`;
+
+
 const RadioInputContainer = styled.div`
   width: 460px;
   height: 20px;
@@ -321,7 +346,11 @@ const RadioInputContainer = styled.div`
   @media (max-width: 1100px) {
     width: 400px;
   }
-  ${large({ width: "74vw" })}
+  ${large({
+    width: "80%",
+   margin: "8px 0px"
+  })}
+  
 `;
 
 const RadioInput = styled.input`
@@ -332,10 +361,6 @@ const DeliverTypeLabel = styled.label`
   font-size: 16px;
   padding-left: 15px;
 `;
-/* 
-const CardPaymentLabel = styled.option`
-  font-size: 20px;
-`; */
 
 const DeliverFee = styled.p`
   font-size: 14px;
@@ -372,7 +397,12 @@ const Submit = styled.input`
   @media (max-width: 1100px) {
     width: 440px;
   }
-  ${large({ width: "80vw" })}
+  ${large({
+    width: "80%", 
+    margin: "20px 0px",
+    display: "flex",
+    justifyContent: "center"
+  })}
 `;
 
 const SummaryContainer = styled.div`
@@ -382,8 +412,13 @@ const SummaryContainer = styled.div`
   width: 50%;
   justify-content: flex-start;
 
-  ${large({ width: "100%", alignItems: "center", justifyContent: "center" })}
+  ${large({ 
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center" 
+  })}
 `;
+
 const SummaryItems = styled.div`
   display: flex;
   width: 550px;
@@ -407,7 +442,16 @@ const SummaryItems = styled.div`
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
     background-color: #b8b8b8;
   }
+
+  ${mobile({
+    width: "100%",
+    margin: "20px 15px",
+    padding: "0px", 
+    display: "flex", 
+    justifyContent: "center"
+  })}
 `;
+
 const ItemsContainer = styled.div`
   max-height: 500px;
   overflow-y: auto;
@@ -415,13 +459,17 @@ const ItemsContainer = styled.div`
 
 const SummaryCenter = styled.div`
   margin-bottom: 30px;
-  margin-right: 35px;
+  margin-right: 20px;
   margin-top: 30px;
+
+  ${large({ marginRight: "0px"})}    
 `;
+
 const SummaryTextsContainer = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
 const SummaryText = styled.span`
   display: flex;
   justify-content: space-between;
@@ -429,6 +477,7 @@ const SummaryText = styled.span`
   font-weight: ${(props) => props.type === "total" && "600"};
   font-size: ${(props) => props.type === "total" && "17px"};
 `;
+
 const SummaryPrice = styled.span``;
 
 const SummaryBottom = styled.div`
@@ -436,6 +485,7 @@ const SummaryBottom = styled.div`
   align-items: center;
   justify-content: center;
 `;
+
 const HesyContainer = styled.div`
   display: flex;
   height: 220px;
@@ -446,11 +496,14 @@ const HesyContainer = styled.div`
   justify-content: center;
   border-radius: 30px;
 `;
+
 const HesyText = styled.span`
   text-align: center;
   margin-bottom: 10px;
 `;
+
 const HesyDonation = styled.span``;
+
 const Circle = styled.div`
   display: flex;
   align-items: center;
@@ -461,6 +514,7 @@ const Circle = styled.div`
   width: 7rem;
   position: relative;
 `;
+
 const HesyLogo = styled.img`
   height: 5rem;
   width: 5rem;

@@ -96,9 +96,9 @@ const Footer = () => {
 export default Footer;
 
 const Container = styled.div`
+  margin-top: auto;
   bottom: 0;
-  left: 0;
-  width: 100vw;
+  width: 100%;
   border-top: 0.5px solid lightgray;
 `;
 const FooterInfo = styled.div`
