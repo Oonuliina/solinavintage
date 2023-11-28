@@ -66,7 +66,14 @@ const LoginIcon = styled.span`
   }
 `;
 
-const LogoutIcon = styled.span``;
+const LogoutIcon = styled.span`  
+  cursor: pointer;
+  transition: all 0.5s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+`;
 const ShoppingContainer = styled.div``;
 const ShoppingButton = styled.button`
   padding-left: 15px;
@@ -178,12 +185,46 @@ const NavLink = styled.a`
 `;
 
 const Header = ({ cart }) => {
+
+  const loggedIn = sessionStorage.getItem("loginToken");
+
   const [showModal, setShowModal] = useState(0);
 
   const navigate = useNavigate();
 
   const openModal = () => {
     setShowModal((prev) => !prev);
+  };
+
+  let LoggedIn = {
+    display: "none",
+  };
+  if (loggedIn) {
+    LoggedIn = {
+      display: "flex",
+    };
+  } else {
+    LoggedIn = {
+      display: "none",
+    };
+  }
+
+  let LoggedOut = {
+    display: "flex",
+  };
+  if (loggedIn) {
+    LoggedOut = {
+      display: "none",
+    };
+  } else {
+    LoggedOut = {
+      display: "flex",
+    };
+  }
+
+  function logOut() {
+    sessionStorage.clear();
+    window.location.reload();
   };
 
   return (
@@ -204,15 +245,15 @@ const Header = ({ cart }) => {
             ></MobileLogo>
           </UpperCenter>
           <UpperRight>
-            <LoginIcon>
+            <LoginIcon style={LoggedOut}>
               <User
                 onClick={() => navigate("/kirjautuminen")}
                 size={32}
                 weight="light"
               />
             </LoginIcon>
-            <LogoutIcon>
-              <SignOut size={32} />
+            <LogoutIcon style={LoggedIn}>
+              <SignOut size={32} onClick={() => logOut()}/>
             </LogoutIcon>
             <ShoppingContainer>
               <ShoppingButton>
