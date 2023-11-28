@@ -178,6 +178,9 @@ const NavLink = styled.a`
 `;
 
 const Header = ({ cart }) => {
+
+  const loggedIn = sessionStorage.getItem("loginToken");
+
   const [showModal, setShowModal] = useState(0);
 
   const navigate = useNavigate();
@@ -185,6 +188,32 @@ const Header = ({ cart }) => {
   const openModal = () => {
     setShowModal((prev) => !prev);
   };
+
+  let LoggedIn = {
+    display: "none",
+  };
+  if (loggedIn) {
+    LoggedIn = {
+      display: "flex",
+    };
+  } else {
+    LoggedIn = {
+      display: "none",
+    };
+  }
+
+  let LoggedOut = {
+    display: "flex",
+  };
+  if (loggedIn) {
+    LoggedOut = {
+      display: "none",
+    };
+  } else {
+    LoggedOut = {
+      display: "flex",
+    };
+  }
 
   return (
     <>
@@ -204,14 +233,14 @@ const Header = ({ cart }) => {
             ></MobileLogo>
           </UpperCenter>
           <UpperRight>
-            <LoginIcon>
+            <LoginIcon style={LoggedOut}>
               <User
                 onClick={() => navigate("/kirjautuminen")}
                 size={32}
                 weight="light"
               />
             </LoginIcon>
-            <LogoutIcon>
+            <LogoutIcon style={LoggedIn}>
               <SignOut size={32} />
             </LogoutIcon>
             <ShoppingContainer>
