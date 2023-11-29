@@ -4,6 +4,98 @@ import React, { useState, useEffect } from 'react';
 import { tablet, large } from "../responsive";
 import { useNavigate } from "react-router-dom";
 
+const Rekisteröityminen = () => {
+
+  const navigate = useNavigate();
+  /* Check for login */
+  const loggedIn = sessionStorage.getItem("loginToken");
+  /* Restrict access to registration page if logged in */
+  useEffect(() => {
+    if (loggedIn) {
+      document.location.replace("/");
+    }
+  }, []);
+
+  /* Small function to check if inputted email is actually formatted as an email would be */
+  const validateEmail = (email) => {
+    return String(email)
+      .toLowerCase()
+      .match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      );
+  };
+
+  const Rekisteröi = async () => {
+
+    /* Getting values from user inputs */
+    const Sahkoposti = document.getElementById("email").value;
+    const Password = document.getElementById("passw").value;
+
+    /* If theres text in email input... */
+    if (Sahkoposti) {
+      /* ...and if inputted email passes validation... */
+      if (validateEmail(Sahkoposti)) {
+        /* ...and if theres text in password input */
+        if (Password) {
+          /* Fetch function for registration */
+          async function postUser(url = "", data = {}) {
+            const resp = await fetch(url, {
+              method: "POST",
+              mode: "cors",
+              cache: "no-cache",
+              credentials: "same-origin",
+              headers: { "Content-Type": "application/json", },
+              body: JSON.stringify(data),
+              referrerPolicy: "no-referrer",
+            });
+            return resp.json();
+          };
+          /* Function where we call the fetch function and pass it the inputs */
+          postUser("https://solina-server.onrender.com/rekisteroityminen", { Sahkoposti: Sahkoposti, Salasana: Password })
+            .then((res) => {
+              /* Check for response (backend determines) */
+              if (res === "Sähkoposti on jo käytössä!") {
+                alert(res)
+              } else {
+                /* If user registration was successful we tell the user... */
+                alert("Käyttäjätili on luotu!")
+                /* ...and navigate to login page */
+                navigate("/kirjautuminen");
+              }
+            });
+        } else {
+          alert("Kaikki kentät ovat pakollisia!")
+        }
+      } else {
+        alert("Sähköposti on virheellinen!")
+      }
+    } else {
+      alert("Kaikki kentät ovat pakollisia!")
+    }
+  }
+
+  return (
+    <Container>
+      <Wrapper>
+        <Title>Luo tili</Title>
+        {/* Sign in form*/}
+        <Form>
+          {/* User inputs */}
+          <Input type="email" placeholder="Sähköposti" id="email" />
+          <Input type="password" placeholder="Salasana" id="passw" />
+          {/* Button to call the registraton function */}
+          <CreateAccountButton onClick={Rekisteröi}>Luo</CreateAccountButton>
+          <Link to={"/"}>
+            <BackToHomeButtom>Palaa etusivulle</BackToHomeButtom>
+          </Link>
+        </Form>
+      </Wrapper>
+    </Container>
+  );
+};
+
+export default Rekisteröityminen;
+
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
@@ -59,83 +151,3 @@ const BackToHomeButtom = styled.button`
     background: none;
     cursor: pointer;
 `;
-
-const Rekisteröityminen = () => {
-
-  const navigate = useNavigate();
-
-  const loggedIn = sessionStorage.getItem("loginToken");
-
-  useEffect(() => {
-    if (loggedIn) {
-      document.location.replace("/");
-    }
-  }, []);
-
-  const validateEmail = (email) => {
-    return String(email)
-      .toLowerCase()
-      .match(
-        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-      );
-  };
-
-  const Rekisteröi = async () => {
-    const Sahkoposti = document.getElementById("email").value;
-    const Password = document.getElementById("passw").value;
-
-
-    if (Sahkoposti) {
-      if (validateEmail(Sahkoposti)) {
-        if (Password) {
-          async function postUser(url = "", data = {}) {
-            const resp = await fetch(url, {
-              method: "POST",
-              mode: "cors",
-              cache: "no-cache",
-              credentials: "same-origin",
-              headers: { "Content-Type": "application/json", },
-              body: JSON.stringify(data),
-              referrerPolicy: "no-referrer",
-            });
-            return resp.json();
-          };
-
-          postUser("https://solina-server.onrender.com/rekisteroityminen", { Sahkoposti: Sahkoposti, Salasana: Password })
-            .then((res) => {
-              if (res === "Sähkoposti on jo käytössä!") {
-                alert(res)
-              } else {
-                alert("Käyttäjätili on luotu!")
-                navigate("/kirjautuminen");
-              }
-            });
-        } else {
-          alert("Kaikki kentät ovat pakollisia!")
-        }
-      } else {
-        alert("Sähköposti on virheellinen!")
-      }
-    } else {
-      alert("Kaikki kentät ovat pakollisia!")
-    }
-  }
-
-  return (
-    <Container>
-      <Wrapper>
-        <Title>Luo tili</Title>
-        <Form>
-          <Input type="email" placeholder="Sähköposti" id="email" />
-          <Input type="password" placeholder="Salasana" id="passw" />
-          <CreateAccountButton onClick={Rekisteröi}>Luo</CreateAccountButton>
-          <Link to={"/"}>
-            <BackToHomeButtom>Palaa etusivulle</BackToHomeButtom>
-          </Link>
-        </Form>
-      </Wrapper>
-    </Container>
-  );
-};
-
-export default Rekisteröityminen;

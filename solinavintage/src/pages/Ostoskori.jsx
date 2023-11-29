@@ -7,6 +7,76 @@ import CartItem from "../components/CartItem";
 import Announcement from "../components/Announcement";
 import {mobile, tablet} from "../responsive";
 
+const Ostoskori = ({ cart, removeFromCart }) => {
+  const navigate = useNavigate();
+
+  /* Counting total price of the products */
+  var totalPrice = 0;
+  cart.map((item) => (totalPrice += JSON.parse(item.price)));
+
+   /* Counting HESY donation amount */
+  var hesyPrice = totalPrice / 10;
+
+  /* Checking if the cart is empty */
+  let messageStyle = {}
+  if (cart.length > 0) {
+    messageStyle = {display: "none"};
+  }
+
+  /* Giving the summary details if cart is not empty */
+  let summaryStyle = {}
+  if (cart.length < 1){
+    summaryStyle = {display: "none"}
+  }
+
+  return (
+    <Container>
+      {/* Announcement for free delivery if ordering with over 100€ */}
+      <Announcement />
+      <Header cart={cart} />
+      {/* Shopping cart */}
+      <Wrapper>
+        <Title>Ostoskorisi</Title>
+        <Top>
+          <TopText>Ostoskori({cart.length})</TopText>
+          <TopButton onClick={() => navigate("/tuotteet")}>
+            Jatka Ostoksia
+          </TopButton>
+        </Top>
+        <Bottom>
+          {/* Product details */}
+          <Info>
+            <Message style={messageStyle}>Ostoskori on tyhjä</Message>
+            {/* Mapping the items in the cart array and creating a component for each */}
+            {cart.map((item) => (
+              <CartItem removeFromCart={removeFromCart} cart={cart} itemId={item.id} key={item.id} />
+            ))}
+          </Info>
+          {/* Price Summary */}
+          <Summary style={summaryStyle}>
+            <SummaryTitle>Yhteenveto</SummaryTitle>
+            <SummaryItem type="total">
+              <SummaryItemText>Yhteensä</SummaryItemText>
+              <SummaryItemPrice>{totalPrice} €</SummaryItemPrice>
+            </SummaryItem>
+            <SummaryItem>
+              <SummaryItemText>Lahjoitus Hesylle 10%</SummaryItemText>
+              {/* toFixed makes the decimals always show even if they are 00 */}
+              <SummaryItemPrice>{Number(hesyPrice).toFixed(2)} €</SummaryItemPrice>
+            </SummaryItem>
+            <SummaryText>
+              Hinta sisältää alv. Toimituskulut lasketaan kassalla.
+            </SummaryText>
+            <Button onClick={() => navigate("/kassa")}>Kassa</Button>
+          </Summary>
+        </Bottom>
+      </Wrapper>
+      <Footer />
+    </Container>
+  );
+};
+
+export default Ostoskori;
 
 const Container = styled.div``;
 const Wrapper = styled.div`
@@ -94,66 +164,3 @@ const Button = styled.button`
 const Message = styled.h1`
   text-align: center;
 `;
-
-
-const Ostoskori = ({ cart, removeFromCart }) => {
-  const navigate = useNavigate();
-
-  var totalPrice = 0;
-
-  cart.map((item) => (totalPrice += JSON.parse(item.price)));
-
-  var hesyPrice = totalPrice / 10;
-
-  let messageStyle = {}
-  if (cart.length > 0) {
-    messageStyle = {display: "none"};
-  }
-
-  let summaryStyle = {}
-  if (cart.length < 1){
-    summaryStyle = {display: "none"}
-  }
-
-  return (
-    <Container>
-      <Announcement />
-      <Header cart={cart} />
-      <Wrapper>
-        <Title>Ostoskorisi</Title>
-        <Top>
-          <TopText>Ostoskori({cart.length})</TopText>
-          <TopButton onClick={() => navigate("/tuotteet")}>
-            Jatka Ostoksia
-          </TopButton>
-        </Top>
-        <Bottom>
-          <Info>
-            <Message style={messageStyle}>Ostoskori on tyhjä</Message>
-            {cart.map((item) => (
-              <CartItem removeFromCart={removeFromCart} cart={cart} itemId={item.id} key={item.id} />
-            ))}
-          </Info>
-          <Summary style={summaryStyle}>
-            <SummaryTitle>Yhteenveto</SummaryTitle>
-            <SummaryItem type="total">
-              <SummaryItemText>Yhteensä</SummaryItemText>
-              <SummaryItemPrice>{totalPrice} €</SummaryItemPrice>
-            </SummaryItem>
-            <SummaryItem>
-              <SummaryItemText>Lahjoitus Hesylle 10%</SummaryItemText>
-              <SummaryItemPrice>{Number(hesyPrice).toFixed(2)} €</SummaryItemPrice>
-            </SummaryItem>
-            <SummaryText>
-              Hinta sisältää alv. Toimituskulut lasketaan kassalla.
-            </SummaryText>
-            <Button onClick={() => navigate("/kassa")}>Kassa</Button>
-          </Summary>
-        </Bottom>
-      </Wrapper>
-      <Footer />
-    </Container>
-  );
-};
-
-export default Ostoskori;

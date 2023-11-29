@@ -16,9 +16,13 @@ import { mobile, tablet, large } from "../responsive";
 
 
 const Tuotteet = ({ addToCart, cart }) => {
+  /* Defining an empty variable for category */
   var category = "";
+  /* Defining a variable which contains the full path */
   const fullpath = window.location.href;
 
+  /* In the data file we basically have 6 different JSON files.
+  Here we check if the full path has any of the categories at the end and set the category variable to that category */
   if (fullpath.includes("takit")) {
     category = takit;
   } else if (fullpath.includes("mekot")) {
@@ -30,43 +34,58 @@ const Tuotteet = ({ addToCart, cart }) => {
   } else if (fullpath.includes("laukut")) {
     category = laukut;
   } else {
+    /* If none of the 5 specific categories were found in the full path... 
+    ...we set the category variable to products which in the data file contains all of the products */
     category = products;
   }
 
+  /* Another way to accomplish getting the category out of the path (a cleaner way) */
   const location = useLocation();
   const cat = location.pathname.split(/[/]+/).pop();
+  /* This method we use to get the titles on the page to show the correct categories.
+  This variable is the category with uppercase first letter */
   var modCat = cat[0].toUpperCase() + cat.slice(1);
 
+  /* Because in some places we don't like ÖÄÅ here we change the a to ä if the category is Kengät (Finnish for shoes) */
   if (modCat === "Kengat") {
     modCat = "Kengät";
   }
 
+  /* State variable for modal */
   const [showModal, setShowModal] = useState(0);
+  /* Handle opening and closing the modal */
   const openModal = () => {
     setShowModal((prev) => !prev);
   };
 
+  /* State variable for filters */
   const [filters, setFilters] = useState({});
+  /* State variable for sorting by price */
   const [sort, setSort] = useState("price asc");
 
-
+  /* Function for handling filters */
   const handleFilters = (e) => {
+    /* Getting the name and value of the currently selected option */
     const { name, value } = e.target;
+    /* If the value is a default value return the category otherwise return value */
     const filterValue = value === "Väri" || value === "Koko" ? cat : value;
+    /* Change state variable to currently selected filter */
     setFilters({
       ...filters,
       [name]: filterValue,
     });
   };
 
+  /* Functon to clear filters */
   const clearFilters = () => {
     setFilters({});
   };
 
+  /* State variables for available size and color options */
   const [availableOptionsSize, setAvailableOptionsSize] = useState([]);
   const [availableOptionsColor, setAvailableOptionsColor] = useState([]);
   
-
+  /* This function takes out duplicate filter options and is rerun if filters or category changes */
   useEffect(() => {
     const getAvailableOptions = (filter) => {
       switch (filter) {
@@ -93,9 +112,12 @@ const Tuotteet = ({ addToCart, cart }) => {
     setAvailableOptionsSize(getAvailableOptions("size"));
   }, [category, filters]);
 
+  /* State variable to show how many items are currently shown on the page */
   var [totalShownItems, setTotalShownItems] = useState(category.length);
+  /* Defining delay */
   const delay = ms => new Promise(res => setTimeout(res, ms));
-
+  /* Function that waits 0,1s before calculating how many items are shown on the page.
+  We have to wait because if this function runs at the same time as page is rendering it will not find the items on the page and runs into an error */
   async function setCorrectAmount(){
     await delay(100);
     var prods = document.getElementById("prods");
@@ -130,12 +152,14 @@ const Tuotteet = ({ addToCart, cart }) => {
           <ModalFilter>
             <ModalSelect defaultValue="Väri" name="color" onChange={handleFilters}>
               <Option>Väri</Option>
+              {/* Map avaialble options, remove empty options and then return an option component for each */}
               {availableOptionsColor.map((option) => (
                 option === undefined ? null : (<Option key={option}>{option}</Option>) 
               ))}
             </ModalSelect>
             <ModalSelect name="size">
               <Option>Koko</Option>
+              {/* Map avaialble options, remove empty options and then return an option component for each */}
               {availableOptionsSize.map((option) => (
                 option === undefined ? null : (<Option key={option}>{option}</Option>) 
               ))}
@@ -168,12 +192,14 @@ const Tuotteet = ({ addToCart, cart }) => {
           <Filter>
             <Select defaultValue="Väri" name="color" onChange={handleFilters}>
               <Option>Väri</Option>
+              {/* Map avaialble options, remove empty options and then return an option component for each */}
               {availableOptionsColor.map((option) => (
                 option === undefined ? null : (<Option key={option}>{option}</Option>) 
               ))}
             </Select>
             <Select defaultValue="Koko" name="size" onChange={handleFilters}>
               <Option>Koko</Option>
+              {/* Map avaialble options, remove empty options and then return an option component for each */}
               {availableOptionsSize.map((option) => (
                 option === undefined ? null : (<Option key={option}>{option}</Option>) 
               ))}

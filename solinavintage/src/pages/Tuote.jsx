@@ -5,6 +5,40 @@ import Announcement from "../components/Announcement";
 import { large, tablet } from "../responsive";
 import { products } from "../data";
 
+const Tuote = ({addToCart, cart}) => {
+  /* We get the full path... */
+  const fullpath = window.location.href;
+  /* ...take the item id from the end of the path... */
+  const itemId = fullpath.split(/[/]+/).pop();
+  /* ...and find the item from the products datafile */
+  const item = products.find(i => i.id == itemId);
+
+  return (
+    <Container>
+      {/* Announcement for free delivery if ordering with over 100€ */}
+      <Announcement />
+      <Header cart={cart}/>
+      {/* Item details */}
+      <Wrapper>
+        <ImgContainer>
+          <Image src={item.img}/>
+        </ImgContainer>
+        <InfoContainer>
+          <Title>{item.title}</Title>
+          <Desc>
+            {item.desc}
+          </Desc>
+          <Price>€ {item.price}</Price>
+          <Button onClick={() => addToCart(item)}>Lisää ostoskoriin</Button>
+        </InfoContainer>
+      </Wrapper>
+      <Footer />
+    </Container>
+  );
+};
+
+export default Tuote;
+
 const Container = styled.div`
 min-height: 100vh;
 display: flex;
@@ -84,33 +118,3 @@ const Button = styled.button`
 
   ${large({ fontSize: "15px" })}
 `;
-
-const Tuote = ({addToCart, cart}) => {
-
-  const fullpath = window.location.href;
-  const itemId = fullpath.split(/[/]+/).pop();
-  const item = products.find(i => i.id == itemId);
-
-  return (
-    <Container>
-      <Announcement />
-      <Header cart={cart}/>
-      <Wrapper>
-        <ImgContainer>
-          <Image src={item.img}/>
-        </ImgContainer>
-        <InfoContainer>
-          <Title>{item.title}</Title>
-          <Desc>
-            {item.desc}
-          </Desc>
-          <Price>€ {item.price}</Price>
-          <Button onClick={() => addToCart(item)}>Lisää ostoskoriin</Button>
-        </InfoContainer>
-      </Wrapper>
-      <Footer />
-    </Container>
-  );
-};
-
-export default Tuote;

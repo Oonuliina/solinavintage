@@ -10,17 +10,19 @@ import { large, tablet, mobile } from "../responsive";
 import CheckoutItems from "../components/CheckoutItems";
 
 const Kassa = ({ cart }) => {
+  /* Setting the delivery fee */
   const [deliveryFee, setDeliveryFee] = useState(0);
 
+  /* Counting total price of the products */
   var totalPrice = 0;
-
   cart.map((item) => (totalPrice += JSON.parse(item.price)));
 
+  /* Counting HESY donation amount */
   var hesyPrice = totalPrice / 10;
 
+  /* Checking if delifery fee is needed (total price over 100€ = free delivery) */
   var whatDeliveryFee = 0;
   var subtotal = 0;
-
   if (totalPrice > 100) {
     whatDeliveryFee = 0;
     subtotal = totalPrice;
@@ -29,6 +31,7 @@ const Kassa = ({ cart }) => {
     subtotal = totalPrice + JSON.parse(deliveryFee);
   }
 
+  /* Checking if "Toimitus ilmainen!" text should be visible or not */
   let showHideDeliverytext = {
     display: "none",
   };
@@ -60,44 +63,46 @@ const Kassa = ({ cart }) => {
       <Announcement />
       <Header cart={cart} />
       <Wrapper>
+        {/* Payment Form */}
         <FormContainer>
           <PaymentForm>
-            <HeaderContainer id="Header-Container">
-              <FormHeader id="Form-Header" htmlFor="contact">
+            {/* Contact Details */}
+            <HeaderContainer>
+              <FormHeader htmlFor="contact">
                 Yhteystietosi
               </FormHeader>
             </HeaderContainer>
-            <InputsContainer id="Iputs-Container">
-              <InputContainer id="Input-container">
+            <InputsContainer>
+              <InputContainer>
                 <Input type="email" placeholder="Sähköposti" />
                 <Input type="tel" placeholder="Puhelinnumero" />
               </InputContainer>
             </InputsContainer>
-
-            <HeaderContainer id="Header-Container">
-              <FormHeader id="Form-Header" htmlFor="contact">
+            {/* Delivery details*/}
+            <HeaderContainer>
+              <FormHeader htmlFor="contact">
                 Toimitus
               </FormHeader>
             </HeaderContainer>
-            <InputsContainer id="Inputs-Container">
-              <InputContainer id="Input-Container">
+            <InputsContainer>
+              <InputContainer>
                 <Select>
                   <Option defaultValue="Suomi">Suomi</Option>
                 </Select>
               </InputContainer>
-              <InputContainer id="Input-Container">
+              <InputContainer>
                 <Input type="text" placeholder="Etunimi" />
                 <Input type="text" placeholder="Sukunimi" />
               </InputContainer>
-              <InputContainer id="Input-Container">
+              <InputContainer>
                 <LongInput type="text" placeholder="Osoite" />
               </InputContainer>
-              <InputContainer id="Input-Container">
+              <InputContainer>
                 <Input type="text" placeholder="Postinumero" />
                 <Input type="text" placeholder="Kaupunki" />
               </InputContainer>
             </InputsContainer>
-
+            {/* Delivery Style */}
             <HeaderContainer>
               <FormHeader htmlFor="contact">Toimitustapa</FormHeader>
             </HeaderContainer>
@@ -127,7 +132,7 @@ const Kassa = ({ cart }) => {
                 <DeliverFee>5.90 €</DeliverFee>
               </RadioInputContainer>
             </RadioInputsContainer>
-
+            {/* Payment type */}
             <HeaderContainer>
               <FormHeader>Maksu</FormHeader>
             </HeaderContainer>
@@ -165,23 +170,17 @@ const Kassa = ({ cart }) => {
             </RadioInputsContainer>
           </PaymentForm>
         </FormContainer>
-        {/*        
-      
-          <CardPaymentLabel>Korttimaksu</CardPaymentLabel>
-          <Input type="number" placeholder="Kortin numero" />
-          <Input type="number" placeholder="Viimeinen voimassaolopäivä (KK/VV)" />
-          <Input type="number" placeholder="Turvakoodi" />
-          <Input type="text" placeholder="Nimi kortissa" />
-
-          <Submit>Maksa</Submit> */}
+        {/* Order summary */}
         <SummaryContainer>
           <SummaryItems>
+            {/* Items summary*/}
             <ItemsContainer>
               {cart.map((item) => (
                 <CheckoutItems cart={cart} itemId={item.id} key={item.id} />
               ))}
             </ItemsContainer>
             <SummaryCenter>
+              {/* Price summary */}
               <SummaryTextsContainer>
                 <SummaryText>
                   Välisumma
@@ -194,7 +193,7 @@ const Kassa = ({ cart }) => {
                       {Number(whatDeliveryFee).toFixed(2)} €
                     </DeliveryFee>
                     <FreeDeliveryMessage style={showHideDeliverytext}>
-                      Toimitus ilmainen!
+                      Ilmainen toimitus!
                     </FreeDeliveryMessage>
                   </SummaryPrice>
                 </SummaryText>
@@ -207,6 +206,7 @@ const Kassa = ({ cart }) => {
                 <Submit type="submit" value="Maksa" />
               </InputContainer>
             </SummaryCenter>
+            {/* HESY donation */}
             <SummaryBottom>
               <HesyContainer>
                 <HesyText>

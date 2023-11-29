@@ -9,8 +9,10 @@ import Responsibility from '../components/Responsibility'
 const Meista = ({cart}) => {
   return (
     <Container>
+      {/* Announcement for free delivery if ordering with over 100€ */}
       <Announcement />
       <Header cart={cart}/>
+        {/* Information about Solina Vintage */}
         <ImgContainer>
             <Image src={meista} />
         </ImgContainer>
@@ -35,6 +37,7 @@ const Meista = ({cart}) => {
             ja edistetään eläinten hyvinvointia!
           </TextAboutUs>
         </TextContainer>
+        {/* Responsibility summary*/}
         <Responsibility />
       <Footer />
     </Container>
