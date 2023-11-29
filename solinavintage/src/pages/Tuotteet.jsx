@@ -49,6 +49,7 @@ const Tuotteet = ({ addToCart, cart }) => {
   const [filters, setFilters] = useState({});
   const [sort, setSort] = useState("price asc");
 
+
   const handleFilters = (e) => {
     const { name, value } = e.target;
     const filterValue = value === "Väri" || value === "Koko" ? cat : value;
@@ -64,6 +65,7 @@ const Tuotteet = ({ addToCart, cart }) => {
 
   const [availableOptionsSize, setAvailableOptionsSize] = useState([]);
   const [availableOptionsColor, setAvailableOptionsColor] = useState([]);
+  
 
   useEffect(() => {
     const getAvailableOptions = (filter) => {
@@ -91,6 +93,20 @@ const Tuotteet = ({ addToCart, cart }) => {
     setAvailableOptionsSize(getAvailableOptions("size"));
   }, [category, filters]);
 
+  var [totalShownItems, setTotalShownItems] = useState(category.length);
+  const delay = ms => new Promise(res => setTimeout(res, ms));
+
+  async function setCorrectAmount(){
+    await delay(100);
+    var prods = document.getElementById("prods");
+    if(!prods){
+      setTotalShownItems(0);
+    } else {
+      setTotalShownItems(prods.children.length);
+    }
+  }
+  setCorrectAmount()
+
   return (
     <Container>
       {showModal ? (
@@ -115,13 +131,13 @@ const Tuotteet = ({ addToCart, cart }) => {
             <ModalSelect defaultValue="Väri" name="color" onChange={handleFilters}>
               <Option>Väri</Option>
               {availableOptionsColor.map((option) => (
-                <Option key={option}>{option}</Option>
+                option === undefined ? null : (<Option key={option}>{option}</Option>) 
               ))}
             </ModalSelect>
             <ModalSelect name="size">
               <Option>Koko</Option>
               {availableOptionsSize.map((option) => (
-                <Option key={option}>{option}</Option>
+                option === undefined ? null : (<Option key={option}>{option}</Option>) 
               ))}
             </ModalSelect>
           </ModalFilter>
@@ -153,13 +169,13 @@ const Tuotteet = ({ addToCart, cart }) => {
             <Select defaultValue="Väri" name="color" onChange={handleFilters}>
               <Option>Väri</Option>
               {availableOptionsColor.map((option) => (
-                <Option key={option}>{option}</Option>
+                option === undefined ? null : (<Option key={option}>{option}</Option>) 
               ))}
             </Select>
             <Select defaultValue="Koko" name="size" onChange={handleFilters}>
               <Option>Koko</Option>
               {availableOptionsSize.map((option) => (
-                <Option key={option}>{option}</Option>
+                option === undefined ? null : (<Option key={option}>{option}</Option>) 
               ))}
             </Select>
           </Filter>
@@ -174,12 +190,12 @@ const Tuotteet = ({ addToCart, cart }) => {
             </Select>
           </Filter>
           <AmountOfProducts>
-            <NumberTotal>{category.length}</NumberTotal>
+            <NumberTotal>{totalShownItems}</NumberTotal>
             <Desc>tuotetta</Desc>
           </AmountOfProducts>
         </Right>
       </FiltersContainer>
-      <Products addToCart={addToCart} filters={filters} sort={sort} />
+      <Products addToCart={addToCart} filters={filters} sort={sort}/>
       <Footer />
     </Container>
   );

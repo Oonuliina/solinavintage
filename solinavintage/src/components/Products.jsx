@@ -70,7 +70,7 @@ const Products = ({ addToCart, filters, sort }) => {
   }
 
   return (
-    <Container>
+    <Container id="prods">
       {filteredProducts.map((item) => (
         <Product item={item} key={item.id} addToCart={addToCart} />
       ))}
