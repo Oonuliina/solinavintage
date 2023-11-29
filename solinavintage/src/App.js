@@ -77,7 +77,7 @@ function App() {
       setCart([...cart, { id: item.id, price: item.price }]);
       /* ...and tell the user that the product was added to the cart */
       toast("Tuote lisätty ostoskoriin!", {
-        icon: '😍',
+        icon: '😍'
       });
     } else {
       /* If the item was already in the cart we tell the user they can't add another one */
@@ -100,7 +100,7 @@ function App() {
   ...because we need them in other pages and components */
   return (
     <div className="App">
-      <Toaster position="top-right" />
+      <Toaster position="top-center" />
       <Router>
         <Routes>
           <Route

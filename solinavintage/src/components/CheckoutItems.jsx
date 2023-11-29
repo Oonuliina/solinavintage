@@ -4,7 +4,10 @@ import { products } from "../data";
 import { large, mobile } from "../responsive";
 
 
-const CartItem = ({ itemId }) => {
+const CheckoutItems = ({ itemId }) => {
+
+  /* Go read comments from CartItem.jsx */
+
   const item = products.find((i) => i.id == itemId);
 
   function checkForSize(item) {
@@ -21,31 +24,30 @@ const CartItem = ({ itemId }) => {
 
   return (
     <SummaryTop>
-    <ProductContainer>
-      <ProductImage src={item.img} />
-      <ProductTextContainer>
-        <ProductTexts>
-          <ProductText type="name">
-            {item.title}
-          </ProductText>
-          {checkForSize(item)}
-          <ProductText>Väri: {item.color}</ProductText>
-        </ProductTexts>
-      </ProductTextContainer>
-      <ProductPrice>{item.price} €</ProductPrice>
-    </ProductContainer>
-  </SummaryTop>
+      <ProductContainer>
+        <ProductImage src={item.img} />
+        <ProductTextContainer>
+          <ProductTexts>
+            <ProductText type="name">
+              {item.title}
+            </ProductText>
+            {checkForSize(item)}
+            <ProductText>Väri: {item.color}</ProductText>
+          </ProductTexts>
+        </ProductTextContainer>
+        <ProductPrice>{item.price} €</ProductPrice>
+      </ProductContainer>
+    </SummaryTop>
   );
 };
 
-export default CartItem;
-
+export default CheckoutItems;
 
 const SummaryTop = styled.div`
   padding-right: 20px;
 
-  ${mobile({ padding: "0px"})}
-  ${large({ paddingRight: "4px"})}   
+  ${mobile({ padding: "0px" })}
+  ${large({ paddingRight: "4px" })}   
 `;
 const ProductContainer = styled.div`
   display: flex;
@@ -67,7 +69,7 @@ const ProductTexts = styled.div`
 `;
 const ProductText = styled.span`
   padding-bottom: 2px;
-  font-weight: ${props=>props.type === "name" && "600"};
+  font-weight: ${props => props.type === "name" && "600"};
 `;
 const ProductPrice = styled.span`
   flex: 1;

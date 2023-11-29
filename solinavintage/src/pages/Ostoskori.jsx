@@ -160,6 +160,7 @@ const Button = styled.button`
   width: 100%;
   border-radius: 30px;
   font-weight: 600;
+  cursor: pointer;
 `;
 const Message = styled.h1`
   text-align: center;

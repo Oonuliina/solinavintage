@@ -4,25 +4,31 @@ import { useNavigate } from "react-router-dom";
 import { tablet } from "../responsive";
 
 const Burger = () => {
-
+  /* State variable to check if burger menu is open */
   const [open, setOpen] = useState(false);
 
+  /* Handle opening and closing the burger menu */
   const showMenu = () => setOpen(!open);
 
   const navigate = useNavigate();
 
+  /* State variable to check if "TUOTTEET" inside burger menus is open */
   const [navSideOpen, setNavSideOpen] = useState(0);
+  /* Handle opening and closing the "TUOTTEET" drop down */
   const openNavSide = () => {
     setNavSideOpen((curr) => !curr);
   };
 
+  /* Defining a style for "TUOTTEET" drop down */
   let showHideTuotteet = {
     display: "none",
   };
+  /* If state is set to open style has display flex (drop down items show) */
   if (navSideOpen) {
     showHideTuotteet = {
       display: "flex",
     };
+  /* If state is set to close style has display none (drop down items not shown) */
   } else {
     showHideTuotteet = {
       display: "none",

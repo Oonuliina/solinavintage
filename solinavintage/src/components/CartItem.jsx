@@ -6,12 +6,18 @@ import { mobile, tablet } from "../responsive";
 
 
 const CartItem = ({ itemId, removeFromCart }) => {
+  /* Defining a variable where we take the item id that was passed down from Ostoskori and find the corresponding item from the data file */
   const item = products.find((i) => i.id == itemId);
 
+  /* Function to check if the item has size property */
   function checkForSize(item) {
+    /* If the item has no size property... */
     if (!item.size) {
+      /* ...return nothing */
       return null;
+    /* If the item has a size property... */  
     } else {
+      /* ...return additional component to show the size of the product */
       return (
         <ProductSize>
           <b>Koko: </b>

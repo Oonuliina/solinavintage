@@ -8,7 +8,7 @@ import { mobile } from "../responsive";
 const Product = ({ item, addToCart }) => {
 
   let navigate = useNavigate();
-/* Navigate to single item page pased on item id*/
+  /* Navigate to single item page based on item id*/
   const routeChange = () => {
     let path = "/tuote/" + item.id;
     navigate(path);

@@ -8,14 +8,14 @@ import { tablet, large, mobile } from "../responsive";
 
 
 const Slider = () => {
-/* Here we set the state to "-2" for slideindex. We do not know why but we had to put -2 to get the slider to start from the first slide */
+  /* Here we set the state to "-2" for slideindex. We do not know why but we had to put -2 to get the slider to start from the first slide */
   const [slideIndex, setSlideIndex] = useState(-2);
-/* Funtion for slider to determine what happen frow left and right arrow */
+  /* Funtion for slider to determine what happen frow left and right arrow */
   const handleClick = (direction) => {
-/* If you click the left arrow, the slide will one step back on the slides order*/
+    /* If you click the left arrow, the slide will one step back on the slides order*/
     if (direction === "left") {
       setSlideIndex(slideIndex > -2 ? slideIndex - 1 : 2);
-/* If you click the right arrow, the slide will one step forward on the slides order*/
+      /* If you click the right arrow, the slide will one step forward on the slides order*/
     } else {
       setSlideIndex(slideIndex < 2 ? slideIndex + 1 : -2);
     }
@@ -62,9 +62,9 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
 
-  ${large({ height: "400px"})}
-  ${tablet({ height: "300px"})}
-  ${mobile({ display: "none"})}
+  ${large({ height: "400px" })}
+  ${tablet({ height: "300px" })}
+  ${mobile({ display: "none" })}
 `;
 /* Both arrows */
 const Arrow = styled.div`
@@ -108,9 +108,9 @@ const Slide = styled.div`
   align-items: center;
   background-color: #${(props) => props.$bg};
 
-  ${large({ height: "400px"})}
-  ${tablet({ height: "300px"})}
-  ${mobile({ height: "200px"})}
+  ${large({ height: "400px" })}
+  ${tablet({ height: "300px" })}
+  ${mobile({ height: "200px" })}
 `;
 const ImgContainer = styled.div`
   flex: 1;
@@ -120,12 +120,12 @@ const ImgContainer = styled.div`
   justify-content: center;
   height: 100%;
 
-  ${large({ justifyContent: "right", padding: "0px"})}
+  ${large({ justifyContent: "right", padding: "0px" })}
 `;
 const Image = styled.img`
   height: 80%;
 
-  ${mobile({ height: "70%"})}
+  ${mobile({ height: "70%" })}
 `;
 const InfoContainer = styled.div`
   flex: 1;
@@ -134,16 +134,16 @@ const InfoContainer = styled.div`
   flex-direction: column;
   align-items: left;
 
-  ${mobile({ padding: "10px", marginRight: "30px"})}
+  ${mobile({ padding: "10px", marginRight: "30px" })}
 `;
 const Title = styled.h1`
   margin: 10x 0px 0px 0px;
   font-size: 50px;
   text-align: left;
 
-  ${large({ fontSize: "30px"})}
-  ${tablet({ fontSize: "25px"})}
-  ${mobile({ fontSize: "15px"})}
+  ${large({ fontSize: "30px" })}
+  ${tablet({ fontSize: "25px" })}
+  ${mobile({ fontSize: "15px" })}
 `;
 const Desc = styled.p`
   margin: 10px 0px 10px 0px;
@@ -152,9 +152,9 @@ const Desc = styled.p`
   text-align: left;
   letter-spacing: 3px;
 
-  ${large({ fontSize: "18px"})}
-  ${tablet({ fontSize: "15px"})}
-  ${mobile({ fontSize: "10px", margin: "5px 0px 5px 0px", letterSpacing: "1px"})}
+  ${large({ fontSize: "18px" })}
+  ${tablet({ fontSize: "15px" })}
+  ${mobile({ fontSize: "10px", margin: "5px 0px 5px 0px", letterSpacing: "1px" })}
 `;
 const Button = styled.button`
   margin: 30px 0px;
@@ -169,6 +169,6 @@ const Button = styled.button`
   letter-spacing: 2px;
   background-color: whitesmoke;
 
-  ${tablet({width: "150px", fontSize: "15px"})}
-  ${mobile({ fontSize: "10px", margin: "10px 0px", width: "100px"})}
+  ${tablet({ width: "150px", fontSize: "15px" })}
+  ${mobile({ fontSize: "10px", margin: "10px 0px", width: "100px" })}
 `;
