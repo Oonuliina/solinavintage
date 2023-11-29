@@ -4,62 +4,6 @@ import React, { useState, useEffect } from 'react';
 import { tablet, large } from "../responsive";
 import { useNavigate } from "react-router-dom";
 
-const Container = styled.div`
-  width: 100vw;
-  height: 100vh;
-  background: linear-gradient(
-      rgba(255, 255, 255, 0.5),
-      rgba(255, 255, 255, 0.5)
-    ),
-    url("https://images.pexels.com/photos/9260836/pexels-photo-9260836.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
-      center;
-  background-repeat: no-repeat;
-  background-size: cover;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const Wrapper = styled.div`
-  width: 500px;
-  padding: 20px;
-  background-color: white;
-  border-radius: 5px;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  ${tablet({ width: "65%" })}
-`;
-const Title = styled.h1`
-  font-size: 24px;
-  font-weight: 200;
-  text-align: center;
-`;
-const Form = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-`;
-
-const Input = styled.input`
-    min-width: 70%;
-    margin: 20px 0px;
-    padding: 20px;
-`;
-const CreateAccountButton = styled.button`
-    background-color: black;
-    color: white;
-    padding: 10px 30px;
-    margin: 20px 30px;
-    border: none;
-    cursor: pointer;
-`;
-const BackToHomeButtom = styled.button`
-    border: none;
-    background: none;
-    cursor: pointer;
-`;
-
 const Rekisteröityminen = () => {
 
   const navigate = useNavigate();
@@ -125,6 +69,7 @@ const Rekisteröityminen = () => {
     <Container>
       <Wrapper>
         <Title>Luo tili</Title>
+        {/* Sign in form*/}
         <Form>
           <Input type="email" placeholder="Sähköposti" id="email" />
           <Input type="password" placeholder="Salasana" id="passw" />
@@ -139,3 +84,59 @@ const Rekisteröityminen = () => {
 };
 
 export default Rekisteröityminen;
+
+const Container = styled.div`
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.5)
+    ),
+    url("https://images.pexels.com/photos/9260836/pexels-photo-9260836.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
+      center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const Wrapper = styled.div`
+  width: 500px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  ${tablet({ width: "65%" })}
+`;
+const Title = styled.h1`
+  font-size: 24px;
+  font-weight: 200;
+  text-align: center;
+`;
+const Form = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+`;
+
+const Input = styled.input`
+    min-width: 70%;
+    margin: 20px 0px;
+    padding: 20px;
+`;
+const CreateAccountButton = styled.button`
+    background-color: black;
+    color: white;
+    padding: 10px 30px;
+    margin: 20px 30px;
+    border: none;
+    cursor: pointer;
+`;
+const BackToHomeButtom = styled.button`
+    border: none;
+    background: none;
+    cursor: pointer;
+`;

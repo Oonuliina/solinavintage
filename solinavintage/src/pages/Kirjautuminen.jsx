@@ -4,71 +4,6 @@ import { tablet, mobile, large } from "../responsive";
 /* import PropTypes from 'prop-types'; */
 import React, { useState, useEffect } from 'react';
 
-const Container = styled.div`
-  width: 100vw;
-  height: 100vh;
-  background: linear-gradient(
-      rgba(255, 255, 255, 0.5),
-      rgba(255, 255, 255, 0.5)
-    ),
-    url("https://images.pexels.com/photos/9260836/pexels-photo-9260836.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
-      center;
-  background-repeat: no-repeat;
-  background-size: cover;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const Wrapper = styled.div`
-  width: 500px;
-  padding: 20px;
-  background-color: white;
-  border-radius: 5px;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  ${tablet({ width: "65%"})}
-`;
-const Title = styled.h1`
-  font-size: 24px;
-  font-weight: 200;
-  text-align: center;
-`;
-const Form = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-`;
-
-const Input = styled.input`
-    min-width: 70%;
-    margin: 20px 0px;
-    padding: 20px;
-`;
-
-const LoginButton = styled.button`
-    background-color: black;
-    color: white;
-    padding: 10px 30px;
-    margin: 20px 30px;
-    border: none;
-    cursor: pointer;
-`;
-const CreateAccountButton = styled.button`
-    border: none;
-    font-size: 17px;
-    background: none;
-    text-decoration: underline;
-    cursor: pointer;
-`;
-const BackToHomeButtom = styled.button`
-    border: none;
-    background: none;
-    cursor: pointer;
-    padding: 10px;
-`;
-
 async function loginUser(credentials){
   return fetch('https://solina-server.onrender.com/kirjautuminen', {
     method: 'POST',
@@ -136,6 +71,7 @@ const Kirjautuminen = ({ setLoginToken}) => {
   return (    
     <Container>
         <Wrapper>
+          {/* Login form */}
             <Form>
               <Title>Kirjaudu sisään</Title>
               <Input type="text" placeholder="Sähköposti" onChange={e => setEmail(e.target.value)}/>
@@ -154,3 +90,68 @@ const Kirjautuminen = ({ setLoginToken}) => {
 }
 
 export default Kirjautuminen
+
+const Container = styled.div`
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.5)
+    ),
+    url("https://images.pexels.com/photos/9260836/pexels-photo-9260836.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
+      center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const Wrapper = styled.div`
+  width: 500px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  ${tablet({ width: "65%"})}
+`;
+const Title = styled.h1`
+  font-size: 24px;
+  font-weight: 200;
+  text-align: center;
+`;
+const Form = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+`;
+
+const Input = styled.input`
+    min-width: 70%;
+    margin: 20px 0px;
+    padding: 20px;
+`;
+
+const LoginButton = styled.button`
+    background-color: black;
+    color: white;
+    padding: 10px 30px;
+    margin: 20px 30px;
+    border: none;
+    cursor: pointer;
+`;
+const CreateAccountButton = styled.button`
+    border: none;
+    font-size: 17px;
+    background: none;
+    text-decoration: underline;
+    cursor: pointer;
+`;
+const BackToHomeButtom = styled.button`
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 10px;
+`;
