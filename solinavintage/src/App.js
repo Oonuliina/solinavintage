@@ -10,6 +10,7 @@ import useLoginToken from "./components/useLoginToken";
 import React, { useEffect, useState } from "react";
 import Kirjautuminen from "./pages/Kirjautuminen";
 import Rekisteröityminen from "./pages/Rekisteröityminen";
+import toast, { Toaster } from "react-hot-toast"
 
 function App() {
   const { loginToken, setLoginToken } = useLoginToken();
@@ -32,7 +33,7 @@ function App() {
   }
 
   async function updateCart({cartId, cartItems}){
-    return fetch('https://solina-server.onrender.com/updatecart', {
+    return fetch('http://localhost:3000/updatecart', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({cartId, cartItems})
@@ -60,9 +61,11 @@ function App() {
   const addToCart = (item) => {
     if(!isInCart(cart, item.id)){
       setCart([...cart, { id: item.id, price: item.price }]);
-      alert("Tuote lisätty ostoskoriin!");
+      toast("Tuote lisätty ostoskoriin!", {
+        icon: '😍',
+      });
     } else {
-      alert("Tuote on jo ostoskorissasi!")
+      toast.error("Tuote on jo ostoskorissasi!")
     }
   };
 
@@ -75,6 +78,7 @@ function App() {
 
   return (
     <div className="App">
+      <Toaster position="top-right" />
       <Router>
         <Routes>
           <Route
