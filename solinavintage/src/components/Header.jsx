@@ -14,19 +14,18 @@ import { mobile, tablet, large } from "../responsive";
 import Burger from "./Burger";
 import Search from "../components/Search";
 
-
 const Header = ({ cart }) => {
-
+  /* Check for any login */
   const loggedIn = sessionStorage.getItem("loginToken");
-
+  /* Define state variable for modal */
   const [showModal, setShowModal] = useState(0);
-
+  /* Define navigate */
   const navigate = useNavigate();
-
+  /* handle opening and closing of the search modal */
   const openModal = () => {
     setShowModal((prev) => !prev);
   };
-
+  /* Define style for Log out icon, if you are logged in, the logout icon will be displayed. */
   let LoggedIn = {
     display: "none",
   };
@@ -39,7 +38,7 @@ const Header = ({ cart }) => {
       display: "none",
     };
   }
-
+  /* Define style for Log in icon, if you are logged out, the log in icon will be displayed. */
   let LoggedOut = {
     display: "flex",
   };
@@ -52,11 +51,11 @@ const Header = ({ cart }) => {
       display: "flex",
     };
   }
-
+  /* Log out funtion that clears sessionstorage and reloads window location */
   function logOut() {
     sessionStorage.clear();
     window.location.reload();
-  };
+  }
 
   return (
     <>
@@ -85,7 +84,7 @@ const Header = ({ cart }) => {
               />
             </LoginIcon>
             <LogoutIcon style={LoggedIn}>
-              <SignOut size={32} onClick={() => logOut()}/>
+              <SignOut size={32} onClick={() => logOut()} />
             </LogoutIcon>
             <ShoppingContainer>
               <ShoppingButton>
@@ -100,11 +99,11 @@ const Header = ({ cart }) => {
             </ShoppingContainer>
           </UpperRight>
         </UpperNavigation>
-         {/* Middle part of header*/}
+        {/* Middle part of header*/}
         <LogoContainer>
           <LogoImage onClick={() => navigate("/")} src={logo} />
         </LogoContainer>
-           {/* Bottom navigation of header*/}
+        {/* Bottom navigation of header*/}
         <NavBar>
           <NavItem onClick={() => navigate("/")}>ETUSIVU</NavItem>
           <NavDrop>
@@ -191,7 +190,7 @@ const LoginIcon = styled.span`
   }
 `;
 
-const LogoutIcon = styled.span`  
+const LogoutIcon = styled.span`
   cursor: pointer;
   transition: all 0.5s ease;
 

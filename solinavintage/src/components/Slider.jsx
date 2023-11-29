@@ -8,10 +8,14 @@ import { tablet, large, mobile } from "../responsive";
 
 
 const Slider = () => {
+/* Here we set the state to "-2" for slideindex. We do not know why but we had to put -2 to get the slider to start from the first slide */
   const [slideIndex, setSlideIndex] = useState(-2);
+/* Funtion for slider to determine what happen frow left and right arrow */
   const handleClick = (direction) => {
+/* If you click the left arrow, the slide will one step back on the slides order*/
     if (direction === "left") {
       setSlideIndex(slideIndex > -2 ? slideIndex - 1 : 2);
+/* If you click the right arrow, the slide will one step forward on the slides order*/
     } else {
       setSlideIndex(slideIndex < 2 ? slideIndex + 1 : -2);
     }
@@ -48,7 +52,7 @@ const Slider = () => {
 };
 
 export default Slider;
-
+/* The whole slider container */
 const Container = styled.div`
   width: 100vw;
   height: 600px;

@@ -6,9 +6,12 @@ import { useNavigate } from "react-router-dom";
 import { mobile } from "../responsive";
 
 const Search = ({ setShowModal }) => {
+  /* Set query state to be an empty string */
   const [query, setQuery] = useState("");
+
   let navigate = useNavigate();
 
+  /* Navigate to single item page pased on item id*/
   const routeChange = (i) => {
     let path = "/tuote/" + i.id;
     navigate(path);
@@ -30,6 +33,7 @@ const Search = ({ setShowModal }) => {
             </CloseModalButton>
           </SearchContent>
         </SearchContainer>
+        {/* If query length is not equal to 0, then show the resultscontainer */}
         {query.length !== 0 && (
           <ResultContainer>
             <List name="list">
