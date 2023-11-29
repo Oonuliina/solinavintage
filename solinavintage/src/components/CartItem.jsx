@@ -4,6 +4,54 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { products } from "../data";
 import { mobile, tablet } from "../responsive";
 
+
+const CartItem = ({ itemId, removeFromCart }) => {
+  const item = products.find((i) => i.id == itemId);
+
+  function checkForSize(item) {
+    if (!item.size) {
+      return null;
+    } else {
+      return (
+        <ProductSize>
+          <b>Koko: </b>
+          {item.size}
+        </ProductSize>
+      );
+    }
+  }
+
+  return (
+    <Product>
+      <ProductDetail>
+        <Image src={item.img} />
+        <Details>
+          <ProductName>
+            <b>Tuote: </b>
+            {item.title}
+          </ProductName>
+          {checkForSize(item)}
+          <ProductColor>
+            <b>Väri: </b>
+            {item.color}
+          </ProductColor>
+        </Details>
+      </ProductDetail>
+      <PriceDetail>
+        <ProductPrice>
+          {item.price}
+          <b> €</b>
+        </ProductPrice>
+        <Removebutton onClick={() => removeFromCart(item)}>
+          <DeleteIcon />
+        </Removebutton>
+      </PriceDetail>
+    </Product>
+  );
+};
+
+export default CartItem;
+
 const Product = styled.div`
   display: flex;
   justify-content: space-between;
@@ -65,50 +113,3 @@ const Removebutton = styled.button`
 
   ${mobile({ display: "flex", margin: "0" })}
 `;
-
-const CartItem = ({ itemId, cart, removeFromCart }) => {
-  const item = products.find((i) => i.id == itemId);
-
-  function checkForSize(item) {
-    if (!item.size) {
-      return null;
-    } else {
-      return (
-        <ProductSize>
-          <b>Koko: </b>
-          {item.size}
-        </ProductSize>
-      );
-    }
-  }
-
-  return (
-    <Product>
-      <ProductDetail>
-        <Image src={item.img} />
-        <Details>
-          <ProductName>
-            <b>Tuote: </b>
-            {item.title}
-          </ProductName>
-          {checkForSize(item)}
-          <ProductColor>
-            <b>Väri: </b>
-            {item.color}
-          </ProductColor>
-        </Details>
-      </ProductDetail>
-      <PriceDetail>
-        <ProductPrice>
-          {item.price}
-          <b> €</b>
-        </ProductPrice>
-        <Removebutton onClick={() => removeFromCart(item)}>
-          <DeleteIcon />
-        </Removebutton>
-      </PriceDetail>
-    </Product>
-  );
-};
-
-export default CartItem;

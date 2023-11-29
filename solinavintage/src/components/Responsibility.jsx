@@ -5,6 +5,39 @@ import qualityCheck from "../assets/Responsibility/quality-check.png";
 import { mobile, large, tablet } from "../responsive";
 
 
+const Responsibility = () => {
+  return (
+    <Container>
+      <Title>Vastuullisuus</Title>
+      <Wrapper>
+        <Item>
+          <Circle>
+            <Image src={recycled} />
+          </Circle>
+          <Desc>Osta meiltä ja tue kiertotaloutta!</Desc>
+        </Item>
+        <Item>
+          <Circle>
+            <Image src={hesy} />
+          </Circle>
+          <Desc>
+            Jokaisesta ostamastasi tuotteesta lahjoitamme 10% ostosummasta HESY
+            ry:lle.
+          </Desc>
+        </Item>
+        <Item>
+          <Circle>
+            <Image src={qualityCheck} />
+          </Circle>
+          <Desc>Kaikille myytäville tuotteille on tehty laatutarkastus. </Desc>
+        </Item>
+      </Wrapper>
+    </Container>
+  );
+};
+
+export default Responsibility;
+
 const Container = styled.div`
   width: 100vw;
   padding-bottom: 20px;
@@ -65,36 +98,3 @@ const Desc = styled.span`
   ${large({ fontSize: "1rem", paddingLeft: "10px", paddingRight: "10px"})}
   ${tablet({ fontSize: "20px"})}
 `;
-
-const Responsibility = () => {
-  return (
-    <Container>
-      <Title>Vastuullisuus</Title>
-      <Wrapper>
-        <Item>
-          <Circle>
-            <Image src={recycled} />
-          </Circle>
-          <Desc>Osta meiltä ja tue kiertotaloutta!</Desc>
-        </Item>
-        <Item>
-          <Circle>
-            <Image src={hesy} />
-          </Circle>
-          <Desc>
-            Jokaisesta ostamastasi tuotteesta lahjoitamme 10% ostosummasta HESY
-            ry:lle.
-          </Desc>
-        </Item>
-        <Item>
-          <Circle>
-            <Image src={qualityCheck} />
-          </Circle>
-          <Desc>Kaikille myytäville tuotteille on tehty laatutarkastus. </Desc>
-        </Item>
-      </Wrapper>
-    </Container>
-  );
-};
-
-export default Responsibility;

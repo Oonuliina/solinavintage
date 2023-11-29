@@ -3,6 +3,44 @@ import styled from "styled-components";
 import { products } from "../data";
 import { large, mobile } from "../responsive";
 
+
+const CartItem = ({ itemId }) => {
+  const item = products.find((i) => i.id == itemId);
+
+  function checkForSize(item) {
+    if (!item.size) {
+      return null;
+    } else {
+      return (
+        <ProductSize>
+          Koko: {item.size}
+        </ProductSize>
+      );
+    }
+  }
+
+  return (
+    <SummaryTop>
+    <ProductContainer>
+      <ProductImage src={item.img} />
+      <ProductTextContainer>
+        <ProductTexts>
+          <ProductText type="name">
+            {item.title}
+          </ProductText>
+          {checkForSize(item)}
+          <ProductText>Väri: {item.color}</ProductText>
+        </ProductTexts>
+      </ProductTextContainer>
+      <ProductPrice>{item.price} €</ProductPrice>
+    </ProductContainer>
+  </SummaryTop>
+  );
+};
+
+export default CartItem;
+
+
 const SummaryTop = styled.div`
   padding-right: 20px;
 
@@ -41,39 +79,3 @@ const ProductPrice = styled.span`
 const ProductSize = styled.span`
   padding-bottom: 10px;
 `;
-
-const CartItem = ({ itemId }) => {
-  const item = products.find((i) => i.id == itemId);
-
-  function checkForSize(item) {
-    if (!item.size) {
-      return null;
-    } else {
-      return (
-        <ProductSize>
-          Koko: {item.size}
-        </ProductSize>
-      );
-    }
-  }
-
-  return (
-    <SummaryTop>
-    <ProductContainer>
-      <ProductImage src={item.img} />
-      <ProductTextContainer>
-        <ProductTexts>
-          <ProductText type="name">
-            {item.title}
-          </ProductText>
-          {checkForSize(item)}
-          <ProductText>Väri: {item.color}</ProductText>
-        </ProductTexts>
-      </ProductTextContainer>
-      <ProductPrice>{item.price} €</ProductPrice>
-    </ProductContainer>
-  </SummaryTop>
-  );
-};
-
-export default CartItem;

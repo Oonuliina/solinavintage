@@ -4,6 +4,43 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { mobile } from "../responsive";
 
+
+const Product = ({ item, addToCart }) => {
+  let navigate = useNavigate();
+  const routeChange = () => {
+    let path = "/tuote/" + item.id;
+    navigate(path);
+  };
+
+  return (
+    <Container>
+      <ImageContainer>
+        <Image src={item.img} />
+        <IconContainer>
+          <Icon>
+            <Eye size={24} weight="light" onClick={routeChange} />
+          </Icon>
+          <Icon>
+            <ShoppingBag
+              size={24}
+              weight="light"
+              onClick={() => addToCart(item)}
+            />
+          </Icon>
+        </IconContainer>
+      </ImageContainer>
+      <InfoContainer>
+        <Title>{item.title}</Title>
+        <Size>{item.size}</Size>
+        <Price>{item.price} €</Price>
+      </InfoContainer>
+    </Container>
+  );
+};
+
+export default Product;
+
+
 const IconContainer = styled.div`
   opacity: 0;
   width: 100%;
@@ -97,37 +134,3 @@ const Price = styled.span`
 
   ${mobile({ padding: "3px", fontSize: "15px" })}
 `;
-const Product = ({ item, addToCart }) => {
-  let navigate = useNavigate();
-  const routeChange = () => {
-    let path = "/tuote/" + item.id;
-    navigate(path);
-  };
-
-  return (
-    <Container>
-      <ImageContainer>
-        <Image src={item.img} />
-        <IconContainer>
-          <Icon>
-            <Eye size={24} weight="light" onClick={routeChange} />
-          </Icon>
-          <Icon>
-            <ShoppingBag
-              size={24}
-              weight="light"
-              onClick={() => addToCart(item)}
-            />
-          </Icon>
-        </IconContainer>
-      </ImageContainer>
-      <InfoContainer>
-        <Title>{item.title}</Title>
-        <Size>{item.size}</Size>
-        <Price>{item.price} €</Price>
-      </InfoContainer>
-    </Container>
-  );
-};
-
-export default Product;
