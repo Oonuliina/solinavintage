@@ -47,6 +47,7 @@ const Ostoskori = ({ cart, removeFromCart }) => {
           {/* Product details */}
           <Info>
             <Message style={messageStyle}>Ostoskori on tyhjä</Message>
+            {/* Mapping the items in the cart array and creating a component for each */}
             {cart.map((item) => (
               <CartItem removeFromCart={removeFromCart} cart={cart} itemId={item.id} key={item.id} />
             ))}
@@ -60,6 +61,7 @@ const Ostoskori = ({ cart, removeFromCart }) => {
             </SummaryItem>
             <SummaryItem>
               <SummaryItemText>Lahjoitus Hesylle 10%</SummaryItemText>
+              {/* toFixed makes the decimals always show even if they are 00 */}
               <SummaryItemPrice>{Number(hesyPrice).toFixed(2)} €</SummaryItemPrice>
             </SummaryItem>
             <SummaryText>

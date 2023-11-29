@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { tablet, mobile, large } from "../responsive";
-/* import PropTypes from 'prop-types'; */
 import React, { useState, useEffect } from 'react';
 
+/* Login fetch function */
 async function loginUser(credentials){
   return fetch('https://solina-server.onrender.com/kirjautuminen', {
     method: 'POST',
@@ -12,6 +12,7 @@ async function loginUser(credentials){
   }).then(data => data.json())
 }
 
+/* Fetch function for getting cart from the database */
 async function getCart(user){
   return fetch('https://solina-server.onrender.com/haekori', {
     method: 'POST',
@@ -20,39 +21,48 @@ async function getCart(user){
   }).then(data => data.json())
 }
 
+/* Function where we call the cart fetch function and pass it the correct variables */
 async function gettingCart(user){
   await getCart({
       user
   }).then(res => {
+    /* We also set a token in session storage to track the cart */
     sessionStorage.setItem(res.cartId, JSON.stringify(res.cartItems));
   })
 }
 
-const Kirjautuminen = ({ setLoginToken}) => {
-
+const Kirjautuminen = ({ setLoginToken }) => {
+  /* Check for any login */
   const loggedIn = sessionStorage.getItem("loginToken");
 
+  /* Defining delay... */
   const delay = ms => new Promise(res => setTimeout(res, ms));
+  /* ...for a function that redirects to homepage after waiting 1,5 seconds */
   const waitThenRedirect= async () => {
     await delay(1500);
     document.location.replace("/");
   }
 
+  /* If logged in redirect back to homepage (to restrict access to loging page while logged in) */
   useEffect(() => {
     if(loggedIn){
       document.location.replace("/");
     }
   },[]);
 
+  /* State variables for email and password */
   const [email, setEmail] = useState();
   const [passwo, setPasswo] = useState();
 
+  /* Main login function */
   const handleLogin = async e => {
     e.preventDefault();
+    /* Call fetch function and pass it user inputted email and password */
     await loginUser({
       email,
       passwo
     }).then((res) => {
+      /* Checkng responses (backend determines) */
       if (res === "Sähköpostia ei ole rekisteröity!"){
         alert(res)
       } else {
@@ -60,8 +70,10 @@ const Kirjautuminen = ({ setLoginToken}) => {
           alert(res)
         } else {
           let user = email;
+          /* Setting login token and user specific shopping cart */
           setLoginToken(res.token)
           gettingCart(user);
+          /* Wait and redirect, because if we do not wait backend will only find user and not corresponding cart before redirect */
           waitThenRedirect();
         }
       }
@@ -74,6 +86,7 @@ const Kirjautuminen = ({ setLoginToken}) => {
           {/* Login form */}
             <Form>
               <Title>Kirjaudu sisään</Title>
+              {/* onChange functions to change the state variables to what the user is inputting */}
               <Input type="text" placeholder="Sähköposti" onChange={e => setEmail(e.target.value)}/>
               <Input type="password" placeholder="Salasana" onChange={e => setPasswo(e.target.value)}/>
               <LoginButton onClick={handleLogin}>Kirjaudu sisään</LoginButton>

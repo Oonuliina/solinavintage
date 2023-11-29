@@ -6,8 +6,11 @@ import { large, tablet } from "../responsive";
 import { products } from "../data";
 
 const Tuote = ({addToCart, cart}) => {
+  /* We get the full path... */
   const fullpath = window.location.href;
+  /* ...take the item id from the end of the path... */
   const itemId = fullpath.split(/[/]+/).pop();
+  /* ...and find the item from the products datafile */
   const item = products.find(i => i.id == itemId);
 
   return (
