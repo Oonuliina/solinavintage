@@ -1,5 +1,11 @@
 import styled from "styled-components";
-import { mobile, tablet } from "../responsive";
+import { tablet } from "../responsive";
+
+const Announcement = () => {
+  return <Container>Ilmainen toimitus yli 100€ ostoksille Suomessa!</Container>;
+};
+
+export default Announcement;
 
 const Container = styled.div`
   height: 40px;
@@ -11,11 +17,4 @@ const Container = styled.div`
   font-size: 15px;
 
   ${tablet({ fontSize: "12px", height: "35px" })}
-
 `;
-
-const Announcement = () => {
-  return <Container>Ilmainen toimitus yli 100€ ostoksille Suomessa!</Container>;
-};
-
-export default Announcement;

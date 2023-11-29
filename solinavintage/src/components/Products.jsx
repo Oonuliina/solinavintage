@@ -9,20 +9,6 @@ import Product from "./Product";
 import { useEffect, useState } from "react";
 import { mobile } from "../responsive";
 
-const Container = styled.div`
-  padding: 20px;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-
-  ${mobile({ padding: "11px"})}
-`;
-const Message = styled.h1`
-  text-align: center;
-  margin-top: 50px;
-  margin-bottom: 70px;
-`;
 
 const Products = ({ addToCart, filters, sort }) => {
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -79,3 +65,18 @@ const Products = ({ addToCart, filters, sort }) => {
 };
 
 export default Products;
+
+const Container = styled.div`
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+
+  ${mobile({ padding: "11px"})}
+`;
+const Message = styled.h1`
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 70px;
+`;

@@ -2,6 +2,23 @@ import { products } from "../data";
 import styled from "styled-components";
 import Product from "./Product";
 
+
+
+const RandomProducts = ({addToCart}) => {
+
+    const randomProduct = products.sort(() => Math.random() - Math.random());
+
+    return (
+    <Container>
+      {randomProduct.slice(0, 10).map((randomProduct) => (
+        <Product item={randomProduct} key={randomProduct.id} addToCart={addToCart}/>
+      ))}
+    </Container>
+  );
+};
+
+export default RandomProducts;
+
 const Container = styled.div`
   padding: 20px;
   display: flex;
@@ -18,18 +35,3 @@ const Container = styled.div`
     margin-left: 0px;
   }
 `;
-
-const RandomProducts = ({addToCart}) => {
-
-    const randomProduct = products.sort(() => Math.random() - Math.random());
-
-    return (
-    <Container>
-      {randomProduct.slice(0, 10).map((randomProduct) => (
-        <Product item={randomProduct} key={randomProduct.id} addToCart={addToCart}/>
-      ))}
-    </Container>
-  );
-};
-
-export default RandomProducts;

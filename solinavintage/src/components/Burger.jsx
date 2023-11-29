@@ -4,11 +4,13 @@ import { useNavigate } from "react-router-dom";
 import { tablet } from "../responsive";
 
 const Burger = () => {
+
   const [open, setOpen] = useState(false);
 
-  const showSidebar = () => setOpen(!open);
+  const showMenu = () => setOpen(!open);
 
   const navigate = useNavigate();
+
   const [navSideOpen, setNavSideOpen] = useState(0);
   const openNavSide = () => {
     setNavSideOpen((curr) => !curr);
@@ -29,11 +31,13 @@ const Burger = () => {
 
   return (
     <>
-      <StyledBurger open={open} onClick={showSidebar}>
+    {/* Burger menu */}
+      <StyledBurger open={open} onClick={showMenu}>
         <div />
         <div />
         <div />
       </StyledBurger>
+      {/* side menu */}
       <SideMenu open={open}>
         <NavList>
           <NavItem onClick={() => navigate("/")}>ETUSIVU</NavItem>
@@ -59,6 +63,7 @@ const Burger = () => {
 
 export default Burger;
 
+/* Burger menu */
 const StyledBurger = styled.div`
   display: none;
   position: relative;
@@ -89,9 +94,9 @@ transform: ${({ open }) => (open ? "rotate(45deg)" : "rotate(0)")};
 }
 }
 
-${tablet({ display: "flex"})}
+${tablet({ display: "flex" })}
 `;
-
+/* Side menu */
 const SideMenu = styled.div`
   position: absolute;
   margin: 0;

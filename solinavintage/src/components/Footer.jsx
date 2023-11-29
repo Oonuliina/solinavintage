@@ -20,7 +20,9 @@ const Footer = () => {
 
   return (
     <Container>
+      {/* Footer top wrapper*/}
       <FooterInfo>
+        {/* Left side of footer top*/}
         <Left>
           <LinksBox>
             <LinksTitle>Linkkejä</LinksTitle>
@@ -34,6 +36,7 @@ const Footer = () => {
             </LinksList>
           </LinksBox>
         </Left>
+        {/* Middle of footer top*/}
         <Center>
           <ContactBox>
             <ContactTitle>Yhteystiedot</ContactTitle>
@@ -57,6 +60,7 @@ const Footer = () => {
             </ContactItem>
           </ContactBox>
         </Center>
+        {/* Right side of footer top */}
         <Right>
           <PaymentContainer>
             <PaymentTitle>Maksutavat</PaymentTitle>
@@ -73,7 +77,9 @@ const Footer = () => {
           </PaymentContainer>
         </Right>
       </FooterInfo>
+      {/* Footer bottom wrapper*/}
       <FooterBot>
+        {/* Social icons */}
         <SocialIconContainer>
           <SocialIcon>
             <FacebookLogo size={38} weight="light" />
@@ -85,6 +91,7 @@ const Footer = () => {
             <InstagramLogo size={38} weight="light" />
           </SocialIcon>
         </SocialIconContainer>
+        {/* Copyright */}
         <CopyrightContainer>
           <Copyright>© 2023 Solina Vintage Oy</Copyright>
         </CopyrightContainer>
@@ -95,18 +102,21 @@ const Footer = () => {
 
 export default Footer;
 
+/* Whole footer container*/
 const Container = styled.div`
   margin-top: auto;
   bottom: 0;
   width: 100%;
   border-top: 0.5px solid lightgray;
 `;
+/* Footer top wrapper*/
 const FooterInfo = styled.div`
   display: flex;
   padding-bottom: 30px;
 
   ${tablet({ flexDirection: "column", marginLeft: "30px" })}
 `;
+/* Left side of footer top*/
 const Left = styled.div`
   flex: 1;
   margin-top: 20px;
@@ -146,7 +156,7 @@ const LinkItem = styled.li`
     font-weight: bold;
   }
 `;
-
+/* Middle of footer top*/
 const Center = styled.div`
   flex: 1;
   margin-top: 20px;
@@ -188,6 +198,7 @@ const ContactIcon = styled.span`
   justify-content: center;
   cursor: pointer;
 `;
+/* Right side of footer top*/
 const Right = styled.div`
   flex: 1;
   margin-top: 20px;
@@ -239,11 +250,12 @@ const SmallImage = styled.img`
   height: 32px;
   padding-bottom: 1px;
 `;
-
+/* Footer bottom wrapper */
 const FooterBot = styled.div`
   display: flex;
   flex-direction: column;
 `;
+/* Social icons */
 const SocialIconContainer = styled.div`
   display: flex;
   margin: auto;
@@ -256,6 +268,7 @@ const SocialIcon = styled.div`
     transform: scale(1.1);
   }
 `;
+/* Copyright */
 const CopyrightContainer = styled.div`
   display: flex;
   align-items: center;

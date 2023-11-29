@@ -6,6 +6,49 @@ import { sliderItems } from "../sliderData";
 import { Link } from "react-router-dom";
 import { tablet, large, mobile } from "../responsive";
 
+
+const Slider = () => {
+  const [slideIndex, setSlideIndex] = useState(-2);
+  const handleClick = (direction) => {
+    if (direction === "left") {
+      setSlideIndex(slideIndex > -2 ? slideIndex - 1 : 2);
+    } else {
+      setSlideIndex(slideIndex < 2 ? slideIndex + 1 : -2);
+    }
+  };
+  return (
+    <Container>
+      {/* Left arrow of slider */}
+      <Arrow $direction="left" onClick={() => handleClick("left")}>
+        <ArrowBackIosRoundedIcon />
+      </Arrow>
+      {/* Wrppaer for the slides */}
+      <Wrapper $slideindex={slideIndex}>
+        {sliderItems.map((item) => (
+          <Slide $bg={item.bg} key={item.id}>
+            <ImgContainer>
+              <Image src={item.img} />
+            </ImgContainer>
+            <InfoContainer>
+              <Title>{item.title}</Title>
+              <Desc>{item.desc}</Desc>
+              <Link to={`/tuotteet/${item.category}`}>
+                <Button>OSTA NYT</Button>
+              </Link>
+            </InfoContainer>
+          </Slide>
+        ))}
+      </Wrapper>
+      {/* Right arrow of slider */}
+      <Arrow $direction="right" onClick={() => handleClick("right")}>
+        <ArrowForwardIosRoundedIcon />
+      </Arrow>
+    </Container>
+  );
+};
+
+export default Slider;
+
 const Container = styled.div`
   width: 100vw;
   height: 600px;
@@ -19,6 +62,7 @@ const Container = styled.div`
   ${tablet({ height: "300px"})}
   ${mobile({ display: "none"})}
 `;
+/* Both arrows */
 const Arrow = styled.div`
   width: 50px;
   height: 50px;
@@ -37,7 +81,6 @@ const Arrow = styled.div`
   opacity: 0.5;
   z-index: 2;
 
-  
   @media only screen and (max-width: 380px) {
     width: 35px;
     height: 35px;
@@ -45,12 +88,14 @@ const Arrow = styled.div`
     right: ${(props) => props.$direction === "right" && "5px"};
   }
 `;
+/* Wrapper for slider items */
 const Wrapper = styled.div`
   height: 100%;
   display: flex;
   transition: all 1s ease;
   transform: translateX(${(props) => props.$slideindex * -100}vw);
 `;
+/* Slider content */
 const Slide = styled.div`
   width: 100vw;
   height: 600px;
@@ -123,42 +168,3 @@ const Button = styled.button`
   ${tablet({width: "150px", fontSize: "15px"})}
   ${mobile({ fontSize: "10px", margin: "10px 0px", width: "100px"})}
 `;
-
-const Slider = () => {
-  const [slideIndex, setSlideIndex] = useState(-2);
-  const handleClick = (direction) => {
-    if (direction === "left") {
-      setSlideIndex(slideIndex > -2 ? slideIndex - 1 : 2);
-    } else {
-      setSlideIndex(slideIndex < 2 ? slideIndex + 1 : -2);
-    }
-  };
-  return (
-    <Container>
-      <Arrow $direction="left" onClick={() => handleClick("left")}>
-        <ArrowBackIosRoundedIcon />
-      </Arrow>
-      <Wrapper $slideindex={slideIndex}>
-        {sliderItems.map((item) => (
-          <Slide $bg={item.bg} key={item.id}>
-            <ImgContainer>
-              <Image src={item.img} />
-            </ImgContainer>
-            <InfoContainer>
-              <Title>{item.title}</Title>
-              <Desc>{item.desc}</Desc>
-              <Link to={`/tuotteet/${item.category}`}>
-                <Button>OSTA NYT</Button>
-              </Link>
-            </InfoContainer>
-          </Slide>
-        ))}
-      </Wrapper>
-      <Arrow $direction="right" onClick={() => handleClick("right")}>
-        <ArrowForwardIosRoundedIcon />
-      </Arrow>
-    </Container>
-  );
-};
-
-export default Slider;

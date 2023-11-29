@@ -14,6 +14,130 @@ import { mobile, tablet, large } from "../responsive";
 import Burger from "./Burger";
 import Search from "../components/Search";
 
+
+const Header = ({ cart }) => {
+
+  const loggedIn = sessionStorage.getItem("loginToken");
+
+  const [showModal, setShowModal] = useState(0);
+
+  const navigate = useNavigate();
+
+  const openModal = () => {
+    setShowModal((prev) => !prev);
+  };
+
+  let LoggedIn = {
+    display: "none",
+  };
+  if (loggedIn) {
+    LoggedIn = {
+      display: "flex",
+    };
+  } else {
+    LoggedIn = {
+      display: "none",
+    };
+  }
+
+  let LoggedOut = {
+    display: "flex",
+  };
+  if (loggedIn) {
+    LoggedOut = {
+      display: "none",
+    };
+  } else {
+    LoggedOut = {
+      display: "flex",
+    };
+  }
+
+  function logOut() {
+    sessionStorage.clear();
+    window.location.reload();
+  };
+
+  return (
+    <>
+      <Container>
+        {showModal ? <Search setShowModal={setShowModal} /> : null}
+        {/* Top part of header*/}
+        <UpperNavigation>
+          <UpperLeft>
+            <Burger />
+            <SearchIconButton onClick={openModal}>
+              <MagnifyingGlass size={35} weight="light" />
+            </SearchIconButton>
+          </UpperLeft>
+          <UpperCenter>
+            <MobileLogo
+              src={logoMobile}
+              onClick={() => navigate("/")}
+            ></MobileLogo>
+          </UpperCenter>
+          <UpperRight>
+            <LoginIcon style={LoggedOut}>
+              <User
+                onClick={() => navigate("/kirjautuminen")}
+                size={32}
+                weight="light"
+              />
+            </LoginIcon>
+            <LogoutIcon style={LoggedIn}>
+              <SignOut size={32} onClick={() => logOut()}/>
+            </LogoutIcon>
+            <ShoppingContainer>
+              <ShoppingButton>
+                <Badge badgeContent={cart.length} color="secondary">
+                  <ShoppingBag
+                    onClick={() => navigate("/ostoskori")}
+                    size={35}
+                    weight="light"
+                  />
+                </Badge>
+              </ShoppingButton>
+            </ShoppingContainer>
+          </UpperRight>
+        </UpperNavigation>
+         {/* Middle part of header*/}
+        <LogoContainer>
+          <LogoImage onClick={() => navigate("/")} src={logo} />
+        </LogoContainer>
+           {/* Bottom navigation of header*/}
+        <NavBar>
+          <NavItem onClick={() => navigate("/")}>ETUSIVU</NavItem>
+          <NavDrop>
+            <NavButton onClick={() => navigate("/tuotteet")}>
+              TUOTTEET
+            </NavButton>
+            <NavDropContent>
+              <NavLink onClick={() => navigate("/tuotteet/mekot")}>
+                Mekot
+              </NavLink>
+              <NavLink onClick={() => navigate("/tuotteet/kengat")}>
+                Kengät
+              </NavLink>
+              <NavLink onClick={() => navigate("/tuotteet/laukut")}>
+                Laukut
+              </NavLink>
+              <NavLink onClick={() => navigate("/tuotteet/takit")}>
+                Takit
+              </NavLink>
+              <NavLink onClick={() => navigate("/tuotteet/korut")}>
+                Korut
+              </NavLink>
+            </NavDropContent>
+          </NavDrop>
+          <NavItem onClick={() => navigate("/meista")}>MEISTÄ</NavItem>
+        </NavBar>
+      </Container>
+    </>
+  );
+};
+
+export default Header;
+
 const Container = styled.div`
   width: 100vw;
   border-bottom: 0.5px solid lightgray;
@@ -21,6 +145,7 @@ const Container = styled.div`
 
   ${mobile({ paddingBottom: "0px" })}
 `;
+/* Top part of header */
 const UpperNavigation = styled.div`
   position: relative;
   display: flex;
@@ -102,7 +227,7 @@ const SearchIconButton = styled.button`
     transform: scale(1.1);
   }
 `;
-
+/* Middle part of header */
 const LogoContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -121,6 +246,7 @@ const LogoImage = styled.img`
   ${tablet({ display: "none" })}
   ${large({ width: "300px" })}
 `;
+/* Bottom navigation of header */
 const NavBar = styled.div`
   width: 100%;
   display: flex;
@@ -183,123 +309,3 @@ const NavLink = styled.a`
     background-color: #f1f1f1;
   }
 `;
-
-const Header = ({ cart }) => {
-
-  const loggedIn = sessionStorage.getItem("loginToken");
-
-  const [showModal, setShowModal] = useState(0);
-
-  const navigate = useNavigate();
-
-  const openModal = () => {
-    setShowModal((prev) => !prev);
-  };
-
-  let LoggedIn = {
-    display: "none",
-  };
-  if (loggedIn) {
-    LoggedIn = {
-      display: "flex",
-    };
-  } else {
-    LoggedIn = {
-      display: "none",
-    };
-  }
-
-  let LoggedOut = {
-    display: "flex",
-  };
-  if (loggedIn) {
-    LoggedOut = {
-      display: "none",
-    };
-  } else {
-    LoggedOut = {
-      display: "flex",
-    };
-  }
-
-  function logOut() {
-    sessionStorage.clear();
-    window.location.reload();
-  };
-
-  return (
-    <>
-      <Container>
-        {showModal ? <Search setShowModal={setShowModal} /> : null}
-        <UpperNavigation>
-          <UpperLeft>
-            <Burger />
-            <SearchIconButton onClick={openModal}>
-              <MagnifyingGlass size={35} weight="light" />
-            </SearchIconButton>
-          </UpperLeft>
-          <UpperCenter>
-            <MobileLogo
-              src={logoMobile}
-              onClick={() => navigate("/")}
-            ></MobileLogo>
-          </UpperCenter>
-          <UpperRight>
-            <LoginIcon style={LoggedOut}>
-              <User
-                onClick={() => navigate("/kirjautuminen")}
-                size={32}
-                weight="light"
-              />
-            </LoginIcon>
-            <LogoutIcon style={LoggedIn}>
-              <SignOut size={32} onClick={() => logOut()}/>
-            </LogoutIcon>
-            <ShoppingContainer>
-              <ShoppingButton>
-                <Badge badgeContent={cart.length} color="secondary">
-                  <ShoppingBag
-                    onClick={() => navigate("/ostoskori")}
-                    size={35}
-                    weight="light"
-                  />
-                </Badge>
-              </ShoppingButton>
-            </ShoppingContainer>
-          </UpperRight>
-        </UpperNavigation>
-        <LogoContainer>
-          <LogoImage onClick={() => navigate("/")} src={logo} />
-        </LogoContainer>
-        <NavBar>
-          <NavItem onClick={() => navigate("/")}>ETUSIVU</NavItem>
-          <NavDrop>
-            <NavButton onClick={() => navigate("/tuotteet")}>
-              TUOTTEET
-            </NavButton>
-            <NavDropContent>
-              <NavLink onClick={() => navigate("/tuotteet/mekot")}>
-                Mekot
-              </NavLink>
-              <NavLink onClick={() => navigate("/tuotteet/kengat")}>
-                Kengät
-              </NavLink>
-              <NavLink onClick={() => navigate("/tuotteet/laukut")}>
-                Laukut
-              </NavLink>
-              <NavLink onClick={() => navigate("/tuotteet/takit")}>
-                Takit
-              </NavLink>
-              <NavLink onClick={() => navigate("/tuotteet/korut")}>
-                Korut
-              </NavLink>
-            </NavDropContent>
-          </NavDrop>
-          <NavItem onClick={() => navigate("/meista")}>MEISTÄ</NavItem>
-        </NavBar>
-      </Container>
-    </>
-  );
-};
-
-export default Header;
